@@ -4,6 +4,6 @@
   //  return view('welcome'); 
 //}); 
  
-Route::get('/', [HomeController::class, 'index']); 
-Route::get('/contact', [HomeController::class, 'contact']); 
-Route::get('/index2', [HomeController::class, 'index2']); 
+Route::get('/', function () {
+    return view('welcome');
+});
