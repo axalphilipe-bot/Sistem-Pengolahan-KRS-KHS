@@ -5,5 +5,11 @@
 //}); 
  
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome'); // atau dashboard kamu
+})->name('home');
+Route::get('/krs', function () {
+    return view('krs');
 });
+Route::get('/khs', function () {
+return view('khs');
+})->name('khs');

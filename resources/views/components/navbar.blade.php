@@ -5,9 +5,11 @@
 </div>
 
     <div class="menu">
-        <a href="#">Beranda</a>
-        <a href="#">KRS</a>
-        <a href="#">KHS</a>
+        <a href="{{ route('home') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+    Beranda
+</a>
+        <a href="{{ url('/krs') }}">KRS</a>
+        <a href="{{ route('khs') }}">KHS</a>
         <a href="#">Jadwal</a>
         <a href="#">Mata Kuliah</a>
         <a href="#">Panduan</a>
