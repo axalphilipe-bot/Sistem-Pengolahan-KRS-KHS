@@ -62,9 +62,18 @@
             <h3>Frequently Asked Questions</h3>
 
             <div class="faq-item">
-                <button class="faq-question">Bagaimana cara mengisi KRS?</button>
-                <div class="faq-answer">Masuk ke menu KRS lalu pilih mata kuliah.</div>
-            </div>
+    <button class="faq-question">Bagaimana cara mengisi KRS?</button>
+
+    <div class="faq-answer">
+        <p>Untuk mengisi KRS:</p>
+        <ul>
+            <li>Masuk ke menu KRS</li>
+            <li>Pilih mata kuliah</li>
+            <li>Cek total SKS</li>
+            <li>Klik Ambil KRS</li>
+        </ul>
+    </div>
+</div>
 
             <div class="faq-item">
                 <button class="faq-question">Kapan KRS dibuka?</button>

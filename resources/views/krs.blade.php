@@ -5,7 +5,7 @@
 <div class="krs-container">
 
     <div class="krs-header">
-        <h2>Ambil KRS</h2>
+        <h2>Ambil KRS (Kartu Rencana Studi)</h2>
 
         <div class="krs-actions">
             <button class="btn pdf">Export PDF</button>
