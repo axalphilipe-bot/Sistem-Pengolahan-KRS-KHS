@@ -16,7 +16,7 @@
             </div>
         </a>
 
-        <a href="{{ route('krs') }}" class="menu-link">
+        <a href="{{ route('jadwal') }}" class="menu-link">
             <div class="menu-item">
                 <i class="fas fa-calendar-week"></i>
                 <p>Jadwal Kuliah</p>

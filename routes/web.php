@@ -19,3 +19,6 @@ Route::get('/profil', function () {
 Route::get('/jadwal', function () {
     return view('jadwal');
 })->name('jadwal');
+Route::get('/matkul', function () {
+    return view('matkul');
+})->name('matkul');

@@ -227,9 +227,9 @@
                 <tr class="hari">
                     <td rowspan="7">Jumat</td>
                     <td>17:10 - 18:00</td>
-                    <td class="praktikum">IF207-Proyek Pembuatan Prototipe (Praktikum)</td>
-                    <td>SS</td>
-                    <td>GU 705</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
                 </tr>
                 <tr>
                     <td>18:00 - 18:50</td>

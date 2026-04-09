@@ -194,8 +194,8 @@
     .menu-item::before {
         content: "";
         position: absolute;
-        width: 200%;
-        height: 200%;
+        width: 500%;
+        height: 500%;
         top: -50%;
         left: -50%;
         background: linear-gradient(135deg, #00c6ff, #0072ff);
@@ -267,7 +267,10 @@
         margin: 30px auto;
         max-width: 1200px; /* biar jadi kotak tengah */
     }
-
+  .contact-banner:hover {
+        transform: translateY(-5px);
+        transition: 0.3s;
+  }
     /* TEXT */
     .banner-text h2 {
         margin: 0;
@@ -306,7 +309,9 @@
     .banner-image i {
         font-size: 60px;
         color: #2f5d73;
+        animation: float 3s ease-in-out infinite;
     }
+    
 
     /* CONTENT */
     .contact-content {
