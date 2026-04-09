@@ -8,7 +8,7 @@
 
     <div class="card">
         <i class="fas fa-users"></i>
-        <h2 class="counter" data-target="3000">0</h2>
+        <h2 class="counter" data-target="11.329">0</h2>
         <p>Total Mahasiswa</p>
     </div>
 

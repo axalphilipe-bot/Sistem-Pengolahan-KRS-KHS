@@ -2,25 +2,33 @@
 
     <div class="menu-grid">
 
-        <div class="menu-item">
-            <i class="fas fa-edit"></i>
-            <p>Ambil KRS</p>
-        </div>
+        <a href="{{ route('krs') }}" class="menu-link">
+            <div class="menu-item">
+                <i class="fas fa-edit"></i>
+                <p>Ambil KRS</p>
+            </div>
+        </a>
 
-        <div class="menu-item">
-            <i class="fas fa-file-alt"></i>
-            <p>Lihat KHS</p>
-        </div>
+        <a href="{{ route('khs') }}" class="menu-link">
+            <div class="menu-item">
+                <i class="fas fa-file-alt"></i>
+                <p>Lihat KHS</p>
+            </div>
+        </a>
 
-        <div class="menu-item">
-            <i class="fas fa-calendar-week"></i>
-            <p>Jadwal Kuliah</p>
-        </div>
+        <a href="{{ route('krs') }}" class="menu-link">
+            <div class="menu-item">
+                <i class="fas fa-calendar-week"></i>
+                <p>Jadwal Kuliah</p>
+            </div>
+        </a>
 
-        <div class="menu-item">
-            <i class="fas fa-book-open"></i>
-            <p>Data Mata Kuliah</p>
-        </div>
+        <a href="{{ route('khs') }}" class="menu-link">
+            <div class="menu-item">
+                <i class="fas fa-book-open"></i>
+                <p>Data Mata Kuliah</p>
+            </div>
+        </a>
 
     </div>
 

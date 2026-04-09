@@ -400,14 +400,12 @@
     .btn.pdf { background: #ff4d4d; color: white; box-shadow: black;}
     .btn.excel { background: #4CAF50; color: white; }
 
-    /* FILTER */
     .krs-filter {
         margin: 15px 0;
         display: flex;
         gap: 10px;
     }
 
-    /* ALERT */
     .krs-alert {
         background: #fff3cd;
         padding: 15px;
@@ -415,7 +413,6 @@
         margin-bottom: 15px;
     }
 
-    /* TABLE */
     .krs-table table {
         width: 100%;
         border-collapse: collapse;
@@ -434,7 +431,6 @@
         border-bottom: 1px solid #eee;
     }
 
-    /* FOOTER */
     .krs-footer {
         display: flex;
         justify-content: space-between;
@@ -455,14 +451,12 @@
         margin: 20px 0;
     }
 
-    /* container */
     .filter-item {
         display: flex;
         flex-direction: column;
         min-width: 220px;
     }
 
-    /* label */
     .filter-item label {
         font-size: 13px;
         margin-bottom: 6px;
@@ -707,3 +701,268 @@
     transform: rotate(180deg);
 }
 
+.menu-link {
+    text-decoration: none;
+    color: inherit;
+    flex: 1;
+}
+
+.menu-item {
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu-item:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 20px;
+    flex: 2;
+}
+
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 20px;
+    flex: 2;
+}
+
+.announcement {
+    flex: 1;
+}
+
+.user-link {
+    text-decoration: none;
+    color: white;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 6px 12px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.user:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.profile-container {
+    padding: 30px;
+}
+
+.profile-card {
+    display: flex;
+    gap: 30px;
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    align-items: center;
+}
+
+.profile-left {
+    font-size: 100px;
+    color: #3f5c6e;
+}
+
+.profile-right {
+    flex: 1;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-edit {
+    background: #0072ff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-edit:hover {
+    background: #005edb;
+}
+
+/* background gelap */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 500;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+/* isi modal */
+.modal-content {
+    background: white;
+    margin: 5% auto;
+    padding: 20px;
+    width: 400px;
+    border-radius: 12px;
+    animation: fadeIn 0.3s ease;
+}
+
+/* animasi */
+@keyframes fadeIn {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* close button */
+.close {
+    float: right;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* input */
+.modal input,
+.modal textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* tombol */
+.btn-save {
+    background: #0072ff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.container-jadwal {
+    padding: 20px;
+}
+
+.container-jadwal h2 {
+    color: #2f5d73;
+    margin-bottom: 15px;
+}
+
+/* Filter */
+.filter-bar {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.filter-bar label {
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.filter-bar select {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.action-btn {
+    margin-left: auto;
+}
+
+.btn-export {
+    background: #e74c3c;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Card */
+.card-jadwal {
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* Table */
+.card-jadwal table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.card-jadwal thead {
+    background: #cfe0ea;
+}
+
+.card-jadwal th {
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
+}
+
+.card-jadwal td {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+}
+
+/* Footer */
+.footer-jadwal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+    background: #d6e7f1;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.btn-detail {
+    background: #2f5d73;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Kolom hari */
+.hari td:first-child {
+    background: #f1f1f1;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Biar garis seperti excel */
+.card-jadwal td {
+    border: 1px solid #ddd;
+}
+
+/* Hover */
+.card-jadwal tr:hover {
+    background: #f9fbfd;
+}
+
+.praktikum {
+    font-weight: bold;
+    color: #2f5d73;
+}

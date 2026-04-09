@@ -10,13 +10,15 @@
 </a>
         <a href="{{ url('/krs') }}">KRS</a>
         <a href="{{ route('khs') }}">KHS</a>
-        <a href="#">Jadwal</a>
+        <a href="{{ route('jadwal') }}">Jadwal</a>
         <a href="#">Mata Kuliah</a>
         <a href="#">Panduan</a>
     </div>
 
+ <a href="{{ route('profil') }}" class="user-link">
     <div class="user">
         <i class="fas fa-user-circle"></i>
         Nama Mahasiswa
     </div>
+</a>
 </div>

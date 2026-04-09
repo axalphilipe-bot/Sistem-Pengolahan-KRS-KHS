@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let current = 0;
 
         const update = () => {
-            const increment = target / 100;
+            const increment = target / 300;
 
             if (current < target) {
                 current += increment;
