@@ -16,9 +16,3 @@ return view('khs');
 Route::get('/profil', function () {
     return view('profil');
 })->name('profil');
-Route::get('/jadwal', function () {
-    return view('jadwal');
-})->name('jadwal');
-Route::get('/matkul', function () {
-    return view('matkul');
-})->name('matkul');

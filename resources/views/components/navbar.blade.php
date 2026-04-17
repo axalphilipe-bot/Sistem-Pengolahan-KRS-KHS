@@ -8,10 +8,10 @@
         <a href="{{ route('home') }}" class="{{ request()->is('/') ? 'active' : '' }}">
     Beranda
 </a>
-        <a href="{{ url('/krs') }}">KRS</a>
-        <a href="{{ route('khs') }}">KHS</a>
-        <a href="{{ route('jadwal') }}">Jadwal</a>
-        <a href="{{ route('matkul') }}">Mata Kuliah</a>
+        <a href="{{ url('/krs') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+    KRS</a>
+        <a href="{{ route('khs') }}" class="{{ request()->is('/') ? 'active' : '' }}">
+        KHS</a>
         <a href="#">Panduan</a>
     </div>
 

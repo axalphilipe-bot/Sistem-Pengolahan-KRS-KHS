@@ -16,20 +16,6 @@
             </div>
         </a>
 
-        <a href="{{ route('jadwal') }}" class="menu-link">
-            <div class="menu-item">
-                <i class="fas fa-calendar-week"></i>
-                <p>Jadwal Kuliah</p>
-            </div>
-        </a>
-
-        <a href="{{ route('khs') }}" class="menu-link">
-            <div class="menu-item">
-                <i class="fas fa-book-open"></i>
-                <p>Data Mata Kuliah</p>
-            </div>
-        </a>
-
     </div>
 
     <div class="announcement">
