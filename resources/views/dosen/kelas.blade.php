@@ -52,12 +52,12 @@
 
             <tbody>
                 <tr>
-                    <td>IF2020</td>
+                    <td>IF211</td>
                     <td>Basis Data</td>
                     <td>3</td>
-                    <td>IF-A</td>
+                    <td>IF-A-Pagi</td>
                     <td>Senin 18:00 - 20:30</td>
-                    <td><span class="badge success">✔ Disetujui</span></td>
+                    <td>30</td>
                     <td>
                         <button class="btn-blue">🔍 Lihat</button>
                         <button class="btn-green">✔ Validasi</button>
@@ -65,12 +65,12 @@
                 </tr>
 
                 <tr>
-                    <td>IF2021</td>
+                    <td>IF210</td>
                     <td>Pemograman Web</td>
                     <td>3</td>
-                    <td>IF-B</td>
+                    <td>IF-B-Pagi</td>
                     <td>Selasa 20:30 - 23:00</td>
-                    <td><span class="badge warning">⏰ Pending</span></td>
+                    <td>32</td>
                     <td>
                         <button class="btn-blue">🔍 Lihat</button>
                         <button class="btn-green">✔ Validasi</button>
@@ -78,12 +78,12 @@
                 </tr>
 
                 <tr>
-                    <td>IF2022</td>
+                    <td>IF207</td>
                     <td>Proyek Pembuatan Prototype</td>
                     <td>3</td>
-                    <td>IF-C</td>
+                    <td>IF-C-Malam</td>
                     <td>Rabu 18:00 - 20:30</td>
-                    <td><span class="badge success">✔ Disetujui</span></td>
+                    <td>28</td>
                     <td>
                         <button class="btn-blue">🔍 Lihat</button>
                         <button class="btn-green">✔ Validasi</button>
@@ -91,12 +91,12 @@
                 </tr>
 
                 <tr>
-                    <td>IF2023</td>
+                    <td>IF212</td>
                     <td>Pemograman Berorientasi Objek</td>
                     <td>3</td>
-                    <td>IF-D</td>
+                    <td>IF-B-Malam</td>
                     <td>Kamis 19:20 - 21:00</td>
-                    <td><span class="badge warning">⏰ Pending</span></td>
+                    <td>30</td>
                     <td>
                         <button class="btn-blue">🔍 Lihat</button>
                         <button class="btn-orange">📝 Nilai</button>

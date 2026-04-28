@@ -10,22 +10,22 @@
 
         <div class="dosen-cards">
 
-            <div class="card">
+            <div class="dosen-card">
                 <h3>{{ $jumlahKelas }}</h3>
                 <p>Jumlah Kelas</p>
             </div>
 
-            <div class="card">
+            <div class="dosen-card">
                 <h3>{{ $totalMahasiswa }}</h3>
                 <p>Total Mahasiswa</p>
             </div>
 
-            <div class="card">
+            <div class="dosen-card">
                 <h3>{{ $krsDisetujui }}</h3>
                 <p>KRS Disetujui</p>
             </div>
 
-            <div class="card">
+            <div class="dosen-card">
                 <h3>{{ $menunggu }}</h3>
                 <p>Menunggu Persetujuan</p>
             </div>
@@ -55,10 +55,10 @@
                             <td>{{ $m->nama }}</td>
                             <td>{{ $m->sks }}</td>
                             <td>{{ $m->semester }}</td>
-                            <td>24</td> <!-- nanti dari DB -->
+                            <td>24</td> 
                             <td>
-                                <a href="/dosen/kelas/{{ $m->kode }}" class="btn lihat">Lihat KRS</a>
-                                <a href="/dosen/nilai/{{ $m->kode }}" class="btn nilai">Input Nilai</a>
+                                <button href="/dosen/kelas/{{ $m->kode }}" class="btn-lihat">Lihat KRS</button>
+                                <button href="/dosen/nilai/{{ $m->kode }}" class="btn-nilai">Input Nilai</button>
                             </td>
                         </tr>
                     @endforeach

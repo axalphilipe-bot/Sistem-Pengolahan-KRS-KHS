@@ -34,6 +34,12 @@ Route::prefix('dosen')->middleware(['auth','role:dosen'])->group(function () {
     Route::get('/kelas', [DosenController::class, 'kelas']);
     Route::get('/validasi', [DosenController::class, 'validasi']);
 
+    Route::get('/panduan', function () {
+     return view('dosen.panduan');
+    });
+Route::get('/validasi', function () {
+    return view('dosen.validasi');
+});
     // 🔥 BARU
     Route::get('/kelas/{kode}', [DosenController::class, 'detailKelas']);
     Route::get('/nilai/{kode}', [DosenController::class, 'inputNilai']);

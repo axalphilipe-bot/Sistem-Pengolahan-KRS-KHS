@@ -228,3 +228,160 @@ tbody tr {
 .aksi-link:hover {
     opacity: 0.85;
 }
+
+/* ===== PANDUAN ===== */
+
+.panduan-container {
+    padding: 20px;
+}
+
+.panduan-title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.panduan-sub {
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.panduan-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.panduan-card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.panduan-card h3 {
+    margin-top: 10px;
+}
+
+.panduan-card a {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* BADGE */
+.badge {
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.blue { background: #3b82f6; }
+.green { background: #22c55e; }
+.purple { background: #9333ea; }
+.orange { background: #f97316; }
+
+/* TIPS */
+.panduan-tips {
+    margin-top: 20px;
+    background: #dbeafe;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* CONTAINER */
+.krs-container {
+    padding: 20px;
+}
+
+.krs-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* ALERT */
+.krs-alert {
+    background: #fff3cd;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* TABLE */
+.krs-table {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+.krs-table thead {
+    background: #cfe2ff;
+}
+
+.krs-table th,
+.krs-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+/* AKSI */
+.aksi-cell {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* BUTTON */
+.btn-validasi {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+/* STATUS */
+.status {
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: white;
+    font-size: 12px;
+}
+
+.status.success {
+    background: #22c55e;
+}
+
+.status.pending {
+    background: #f97316;
+}
+
+/* FOOTER */
+.krs-footer {
+    margin-top: 10px;
+    background: #dbeafe;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.btn-nilai {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+.btn-lihat {
+    background: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+}

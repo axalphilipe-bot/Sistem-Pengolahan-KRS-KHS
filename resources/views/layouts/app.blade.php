@@ -21,7 +21,7 @@
         <img src="{{ asset('img/logo.png') }}">
     </div>
 
-    {{-- 🔥 MAHASISWA --}}
+    {{-- MAHASISWA --}}
     @if(auth()->user()->role == 'mahasiswa')
 
         <a href="{{ route('home') }}" class="app-menu-item">
@@ -49,7 +49,7 @@
             <span>PROFIL</span>
         </a>
 
-    {{-- 🔥 DOSEN --}}
+    {{-- DOSEN --}}
     @elseif(auth()->user()->role == 'dosen')
 
         <a href="/dosen" class="app-menu-item">
@@ -63,12 +63,15 @@
         </a>
 
         <a href="/dosen/validasi" class="app-menu-item">
-            <i class="fas fa-check"></i>
-            <span>VALIDASI KRS</span>
-        </a>
+    <i class="fas fa-check"></i>
+    <span>VALIDASI KRS</span>
+</a>
+<a href="/dosen/panduan" class="app-menu-item">
+    <i class="fas fa-book"></i>
+    <span>PANDUAN</span>
+</a>
 
-
-    {{-- 🔥 ADMIN --}}
+    {{--  ADMIN --}}
     @elseif(auth()->user()->role == 'admin')
 
         <a href="/admin" class="app-menu-item">
