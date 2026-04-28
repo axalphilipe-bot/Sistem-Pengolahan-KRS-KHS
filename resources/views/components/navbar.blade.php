@@ -12,7 +12,9 @@
     KRS</a>
         <a href="{{ route('khs') }}" class="{{ request()->is('/') ? 'active' : '' }}">
         KHS</a>
-        <a href="#">Panduan</a>
+ <a href="{{ route('panduan') }}">
+    Panduan
+</a>
     </div>
 
  <a href="{{ route('profil') }}" class="user-link">

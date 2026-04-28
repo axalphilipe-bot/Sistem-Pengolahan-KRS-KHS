@@ -1,6 +1,5 @@
 <section class="contact-section">
 
-    <!-- 🔥 BANNER ATAS -->
     <div class="contact-banner">
         <div class="banner-text">
             <h2>Hubungi Kami</h2>
@@ -19,28 +18,28 @@
         </div>
     </div>
 
-    <!-- 🔽 SECTION LAMA -->
+
     <div class="contact-content">
 
-        <!-- INFO -->
+ 
         <div class="contact-info">
 
             <div class="info-card">
                 <i class="fas fa-map-marker-alt"></i>
                 <h4>Alamat</h4>
-                <p>Jl. Ahmad Yani, Batam</p>
+                <p> Jl. Ahmad Yani Batam Kota. Kota Batam. kepulauan Riau. Indonesia</p>
             </div>
 
             <div class="info-card">
                 <i class="fas fa-envelope"></i>
                 <h4>Email</h4>
-                <p>info@kampus.ac.id</p>
+                <p>info@polibatam.ac.id</p>
             </div>
 
             <div class="info-card">
                 <i class="fas fa-phone"></i>
                 <h4>Telepon</h4>
-                <p>+62 812 3456 7890</p>
+                <p>+62-778-469858 Ext.1017</p>
             </div>
 
             <div class="info-card">
@@ -57,7 +56,6 @@
 
         </div>
 
-        <!-- FAQ -->
         <div class="faq">
             <h3>Frequently Asked Questions</h3>
 
@@ -88,7 +86,6 @@
 
     </div>
 
-    <!-- MAP -->
     <div class="map">
         <iframe 
             src="https://www.google.com/maps?q=Politeknik%20Negeri%20Batam&output=embed">

@@ -16,3 +16,8 @@ window.onclick = function(e) {
         modal.style.display = "none";
     }
 }
+
+function exportPDF() {
+    const element = document.querySelector('.modal-content');
+    html2pdf().from(element).save('KHS.pdf');
+}

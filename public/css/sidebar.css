@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI';
+    background: #eef3f7;
+}
+
+/* SIDEBAR */
+/* DEFAULT: sidebar disembunyikan */
+.app-sidebar {
+    position: fixed;
+    top: 60px; /* ⬅️ WAJIB */
+    left: -240px;
+    background: #ffffff; /* 🔥 putih */
+    z-index: 1000; /* ⬅️ di bawah topbar */
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.08); /* 🔥 shadow ke kanan */
+    border-radius: 0 0px px 0; /* optional biar soft */
+      width: 240px;
+    height: calc(100vh - 60px);
+}
+
+/* SAAT AKTIF */
+.app-sidebar.active {
+    left: 0;
+}
+
+.app-logo {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.app-logo img {
+    width: 80px;
+}
+
+.menu-title {
+    font-size: 13px;
+    color: gray;
+    margin-bottom: 10px;
+}
+
+.app-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    color: #2c3e50;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.app-menu-item:hover {
+    background: #e3f2fd;
+}
+
+/* MAIN */
+/* default full */
+.app-main {
+    margin-left: 0;
+    margin-top: 60px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* saat sidebar muncul */
+.app-main.shift {
+    margin-left: 240px;
+    width: calc(100% - 240px);
+}
+
+/* TOPBAR */
+.app-topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    right: 0; /* ⬅️ WAJIB */
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    z-index: 2000;
+    overflow: visible; /* ⬅️ penting */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 20px;
+
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 🔥 biar kelihatan */
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+    margin-left: auto;
+    background: rgba(255,255,255,0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+     padding-right: 55px;
+    color: #ffffff;
+}
+
+.content {
+    padding: 20px;
+}
+
+/* ===== TOGGLE BUTTON ===== */
+.toggle-btn {
+    width: 30px;
+    height: 22px;
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.toggle-btn span {
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background: white;
+    left: 0;
+    transition: 0.3s;
+}
+
+.toggle-btn span:nth-child(1) { top: 0; }
+.toggle-btn span:nth-child(2) { top: 9px; }
+.toggle-btn span:nth-child(3) { top: 18px; }
+
+.toggle-btn.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 9px;
+}
+.toggle-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+.toggle-btn.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 9px;
+}
+.toggle-btn:hover {
+    opacity: 0.8;
+}
+.toggle-btn span {
+    transition: all 0.3s ease;
+}   
+/* ===== TRANSITION ===== */
+.app-sidebar,
+.app-main {
+    transition: all 0.3s ease;
+}
+
+/* ===== SIDEBAR COLLAPSED ===== */
+.app-sidebar.collapsed {
+    width: 70px;
+    padding: 20px 10px;
+}
+
+/* SEMBUNYIKAN TEXT */
+.app-sidebar.collapsed .app-menu-item span {
+    display: none;
+}
+
+/* ICON CENTER */
+.app-sidebar.collapsed .app-menu-item {
+    justify-content: center;
+}
+
+/* LOGO KECIL */
+.app-sidebar.collapsed .app-logo img {
+    width: 40px;
+}
+
+/* MAIN MENYESUAIKAN */
+.app-main.collapsed {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+}
+
+.overlay {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: rgba(0,0,0,0.3);
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+}
+
+
+.logout-form {
+    margin-top: auto;
+}
+
+.logout-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    padding: 10px;
+    color: #ff0000;
+
+}
+
+.logout-btn:hover {
+    background: #ff0000;
+    color: white;
+}

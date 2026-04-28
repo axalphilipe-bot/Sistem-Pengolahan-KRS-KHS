@@ -1,0 +1,230 @@
+/* ===== HALAMAN DOSEN ===== */
+
+.kelas-container {
+    background: #eef3f7;
+    padding: 20px;
+}
+
+.title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* TOP FILTER */
+.top-filter {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.top-filter select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.info-box {
+    background: #e7f5ff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.info-box.warning {
+    background: #fff3cd;
+}
+
+/* FILTER BAR */
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.filter-bar input,
+.filter-bar select {
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.right-tools {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+/* BUTTON */
+.btn-outline {
+    background: white;
+    border: 1px solid #ccc;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.btn-danger {
+    background: #ef4444;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+/* TABLE */
+.table-box {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    background: #cfe2ff;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+}
+
+tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+/* BADGE */
+.badge {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.badge.success {
+    background: #22c55e;
+    color: white;
+}
+
+.badge.warning {
+    background: #facc15;
+}
+
+/* BUTTON TABLE */
+.btn-blue {
+    background: #3b82f6;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.btn-green {
+    background: #22c55e;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+.btn-orange {
+    background: #f97316;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+}
+
+/* FOOTER */
+.table-footer {
+    margin-top: 10px;
+    background: #e9ecef;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* ===== HALAMAN INPUT NILAI ===== */
+
+.nilai-container {
+    padding: 20px;
+    background: #eef3f7;
+}
+
+.nilai-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* TABLE */
+.nilai-table {
+    width: 100%;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+.nilai-table thead {
+    background: #cfe2ff;
+}
+
+.nilai-table th,
+.nilai-table td {
+    padding: 12px;
+    text-align: center;
+}
+
+/* INPUT */
+.nilai-input {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 120px;
+}
+
+/* BUTTON */
+.btn-simpan {
+    margin-top: 10px;
+    background: #22c55e;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-simpan:hover {
+    opacity: 0.85;
+}
+
+/* LINK AKSI (LIHAT & NILAI) */
+.aksi-link {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+/* LIHAT */
+.aksi-lihat {
+    background: #3b82f6;
+    color: white;
+}
+
+/* INPUT NILAI */
+.aksi-nilai {
+    background: #f97316;
+    color: white;
+}
+
+/* HOVER */
+.aksi-link:hover {
+    opacity: 0.85;
+}
