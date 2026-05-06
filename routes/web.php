@@ -14,7 +14,7 @@ Route::post('/logout', function () {
     return redirect('/login');
 })->name('logout');
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -40,7 +40,7 @@ Route::prefix('dosen')->middleware(['auth','role:dosen'])->group(function () {
 Route::get('/validasi', function () {
     return view('dosen.validasi');
 });
-    // 🔥 BARU
+
     Route::get('/kelas/{kode}', [DosenController::class, 'detailKelas']);
     Route::get('/nilai/{kode}', [DosenController::class, 'inputNilai']);
 
@@ -65,7 +65,29 @@ Route::middleware(['auth', 'role:mahasiswa'])->group(function () {
     Route::get('/panduan', function () {
         return view('mahasiswa.panduan');
     })->name('panduan');
+Route::prefix('admin')->group(function () {
 
+    Route::view('/', 'admin.dashboard');
+
+    Route::view('/mahasiswa', 'admin.mahasiswa');
+    Route::view('/dosen', 'admin.dosen');
+    Route::view('/matkul', 'admin.matkul');
+
+    Route::view('/krs', 'admin.krs_pengajuan');
+    Route::view('/krs-approve', 'admin.krs_persetujuan');
+
+    Route::view('/nilai', 'admin.nilai_input');
+    Route::view('/validasi', 'admin.nilai_validasi');
+
+    Route::view('/laporan-krs', 'admin.laporan_krs');
+    Route::view('/laporan-khs', 'admin.laporan_khs');
+
+    Route::view('/pengaturan', 'admin.pengaturan');
+    Route::view('/pengguna', 'admin.pengguna');
+
+    Route::view('/log', 'admin.log');
+
+});
    
     Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password');
