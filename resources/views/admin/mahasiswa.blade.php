@@ -51,7 +51,7 @@
                             Edit
                         </button>
 
-                        <button class="btn hapus">
+<button class="btn hapus">
                             Hapus
                         </button>
 

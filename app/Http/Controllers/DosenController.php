@@ -39,7 +39,7 @@ class DosenController extends Controller
 
     public function inputNilai($kode)
     {
-        $matkul = MataKuliah::where('kode', $kode)->first();
+        $matkul = MataKuliah::where('kode_mk', $kode)->first();
 
         return view('dosen.input_nilai', compact('matkul'));
     }

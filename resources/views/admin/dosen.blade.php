@@ -9,7 +9,7 @@
         Kelola data dosen yang terdaftar di Politeknik Negeri Batam
     </p>
 
-    <div class="table-container">
+    <div class="table-wrappe">
 
         <table class="custom-table">
             <thead>

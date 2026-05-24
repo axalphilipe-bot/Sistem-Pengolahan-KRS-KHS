@@ -74,11 +74,6 @@ class="{{ request()->is('admin/krs-approve') ? 'active' : '' }}">
         Pengelolaan KHS
     </div>
 
-       <a href="/admin/nilai"
-class="{{ request()->is('admin/nilai') ? 'active' : '' }}">
-    <i class="fa fa-book"></i>
-    Input Nilai
-</a>   
 
     <a href="/admin/validasi"
 class="{{ request()->is('admin/validasi') ? 'active' : '' }}">

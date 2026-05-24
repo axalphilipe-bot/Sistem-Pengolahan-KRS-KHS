@@ -10,7 +10,7 @@
         Kelola pengguna & Hak Akses
     </p>
 
-    <div class="table-container">
+    <div class="table-wrappe">
 
         <table class="custom-table">
 

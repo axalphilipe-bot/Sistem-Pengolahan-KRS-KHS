@@ -15,4 +15,10 @@ class MataKuliah extends Model
     'prodi',
     'dosen'
 ];
+public function prodi()
+{
+    return $this->belongsTo(Prodi::class);
 }
+}
+
+

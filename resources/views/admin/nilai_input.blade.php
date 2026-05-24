@@ -38,7 +38,7 @@
     </div>
 
     <!-- TABLE -->
-    <div class="table-container">
+    <div class="table-wrappe">
 
         <table class="custom-table">
 

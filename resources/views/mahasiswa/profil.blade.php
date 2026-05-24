@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.mahasiswa')
 
 @section('content')
 
@@ -14,7 +14,7 @@
 
             <div class="profile-right">
                 <div class="profile-header">
-                    <h3>Nama : {{ auth()->user()->name }}</h3>
+                    <h3>Nama : {{ auth()->user()?->name ?? '-' }}</h3>
 
                     <div class="btn-group">
                         <button class="btn-edit" id="openModal">Edit Profil</button>
@@ -31,7 +31,7 @@
                 <hr>
 
                 <p><b>Alamat:</b> {{ auth()->user()->alamat ?? '-' }}</p>
-                <p><b>Email:</b> {{ auth()->user()->email }}</p>
+                <p><b>Email:</b> {{ auth()->user()->email ?? '-'}}</p>
                 <p><b>Telepon:</b> {{ auth()->user()->no_hp ?? '-' }}</p>
 
             </div>
@@ -47,27 +47,28 @@
 
             <h3>Edit Profil</h3>
 
-            <form method="POST" action="{{ route('profile.update') }}" class="form-grid">
+           <form method="POST"
+      action="{{ route('profile.update') }}">
                 @csrf
 
                 <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" name="name" value="{{ auth()->user()->name }}">
+                    <input type="text" name="name" value="{{ auth()->user()->name ?? ''  }}">
                 </div>
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" value="{{ auth()->user()->email }}">
+                    <input type="email" name="email" value="{{ auth()->user()->email ?? ''  }}">
                 </div>
 
                 <div class="form-group">
                     <label>Telepon</label>
-                    <input type="text" name="no_hp" value="{{ auth()->user()->no_hp }}">
+                    <input type="text" name="no_hp" value="{{ auth()->user()->no_hp  ?? '' }}">
                 </div>
 
                 <div class="form-group full">
                     <label>Alamat</label>
-                    <textarea name="alamat">{{ auth()->user()->alamat }}</textarea>
+                    <textarea name="alamat">{{ auth()->user()->alamat ?? ''  }}</textarea>
                 </div>
 
                 <button type="submit" class="btn-save full">Simpan</button>

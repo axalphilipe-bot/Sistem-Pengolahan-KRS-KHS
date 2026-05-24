@@ -20,6 +20,10 @@ body{
     border-right:1px solid #e5e7eb;
     min-height:100vh;
     box-shadow:0 0 10px rgba(0,0,0,0.04);
+    position: sticky;
+    top: 0;
+    left: 0;
+    overflow: auto;
 }
 
 .sidebar-logo{
@@ -85,17 +89,19 @@ body{
 .main-content{
     flex:1;
     padding:25px;
+    animation: gradientMove 8s ease infinite;
+    background: linear-gradient(270deg, #F9F5F0, #F9F8F6, #FBF6F6);
 }
 
 .topbar{
     height: 70px;
     background: linear-gradient(to right, #12b8f6, #2b83ff);
     border-radius: 10px 10px 0 0;
-
+    position:sticky;
     display: flex;
     justify-content: space-between;
     align-items: center;
-
+    top: 0;
     padding: 0 25px;
 }
 
@@ -994,3 +1000,9 @@ table tbody tr:hover{
     color: #355070;
     font-size: 14px;
 }
+
+ @keyframes gradientMove {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }

@@ -33,7 +33,7 @@
             <input 
                 type="text" 
                 name="login" 
-                placeholder="Masukkan Email / NIM / NIDN"
+                placeholder="Masukkan Email / NIM / NUPTK"
                 required
             >
 

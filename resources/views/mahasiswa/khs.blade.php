@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.mahasiswa')
 
 @section('content')
 
@@ -15,15 +15,18 @@
             <label>Semester</label>
             <select required>
                 <option value="">-- Pilih Semester --</option>
-                <option>2025/2026 Genap</option>
+                <option>Genap</option>
+                <option>Ganjil</option>
             </select>
         </div>
 
         <div class="filter-item">
-            <label>Prodi</label>
+            <label>Tahun Ajaran            
+            </label>
             <select required>
-                <option value="">-- Pilih Prodi --</option>
-                <option>Teknik Informatika</option>
+                <option value="">-- Tahun Ajaran --</option>
+                <option>2025/2026</option>
+                <option>2024/2025</option>
             </select>
         </div>
 

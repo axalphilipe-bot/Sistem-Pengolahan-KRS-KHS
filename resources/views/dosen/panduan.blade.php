@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.dosen')
 
 @section('content')
 <div class="panduan-container">
@@ -21,7 +21,6 @@
             <p>Periksa dan setujui KRS mahasiswa sebelum masa perkuliahan dimulai.</p>
             <a href="/dosen/validasi">Pelajari Validasi →</a>
         </div>
-=
         <div class="panduan-card">
             <div class="badge purple">3</div>
             <h3>Input Nilai</h3>

@@ -6,7 +6,7 @@
         if (this.value === 'mahasiswa') {
             input.placeholder = 'Masukkan NIM';
         } else if (this.value === 'dosen') {
-            input.placeholder = 'Masukkan NIDN';
+            input.placeholder = 'Masukkan NUPTK';
         } else if (this.value === 'admin') {
             input.placeholder = 'Masukkan Email / Username';
         } else {

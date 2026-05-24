@@ -1,12 +1,11 @@
 
-@extends('layouts.app')
+@extends('layouts.dosen')
 
 @section('content')
 <div class="kelas-container">
 
     <h2 class="title">Kelas Saya</h2>
 
-    <!-- FILTER TOP -->
     <div class="top-filter">
         <select>
             <option>Cari Mata Kuliah...</option>
