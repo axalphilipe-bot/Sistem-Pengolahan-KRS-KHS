@@ -13,8 +13,9 @@ class Mahasiswa extends Model
         'nama',
         'email',
         'kelas',
+        'jenjang',
         'semester',
-        'prodi_id'
+        'kode_prodi'
     ];
     
 protected $primaryKey = 'nim';
@@ -32,6 +33,14 @@ protected $keyType = 'string';
         Prodi::class,
         'kode_prodi',
         'kode_prodi'
+    );
+}
+public function nilai()
+{
+    return $this->hasOne(
+        Nilai::class,
+        'nim',
+        'nim'
     );
 }
 }

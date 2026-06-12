@@ -27,20 +27,26 @@ class AuthController extends Controller
         $password = $request->password;
 
         if ($role == 'mahasiswa') {
+
             $user = User::where('nim', $login)
                 ->where('role', 'mahasiswa')
                 ->first();
+
         } elseif ($role == 'dosen') {
-            $user = User::where('nidn', $login)
+
+            $user = User::where('nuptk', $login)
                 ->where('role', 'dosen')
                 ->first();
+
         } else {
+
             $user = User::where('email', $login)
                 ->where('role', 'admin')
                 ->first();
         }
 
         if ($user && Hash::check($password, $user->password)) {
+
             Auth::login($user);
 
             if ($user->role == 'admin') {
@@ -51,7 +57,6 @@ class AuthController extends Controller
                 return redirect('/home');
             }
         }
-
 
         return back()->with('error', 'Login gagal');
     }

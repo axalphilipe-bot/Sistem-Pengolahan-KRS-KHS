@@ -48,7 +48,6 @@ protected $fillable = [
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
         ];
     }
 }

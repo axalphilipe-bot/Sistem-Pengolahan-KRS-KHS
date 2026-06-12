@@ -6,45 +6,42 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('nilais', function (Blueprint $table) {
-           Schema::create('nilais', function (Blueprint $table) {
 
- 
+            $table->id();
 
-    $table->string('nim',10);
+            $table->string('nim', 10);
 
-    $table->string('kode_mk',5);
+            $table->string('kode_mk', 5);
 
-    $table->integer('uts');
+            $table->integer('teamwork');
+            $table->integer('keaktifan');
+            $table->integer('laporan');
 
-    $table->integer('harian');
+            $table->integer('proyek');
 
-    $table->integer('praktik');
+       
+            $table->integer('tugas');
+            $table->integer('kuis');
 
-    $table->integer('tugas');
+      
+            $table->integer('uts');
+            $table->integer('uas');
 
-    $table->integer('kehadiran');
+            $table->double('nilai_akhir')->nullable();
 
-    $table->double('nilai_akhir')->nullable();
+            $table->string('nilai_huruf')->nullable();
 
-    $table->string('nilai_huruf')->nullable();
+            $table->double('index_nilai')->nullable();
 
-    $table->double('index_nilai')->nullable();
+            $table->timestamps();
 
-    $table->timestamps();
-
-});
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('nilais');
