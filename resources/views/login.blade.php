@@ -24,11 +24,11 @@
             @csrf
 
             <select name="role" required>
-                <option value="">Pilih Jenis User</option>
-                <option value="admin">Admin</option>
-                <option value="mahasiswa">Mahasiswa</option>
-                <option value="dosen">Dosen</option>
-            </select>
+       <option value="admin">Admin</option>
+<option value="mahasiswa">Mahasiswa</option>
+<option value="dosen">Dosen</option>
+<option value="kps">KPS</option>
+    </select>
 
             <input 
                 type="text" 

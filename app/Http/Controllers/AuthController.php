@@ -15,55 +15,62 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        $request->validate([
-            'login' => 'required',
-            'password' => 'required',
-            'role' => 'required'
-        ]);
+{
+    $request->validate([
+        'login' => 'required',
+        'password' => 'required',
+        'role' => 'required'
+    ]);
 
-        $role = $request->role;
-        $login = $request->login;
-        $password = $request->password;
+    $role = $request->role;
+    $login = $request->login;
+    $password = $request->password;
 
-        if ($role == 'mahasiswa') {
+    if ($role == 'mahasiswa') {
 
-            $user = User::where('nim', $login)
-                ->where('role', 'mahasiswa')
-                ->first();
+        $user = User::where('nim', $login)
+            ->where('role', 'mahasiswa')
+            ->first();
 
-        } elseif ($role == 'dosen') {
+    } elseif ($role == 'dosen') {
 
-            $user = User::where('nuptk', $login)
-                ->where('role', 'dosen')
-                ->first();
+        $user = User::where('nuptk', $login)
+            ->where('role', 'dosen')
+            ->first();
 
-        } else {
+    } elseif ($role == 'kps') {
 
-            $user = User::where('email', $login)
-                ->where('role', 'admin')
-                ->first();
-        }
+        $user = User::where('email', $login)
+            ->where('role', 'kps')
+            ->first();
 
-        if ($user && Hash::check($password, $user->password)) {
+    } else {
 
-            Auth::login($user);
-
-            if ($user->role == 'admin') {
-                return redirect('/admin');
-            } elseif ($user->role == 'dosen') {
-                return redirect('/dosen');
-            } else {
-                return redirect('/home');
-            }
-        }
-
-        return back()->with('error', 'Login gagal');
+        $user = User::where('email', $login)
+            ->where('role', 'admin')
+            ->first();
     }
 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('/login');
+    if ($user && Hash::check($password, $user->password)) {
+
+        Auth::login($user);
+
+        if ($user->role == 'admin') {
+            return redirect('/admin');
+        }
+
+        if ($user->role == 'dosen') {
+            return redirect('/dosen');
+        }
+
+        
+        if ($user->role == 'kps') {
+            return redirect('/kps');
+        }
+
+        return redirect('/home');
     }
+
+    return back()->with('error', 'Login gagal');
+}
 }

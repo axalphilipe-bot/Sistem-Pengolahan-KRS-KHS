@@ -6,6 +6,7 @@ use App\Http\Controllers\KrsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\KpsController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -123,6 +124,41 @@ Route::get('/profil', function () {
 
 Route::get('/panduan', function () {
     return view('mahasiswa.panduan');
+});
+
+/*
+|--------------------------------------------------------------------------
+| KPS
+|--------------------------------------------------------------------------
+*/
+
+
+Route::prefix('kps')->group(function () {
+
+    Route::get('/', function () {
+        return view('kps.dashboard');
+    });
+
+    Route::get('/approve',
+        [KpsController::class, 'approve']);
+
+    Route::get('/approve/setujui/{nim}',
+        [KpsController::class, 'setujui']);
+
+    Route::get('/approve/tolak/{nim}',
+        [KpsController::class, 'tolak']);
+
+    Route::get('/kunci',
+    [KpsController::class, 'kunci']);
+
+    Route::get('/kunci/lock/{nim}',
+        [KpsController::class, 'lock']);
+
+    Route::get('/kunci/unlock/{nim}',
+        [KpsController::class, 'unlock']);
+
+    Route::view('/laporan', 'kps.laporan');
+
 });
 
 /*
