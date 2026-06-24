@@ -1,9 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dosen</title>
+    <meta charset="UTF-8">
 
-    <link rel="stylesheet" href="{{ asset('css/dosen.css') }}">
+    <link rel="stylesheet"
+    href="{{ asset('css/dosen.css') }}">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
 
 <body>
@@ -18,14 +23,22 @@
 
         {{-- NAVBAR --}}
         <div class="topbar">
-            <h3>Dosen Panel</h3>
-        </div>
 
+    <h2>
+        Sistem Pengelolaan KRS & KHS
+    </h2>
+
+    <div class="profile">
+        <i class="fas fa-user-circle"></i>
+        Dosen Informatika
+    </div>
+
+</div>
         @yield('content')
 
     </div>
 
 </div>
-
+@stack('scripts')
 </body>
 </html>

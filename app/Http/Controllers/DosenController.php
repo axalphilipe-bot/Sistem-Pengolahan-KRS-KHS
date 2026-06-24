@@ -8,50 +8,142 @@ use App\Imports\NilaiImport;
 use App\Models\Nilai;
 use App\Models\MataKuliah;
 use App\Models\Mahasiswa;
-
+use App\Models\Krs;
+use Barryvdh\DomPDF\Facade\Pdf;
 class DosenController extends Controller
 {
     public function dashboard()
-    {
-        $matkul = MataKuliah::all();
+{
+    $matkul = MataKuliah::all();
 
-        return view('dosen.dashboard', [
-            'jumlahKelas' => $matkul->count(),
-            'totalMahasiswa' => 96,
-            'krsDisetujui' => 84,
-            'menunggu' => 17,
-            'matkul' => $matkul
+    $jumlahKelas = $matkul->count();
+
+    $totalMahasiswa = Krs::count();
+
+    $krsDisetujui = Krs::where(
+        'status',
+        'Disetujui'
+    )->count();
+
+    $menunggu = Krs::where(
+        'status',
+        'Pending'
+    )->count();
+
+    foreach ($matkul as $m) {
+
+        $m->jumlah_mahasiswa =
+            Krs::where(
+                'kode_mk',
+                $m->kode_mk
+            )->count();
+    }
+
+    return view(
+        'dosen.dashboard',
+        compact(
+            'jumlahKelas',
+            'totalMahasiswa',
+            'krsDisetujui',
+            'menunggu',
+            'matkul'
+        )
+    );
+}
+
+
+public function kelas()
+{
+    $matkul = MataKuliah::all();
+
+    foreach ($matkul as $m) {
+        $m->jumlah_mahasiswa = Krs::where(
+            'kode_mk',
+            $m->kode_mk
+        )->count();
+    }
+
+    return view(
+        'dosen.kelas',
+        compact('matkul')
+    );
+}
+            public function validasi()
+        {
+            $krs = Krs::with([
+                'mahasiswa',
+                'mataKuliah'
+            ])->get();
+
+            return view(
+                'dosen.validasi',
+                compact('krs')
+            );
+        }
+
+        public function approve($id)
+{
+    Krs::findOrFail($id)
+        ->update([
+            'status' => 'Disetujui'
         ]);
-    }
 
-    public function kelas()
-    {
-        return view('dosen.kelas');
-    }
+    return back();
+}
 
-    public function validasi()
-    {
-        return view('dosen.validasi');
-    }
+public function reject($id)
+{
+    Krs::findOrFail($id)
+        ->update([
+            'status' => 'Ditolak'
+        ]);
 
-    public function detailKelas($kode)
-    {
-        $matkul = MataKuliah::where('kode', $kode)->first();
+    return back();
+}
 
-        return view('dosen.detail_kelas', compact('matkul'));
-    }
+public function detailKelas($kode)
+{
+    $matkul = MataKuliah::where(
+        'kode_mk',
+        $kode
+    )->firstOrFail();
 
+    $peserta = Krs::with('mahasiswa')
+        ->where('kode_mk', $kode)
+        ->where('status', 'disetujui')
+        ->get();
+
+    return view(
+        'dosen.detail_kelas',
+        compact(
+            'matkul',
+            'peserta'
+        )
+    );
+}
     public function inputNilai($kode)
-    {
-        $matkul = MataKuliah::where('kode_mk', $kode)->first();
+{
+    $matkul = MataKuliah::where(
+        'kode_mk',
+        $kode
+    )->firstOrFail();
 
-        $mahasiswa = Mahasiswa::with('nilai')->get();
+    $peserta = Krs::with([
+        'mahasiswa',
+        'mahasiswa.nilai'
+    ])
+    ->where('kode_mk', $kode)
+    ->where('status', 'disetujui')
+    ->get();
 
-        return view(
-            'dosen.input_nilai',
-            compact('matkul', 'mahasiswa')
-        );
-    }
+    return view(
+        'dosen.input_nilai',
+        compact(
+            'matkul',
+            'peserta'
+        )
+    );
+}
 
 public function simpanNilai(Request $request)
 {
@@ -67,14 +159,12 @@ public function simpanNilai(Request $request)
         $uas       = $request->uas[$i] ?? 0;
 
         $nilaiAkhir =
-            ($teamwork * 0.15) +
-            ($keaktifan * 0.15) +
-            ($laporan * 0.10) +
-            ($proyek * 0.30) +
-            ($tugas * 0.05) +
-            ($kuis * 0.05) +
-            ($uts * 0.10) +
-            ($uas * 0.10);
+    ($keaktifan * 0.15) +
+    ($proyek * 0.35) +
+    ($tugas * 0.10) +
+    ($kuis * 0.10) +
+    ($uts * 0.15) +
+    ($uas * 0.15);
 
         if ($nilaiAkhir >= 85) {
             $huruf = 'A';
@@ -105,9 +195,7 @@ public function simpanNilai(Request $request)
         $data = [
             'nim'          => $nim,
             'kode_mk'      => $request->kode_mk,
-            'teamwork'     => $teamwork,
             'keaktifan'    => $keaktifan,
-            'laporan'      => $laporan,
             'proyek'       => $proyek,
             'tugas'        => $tugas,
             'kuis'         => $kuis,
@@ -163,4 +251,15 @@ public function simpanNilai(Request $request)
             'File Excel berhasil diimport!'
         );
     }
+    public function exportKelasPdf()
+{
+    $matkul = MataKuliah::all();
+
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView(
+        'dosen.pdf_kelas',
+        compact('matkul')
+    );
+
+    return $pdf->download('Daftar_Kelas_Dosen.pdf');
+}
 }

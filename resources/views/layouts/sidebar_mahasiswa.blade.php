@@ -42,17 +42,20 @@
         </a>
 
         <a href="/panduan"
-           class="{{ request()->is('panduan') ? 'active' : '' }}">
-            <i class="fas fa-circle-info"></i>
-            Panduan
-        </a>
-  <form action="{{ route('logout') }}" method="POST">
-            @csrf
+   class="{{ request()->is('panduan') ? 'active' : '' }}">
+    <i class="fas fa-circle-info"></i>
+    Panduan
+</a>
 
-            <button type="submit" class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i>
-                Logout
-            </button>
-    </div>
+<form action="{{ route('logout') }}" method="POST">
+    @csrf
+
+    <button type="submit" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i>
+        Logout
+    </button>
+</form>
+
+</div>
 
 </div>

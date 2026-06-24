@@ -18,13 +18,35 @@
     </div>
 
     <!-- ALERT -->
-    <div class="alert-box">
-        Silakan lengkapi data diri terlebih dahulu di menu
-        <b>PROFIL</b> sebelum melakukan pengajuan.
+    <!-- ALERT -->
+<div class="alert-box">
+    Silakan lengkapi data diri terlebih dahulu di menu
+    <b>PROFIL</b> sebelum melakukan pengajuan.
+</div>
+
+<!-- STATISTIK -->
+<div class="stats-container">
+
+    <div class="stat-card">
+        <h4>Total KRS</h4>
+        <h2>{{ $totalKrs }}</h2>
     </div>
 
-    <!-- PROFILE -->
-    <div class="profile-box">
+    <div class="stat-card">
+        <h4>Total SKS</h4>
+        <h2>{{ $totalSks }}</h2>
+    </div>
+
+    <div class="stat-card">
+        <h4>IPS</h4>
+        <h2>{{ number_format($ips, 2) }}</h2>
+    </div>
+
+</div>
+
+<!-- PROFILE -->
+<div class="profile-box">
+
 
         <!-- FOTO -->
         <div class="profile-left">
@@ -40,12 +62,12 @@
 
                 <p>
                     <span>NIM</span>
-                   NIM : 3312401020
+                   NIM : {{ $mahasiswa->nim }}
                 </p>
 
                 <p>
                     <span>Nama</span>
-                   NAMA : Ananda Shadiva Wansa
+                   NAMA : {{ $mahasiswa->nama }}
                 </p>
 
                 <p>
@@ -55,12 +77,12 @@
 
                 <p>
                     <span>Email</span>
-                   EMAIL : shadiva@student.ac.id
+                   EMAIL : {{ $mahasiswa->email }}
                 </p>
 
                 <p>
                     <span>Program Studi</span>
-                   Program Studi : Teknik Informatika
+                   Program Studi :{{ $mahasiswa->prodi->nama_prodi ?? '-' }}
                 </p>
 
                 <p>
@@ -70,17 +92,17 @@
 
                 <p>
                     <span>Kelas</span>
-                   Kelas : TI-2A
+                   Kelas : {{ $mahasiswa->kelas }}
                 </p>
 
                 <p>
                     <span>Jenjang</span>
-                   Jenjang : D4
+                   Jenjang : {{ $mahasiswa->jenjang }}
                 </p>
 
                 <p>
                     <span>Semester</span>
-                   Semester : 2
+                   Semester : {{ $mahasiswa->semester }}
                 </p>
 
             </div>

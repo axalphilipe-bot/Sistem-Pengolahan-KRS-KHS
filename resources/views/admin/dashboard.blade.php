@@ -10,25 +10,25 @@
 
     <div class="card">
         <i class="fa fa-users fa-2x"></i>
-        <h2>11,329</h2>
-        <p>Total Mahasiswa Aktif</p>
+        <h2>{{ $totalMahasiswa }}</h2>
+        <p>Total Mahasiswa</p>
     </div>
 
     <div class="card">
         <i class="fa fa-user fa-2x"></i>
-        <h2>98</h2>
-        <p>Total Dosen Aktif</p>
+        <h2>{{ $totalDosen }}</h2>
+        <p>Total Dosen</p>
     </div>
 
     <div class="card">
-        <i class="fa fa-school fa-2x"></i>
-        <h2>84</h2>
-        <p>Kelas Aktif</p>
+        <i class="fa fa-book fa-2x"></i>
+        <h2>{{ $totalMatkul }}</h2>
+        <p>Total Mata Kuliah</p>
     </div>
 
     <div class="card">
         <i class="fa fa-file fa-2x"></i>
-        <h2>86</h2>
+        <h2>{{ $totalKrs }}</h2>
         <p>Pengajuan KRS</p>
     </div>
 
@@ -42,27 +42,25 @@
 
     <table>
 
-        <tr>
-            <th>Waktu</th>
-            <th>Aktivitas</th>
-            <th>Detail</th>
-            <th>Oleh</th>
-        </tr>
+        <thead>
+            <tr>
+                <th>Waktu</th>
+                <th>Aktivitas</th>
+                <th>Detail</th>
+                <th>Oleh</th>
+            </tr>
+        </thead>
 
-        <tr>
-            <td>10 Mei 2026</td>
-            <td>Persetujuan KRS</td>
-            <td>KRS disetujui</td>
-            <td>Admin</td>
-        </tr>
+        <tbody>
 
-        <tr>
-            <td>10 Mei 2026</td>
-            <td>Input Nilai</td>
-            <td>Nilai Basis Data</td>
-            <td>Dosen</td>
-        </tr>
+    <tr>
+        <td>{{ now()->format('d M Y') }}</td>
+        <td>Login Sistem</td>
+        <td>Admin masuk ke sistem</td>
+        <td>Admin</td>
+    </tr>
 
+</tbody>
     </table>
 
 </div>

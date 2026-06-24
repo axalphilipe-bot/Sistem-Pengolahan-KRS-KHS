@@ -2,143 +2,122 @@
 
 @section('content')
 
+<style>
+.btn-tambah{
+    background:#3b8216;
+    color:white;
+    padding:10px 18px;
+    border-radius:8px;
+    text-decoration:none;
+    display:inline-block;
+    font-weight:600;
+}
+
+.btn-tambah:hover{
+    background:#2f6b12;
+}
+
+.aksi a{
+    display:inline-block;
+    padding:8px 12px;
+    border-radius:6px;
+    text-decoration:none;
+    color:white;
+    font-size:14px;
+    font-weight:500;
+    margin-right:4px;
+}
+
+.btn-info{
+    background:#2196f3;
+}
+
+.btn-warning{
+    background:#f59e0b;
+}
+
+.btn-danger{
+    background:#dc3545;
+}
+</style>
+
 <div class="page-content">
 
     <h1 class="page-title">Data Dosen</h1>
     <p class="page-subtitle">
         Kelola data dosen yang terdaftar di Politeknik Negeri Batam
     </p>
-
+<div style="margin-bottom:20px;">
+    <a href="/admin/dosen/create" class="btn-tambah">
+    + Tambah Dosen
+</a>
+</div>
     <div class="table-wrappe">
 
-        <table class="custom-table">
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>NIDN</th>
-                    <th>Nama Dosen</th>
-                    <th>Program Studi</th>
-                    <th>Status</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
+       <table class="custom-table">
 
-            <tbody>
+    <thead>
+        <tr>
+            <th>No</th>
+            <th>NUPTK</th>
+            <th>Nama Dosen</th>
+            <th>Program Studi</th>
+            <th>Status</th>
+            <th>Aksi</th>
+        </tr>
+    </thead>
 
-                <tr>
-                    <td>1</td>
-                    <td>1665589021</td>
-                    <td>Agus Fatulloh, S.T., M.T</td>
-                    <td>Teknik Informatika</td>
-                    <td>
-                        <span class="status aktif">
-                            Aktif
-                        </span>
-                    </td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+    <tbody>
 
-                <tr>
-                    <td>2</td>
-                    <td>5405831600</td>
-                    <td>Ari Wibowo, ST, MT</td>
-                    <td>Teknik Informatika</td>
-                    <td>
-                        <span class="status aktif">
-                            Aktif
-                        </span>
-                    </td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+        @foreach($dosen as $d)
 
-                <tr>
-                    <td>3</td>
-                    <td>4056563924</td>
-                    <td>Dwi Ely Kurniawan, S.Pd., M.Kom</td>
-                    <td>Teknik Informatika</td>
-                    <td>
-                        <span class="status aktif">
-                            Aktif
-                        </span>
-                    </td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+        <tr>
+            <td>{{ $loop->iteration }}</td>
 
-                <tr>
-                    <td>4</td>
-                    <td>6264891536</td>
-                    <td>Evaliata Br. Sembiring, S.Kom., M.Cs</td>
-                    <td>Teknik Informatika</td>
-                    <td>
-                        <span class="status aktif">
-                            Aktif
-                        </span>
-                    </td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+            <td>{{ $d->nuptk }}</td>
 
-                <tr>
-                    <td>5</td>
-                    <td>1562408240</td>
-                    <td>Fadli Suandi, S.T., M.Kom.</td>
-                    <td>Teknik Informatika</td>
-                    <td>
-                        <span class="status nonaktif">
-                            Nonaktif
-                        </span>
-                    </td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+            <td>{{ $d->nama }}</td>
 
-                <tr>
-                    <td>6</td>
-                    <td>1445973378</td>
-                    <td>Swono Sibagariang, S.Kom., M.Kom</td>
-                    <td>Teknik Informatika</td>
-                    <td>
-                        <span class="status aktif">
-                            Aktif
-                        </span>
-                    </td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+            <td>{{ $d->kode_prodi }}</td>
 
-                <tr>
-                    <td>7</td>
-                    <td>1708425975</td>
-                    <td>Hilda Widyastuti, S.T., M.T.</td>
-                    <td>Teknik Informatika</td>
-                    <td>
-                        <span class="status aktif">
-                            Aktif
-                        </span>
-                    </td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+            <td>
+                <span class="status aktif">
+                    Aktif
+                </span>
+            </td>
 
-            </tbody>
-        </table>
+            <td class="aksi" style="white-space:nowrap;">
+
+                <a
+href="/admin/dosen/{{ $d->nuptk }}"
+class="btn btn-info">
+    <i class="fa-solid fa-eye"></i>
+    Lihat
+</a>
+
+<a href="/admin/dosen/{{ $d->nuptk }}/edit"
+   class="btn edit">
+    <i class="fa-solid fa-pen"></i>
+    Edit
+</a>
+
+<a href="/admin/dosen/{{ $d->nuptk }}/hapus"
+   class="btn hapus"
+   onclick="return confirm('Yakin ingin menghapus dosen ini?')">
+
+    <i class="fa-solid fa-trash"></i>
+    Hapus
+</a>
+
+            </td>
+
+        </tr>
+
+        @endforeach
+
+    </tbody>
+
+</table>
 
     </div>
 

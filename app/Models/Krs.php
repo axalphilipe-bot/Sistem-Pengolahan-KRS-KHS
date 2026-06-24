@@ -10,6 +10,24 @@ class Krs extends Model
 
     protected $fillable = [
         'nim',
-        'kode_mk'
+        'kode_mk',
+        'status'
     ];
+
+    public function mahasiswa()
+    {
+        return $this->belongsTo(
+            Mahasiswa::class,
+            'nim',
+            'nim'
+        );
+    }
+    public function mataKuliah()
+{
+    return $this->belongsTo(
+        MataKuliah::class,
+        'kode_mk',
+        'kode_mk'
+    );
+}
 }

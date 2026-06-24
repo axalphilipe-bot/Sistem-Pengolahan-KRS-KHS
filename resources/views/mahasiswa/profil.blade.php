@@ -14,7 +14,7 @@
 
             <div class="profile-right">
                 <div class="profile-header">
-                    <h3>Nama : {{ auth()->user()?->name ?? '-' }}</h3>
+                    <h3>Nama : {{ $mahasiswa->nama }}</h3>
 
                     <div class="btn-group">
                         <button class="btn-edit" id="openModal">Edit Profil</button>
@@ -24,14 +24,17 @@
 
                 <hr>
 
-                <p><b>NIM:</b> {{ auth()->user()->nim ?? '-' }}</p>
-                <p><b>Jurusan:</b> {{ auth()->user()->prodi ?? '-' }}</p>
-                <p><b>Semester Aktif:</b> 4 (2025/2026 Genap)</p>
+                <p><b>NIM:</b> {{ $mahasiswa->nim }}</p>
+                <p><b>Jurusan:</b> {{ $mahasiswa->prodi->nama_prodi ?? '-' }}</p>
+                <p>
+    <b>Semester Aktif:</b>
+    {{ $mahasiswa->semester }}
+</p>
 
                 <hr>
 
                 <p><b>Alamat:</b> {{ auth()->user()->alamat ?? '-' }}</p>
-                <p><b>Email:</b> {{ auth()->user()->email ?? '-'}}</p>
+                <p><b>Email:</b> {{ $mahasiswa->email }}</p>
                 <p><b>Telepon:</b> {{ auth()->user()->no_hp ?? '-' }}</p>
 
             </div>
@@ -53,22 +56,22 @@
 
                 <div class="form-group">
                     <label>Nama</label>
-                    <input type="text" name="name" value="{{ auth()->user()->name ?? ''  }}">
+                    <input type="text" name="name" value="{{ $mahasiswa->nama }}">
                 </div>
 
                 <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" value="{{ auth()->user()->email ?? ''  }}">
+                    <input type="email" name="email" value="{{ $mahasiswa->email }}"">
                 </div>
 
                 <div class="form-group">
                     <label>Telepon</label>
-                    <input type="text" name="no_hp" value="{{ auth()->user()->no_hp  ?? '' }}">
+                    <input type="text" name="no_hp" value="">
                 </div>
 
                 <div class="form-group full">
                     <label>Alamat</label>
-                    <textarea name="alamat">{{ auth()->user()->alamat ?? ''  }}</textarea>
+                    <textarea name="alamat"></textarea>
                 </div>
 
                 <button type="submit" class="btn-save full">Simpan</button>

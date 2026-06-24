@@ -56,24 +56,26 @@ class NilaiImport implements ToCollection
             }
 
             Nilai::updateOrCreate(
-                [
-                    'nim' => $row[0],
-                    'kode_mk' => $this->kodeMk
-                ],
-                [
-                    'teamwork' => $row[1],
-                    'keaktifan' => $row[2],
-                    'laporan' => $row[3],
-                    'proyek' => $row[4],
-                    'tugas' => $row[5],
-                    'kuis' => $row[6],
-                    'uts' => $row[7],
-                    'uas' => $row[8],
-                    'nilai_akhir' => $nilaiAkhir,
-                    'nilai_huruf' => $huruf,
-                    'index_nilai' => $index
-                ]
-            );
+    [
+        'nim' => $row[0],
+        'kode_mk' => $this->kodeMk
+    ],
+    [
+        'teamwork' => $row[1],
+        'keaktifan' => $row[2],
+        'laporan' => $row[3],
+        'proyek' => $row[4],
+        'tugas' => $row[5],
+        'kuis' => $row[6],
+        'uts' => $row[7],
+        'uas' => $row[8],
+        'nilai_akhir' => $nilaiAkhir,
+        'nilai_huruf' => $huruf,
+        'index_nilai' => $index,
+
+        'nama_dosen' => 'Hilda Widyastuti, S.T., M.T.'
+    ]
+);
         }
     }
 }

@@ -38,140 +38,60 @@
 
             <tbody>
 
-                <tr>
-                    <td>1</td>
-                    <td>1665589021</td>
-                    <td>Muhammad Farhan</td>
-                    <td>Teknik Informatika</td>
-                    <td>2025/2026 Genap</td>
-                    <td>11 Mei 2025 10:15</td>
-                    <td>
-                        <span class="status disetujui">
-                            Disetujui
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn-lihat">
-                            Lihat
-                        </button>
-                    </td>
-                </tr>
+@foreach($krs as $item)
 
-                <tr>
-                    <td>2</td>
-                    <td>1133409498</td>
-                    <td>Devicha Retha Sashara</td>
-                    <td>Teknik Informatika</td>
-                    <td>2025/2026 Genap</td>
-                    <td>12 Mei 2025 08:23</td>
-                    <td>
-                        <span class="status pending">
-                            Pending
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn-lihat">
-                            Lihat
-                        </button>
-                    </td>
-                </tr>
+<tr>
+    <td>{{ $loop->iteration }}</td>
+    <td>{{ $item->nim }}</td>
 
-                <tr>
-                    <td>3</td>
-                    <td>1919068459</td>
-                    <td>Ananda Shadiva Wansa</td>
-                    <td>Teknik Informatika</td>
-                    <td>2025/2026 Genap</td>
-                    <td>10 Mei 2025 11:13</td>
-                    <td>
-                        <span class="status disetujui">
-                            Disetujui
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn-lihat">
-                            Lihat
-                        </button>
-                    </td>
-                </tr>
+<td>
+    {{ $item->mahasiswa->nama ?? '-' }}
+</td>
 
-                <tr>
-                    <td>4</td>
-                    <td>1857497941</td>
-                    <td>Axal Philipe Samuel</td>
-                    <td>Teknik Informatika</td>
-                    <td>2025/2026 Genap</td>
-                    <td>09 Mei 2025 17:12</td>
-                    <td>
-                        <span class="status disetujui">
-                            Disetujui
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn-lihat">
-                            Lihat
-                        </button>
-                    </td>
-                </tr>
+<td>
+    {{ $item->mahasiswa->kode_prodi ?? '-' }}
+</td>
 
-                <tr>
-                    <td>5</td>
-                    <td>1092712899</td>
-                    <td>Aliya Putri Ramadhani</td>
-                    <td>Teknik Informatika</td>
-                    <td>2025/2026 Genap</td>
-                    <td>10 Mei 2025 05:12</td>
-                    <td>
-                        <span class="status disetujui">
-                            Disetujui
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn-lihat">
-                            Lihat
-                        </button>
-                    </td>
-                </tr>
+<td>
+    {{ $item->mahasiswa->semester ?? '-' }}
+</td>
+    <td>
+    {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
+</td>
+    <td>
+        <span class="status pending">
+            {{ $item->status }}
+        </span>
+    </td>
+    <td>
 
-                <tr>
-                    <td>6</td>
-                    <td>1710187203</td>
-                    <td>Adinda Salsabila</td>
-                    <td>Teknik Informatika</td>
-                    <td>2025/2026 Genap</td>
-                    <td>12 Mei 2025 12:00</td>
-                    <td>
-                        <span class="status pending">
-                            Pending
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn-lihat">
-                            Lihat
-                        </button>
-                    </td>
-                </tr>
+@if($item->status == 'Pending')
 
-                <tr>
-                    <td>7</td>
-                    <td>1998341155</td>
-                    <td>Dody Sinaga</td>
-                    <td>Teknik Informatika</td>
-                    <td>2025/2026 Genap</td>
-                    <td>07 Mei 2025 08:00</td>
-                    <td>
-                        <span class="status ditolak">
-                            Ditolak
-                        </span>
-                    </td>
-                    <td>
-                        <button class="btn-lihat">
-                            Lihat
-                        </button>
-                    </td>
-                </tr>
+    <a href="#"
+       class="btn-setujui">
+        Setujui
+    </a>
 
-            </tbody>
+    <a href="#"
+       class="btn-tolak">
+        Tolak
+    </a>
+
+@else
+
+    <a href="/admin/krs/{{ $item->nim }}"
+       class="btn-lihat">
+        Lihat
+    </a>
+
+@endif
+
+</td>
+</tr>
+
+@endforeach
+
+</tbody>
 
         </table>
 

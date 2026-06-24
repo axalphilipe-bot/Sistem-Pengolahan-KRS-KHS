@@ -4,6 +4,18 @@
 
 <div class="krs-container">
 
+@if(session('success'))
+<div class="alert-success">
+    <i class="fas fa-circle-check"></i>
+    {{ session('success') }}
+</div>
+@endif
+
+@if(session('error'))
+<div class="alert-error">
+    {{ session('error') }}
+</div>
+@endif
     <!-- HEADER -->
     <div class="krs-header">
         <h2>Ambil KRS (Kartu Rencana Studi)</h2>
@@ -67,9 +79,14 @@
 
                 <select name="prodi">
                     <option value="">-- Pilih Prodi --</option>
-                    <option value="TI">Teknik Informatika</option>
-                    <option value="TRPL">TRPL</option>
-                    <option value="SI">Sistem Informasi</option>
+                    <option value="IF">Teknik Informatika</option>
+                    <option value="RPL">D4 Rekayasa Perangkat Lunak</option>
+                    <option value="KS">D4 Keamanan Siber</option>
+                    <option value="AN">D4 Animasi</option>
+                    <option value="TP">D4 Teknologi Permainan</option>
+                    <option value="TRM">D4 Teknologi Rekayasa Multimedia</option>
+                    <option value="GM">D3 Teknik Geomatika</option>
+                    <option value="MTK">Magister Terapan Teknik Komputer</option>
                 </select>
             </div>
 

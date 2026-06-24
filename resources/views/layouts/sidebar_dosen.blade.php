@@ -8,7 +8,9 @@
     <!-- MENU -->
     <div class="sidebar-menu">
 
-        <h3>Menu Utama</h3>
+        <div class="menu-title">
+    Menu Utama
+</div>
 
         <a href="/dosen" 
            class="menu-item {{ request()->is('dosen') ? 'active' : '' }}">
@@ -38,7 +40,9 @@
 
         <form action="{{ route('logout') }}" method="POST">
             @csrf
-
+<div class="menu-title">
+    Akun
+</div>
             <button type="submit" class="logout-btn">
                 <i class="fas fa-sign-out-alt"></i>
                 Logout

@@ -4,20 +4,69 @@
 
 <div class="page-content">
 
-    <h1 class="page-title">Pengguna & Hak Akses</h1>
+    <h1 class="page-title">
+        Pengguna & Hak Akses
+    </h1>
 
     <p class="page-subtitle">
-        Kelola pengguna & Hak Akses
+        Kelola pengguna dan hak akses sistem
     </p>
 
-    <div class="table-wrappe">
+    <!-- Statistik -->
+    <div class="stats-grid">
+
+        <div class="stat-card">
+    <h3>Total User</h3>
+    <h2>{{ $totalUser }}</h2>
+</div>
+
+<div class="stat-card success">
+    <h3>Admin</h3>
+    <h2>{{ $totalAdmin }}</h2>
+</div>
+
+<div class="stat-card warning">
+    <h3>Dosen</h3>
+    <h2>{{ $totalDosen }}</h2>
+</div>
+
+<div class="stat-card danger">
+    <h3>Mahasiswa</h3>
+    <h2>{{ $totalMahasiswa }}</h2>
+</div>
+
+    </div>
+
+    <!-- Tombol -->
+    <div class="filter-wrapper">
+
+        <div class="action-wrapper">
+
+            <button class="btn btn-primary">
+                + Tambah Pengguna
+            </button>
+
+        </div>
+
+        <div class="search-box">
+            <input
+                type="text"
+                placeholder="Cari pengguna..."
+            >
+        </div>
+
+    </div>
+
+    <!-- Tabel -->
+    <div class="table-wrapper">
 
         <table class="custom-table">
 
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Nama</th>
-                    <th>Username</th>
+                    <th>Email</th>
                     <th>Role</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -26,70 +75,45 @@
 
             <tbody>
 
-                <tr>
-                    <td>Axal Phillipe Samuel</td>
-                    <td>Axal</td>
-                    <td>Admin</td>
+@foreach($users as $user)
 
-                    <td>
-                        <span class="status aktif">
-                            Aktif
-                        </span>
-                    </td>
+<tr>
 
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+    <td>{{ $loop->iteration }}</td>
 
-                <tr>
-                    <td>Ananda Shadiva Wansa</td>
-                    <td>Shadiva</td>
-                    <td>Dosen</td>
+    <td>{{ $user->name }}</td>
 
-                    <td>
-                        <span class="status aktif">
-                            Aktif
-                        </span>
-                    </td>
+    <td>{{ $user->email ?? '-' }}</td>
 
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+    <td>
+        <span class="badge bg-primary">
+            {{ ucfirst($user->role) }}
+        </span>
+    </td>
 
-                <tr>
-                    <td>Devicha Reta Sashara</td>
-                    <td>Devicha</td>
-                    <td>Mahasiswa</td>
+    <td>
+        <span class="badge bg-success">
+            Aktif
+        </span>
+    </td>
 
-                    <td>
-                        <span class="status aktif">
-                            Aktif
-                        </span>
-                    </td>
+    <td>
 
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus">Hapus</button>
-                    </td>
-                </tr>
+        <button class="btn btn-warning btn-sm">
+            Edit
+        </button>
 
-                <!-- KOSONG -->
-                @for($i = 0; $i < 5; $i++)
-                <tr>
-                    <td>&nbsp;</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                @endfor
+        <button class="btn btn-danger btn-sm">
+            Hapus
+        </button>
 
-            </tbody>
+    </td>
 
+</tr>
+
+@endforeach
+
+</tbody>
         </table>
 
     </div>

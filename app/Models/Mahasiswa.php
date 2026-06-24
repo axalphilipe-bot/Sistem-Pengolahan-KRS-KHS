@@ -9,14 +9,15 @@ class Mahasiswa extends Model
     protected $table = 'mahasiswa';
 
     protected $fillable = [
-        'nim',
-        'nama',
-        'email',
-        'kelas',
-        'jenjang',
-        'semester',
-        'kode_prodi'
-    ];
+    'nim',
+    'nama',
+    'email',
+    'kelas',
+    'kelas_huruf',
+    'jenjang',
+    'semester',
+    'kode_prodi'
+];
     
 protected $primaryKey = 'nim';
 public $incrementing = false;
@@ -39,6 +40,14 @@ public function nilai()
 {
     return $this->hasOne(
         Nilai::class,
+        'nim',
+        'nim'
+    );
+}
+public function krs()
+{
+    return $this->hasMany(
+        Krs::class,
         'nim',
         'nim'
     );

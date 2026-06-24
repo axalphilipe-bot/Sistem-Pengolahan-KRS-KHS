@@ -22,7 +22,7 @@ body{
 /* SIDEBAR */
 
 .sidebar{
-    width:270px;
+    width:250px;
     height:100vh;
     background:white;
     position:fixed;
@@ -33,38 +33,40 @@ body{
 
 .logo{
     text-align:center;
-    padding:25px;
+    padding:18px;
 }
 
 .logo img{
-    width:120px;
+    width:95px;
 }
 
 .logo h2{
-    margin-top:10px;
+    margin-top:8px;
+    font-size:18px;
     color:#374151;
 }
 
 .menu{
-    padding:0 20px;
+    padding:0 15px;
 }
 
 .menu-title{
-    font-size:14px;
+    font-size:13px;
     font-weight:700;
     color:#6b7280;
-    margin:15px 0;
+    margin:12px 0;
 }
 
 .sidebar a{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:10px;
     text-decoration:none;
     color:#374151;
-    padding:12px 15px;
-    border-radius:10px;
-    margin-bottom:8px;
+    padding:10px 12px;
+    border-radius:8px;
+    margin-bottom:6px;
+    font-size:14px;
     transition:.3s;
 }
 
@@ -81,10 +83,10 @@ body{
 
 .logout{
     position:absolute;
-    bottom:20px;
+    bottom:15px;
     left:0;
     width:100%;
-    padding:0 20px;
+    padding:0 15px;
 }
 
 .logout button{
@@ -92,48 +94,47 @@ body{
     border:none;
     background:#ef4444;
     color:white;
-    padding:12px;
-    border-radius:10px;
+    padding:10px;
+    border-radius:8px;
     cursor:pointer;
-    font-size:15px;
+    font-size:14px;
     font-weight:600;
-}
-
-.logout button:hover{
-    background:#dc2626;
 }
 
 /* CONTENT */
 
 .content{
-    margin-left:270px;
+    margin-left:250px;
 }
 
 .topbar{
-    height:70px;
+    height:60px;
     background:white;
     border-bottom:1px solid #e5e7eb;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 30px;
+    padding:0 25px;
 }
 
 .topbar h2{
+    font-size:18px;
     color:#374151;
 }
 
 .profile{
+    font-size:14px;
     font-weight:600;
     color:#374151;
 }
 
 .main{
-    padding:30px;
+    padding:20px;
 }
 
 .page-title{
-    margin-bottom:20px;
+    font-size:26px;
+    margin-bottom:15px;
     color:#1f2937;
 }
 
@@ -141,15 +142,15 @@ body{
 
 .filter-box{
     background:white;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:15px;
     box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
 .filter-row{
     display:flex;
-    gap:20px;
+    gap:12px;
     align-items:end;
     flex-wrap:wrap;
 }
@@ -160,45 +161,45 @@ body{
 }
 
 .filter-group label{
-    margin-bottom:8px;
+    margin-bottom:5px;
+    font-size:13px;
     font-weight:600;
-    color:#374151;
 }
 
 .filter-group select{
-    width:280px;
-    padding:12px;
+    width:250px;
+    padding:10px;
     border:1px solid #ddd;
-    border-radius:10px;
+    border-radius:8px;
+    font-size:13px;
 }
 
 /* BUTTON */
 
+.btn-filter,
+.btn-pdf,
+.btn-excel{
+    border:none;
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:13px;
+    font-weight:600;
+}
+
 .btn-filter{
     background:#0d6efd;
     color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:10px;
-    cursor:pointer;
 }
 
 .btn-pdf{
     background:#ef4444;
     color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:10px;
-    cursor:pointer;
 }
 
 .btn-excel{
     background:#16a34a;
     color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:10px;
-    cursor:pointer;
 }
 
 /* STAT */
@@ -206,28 +207,28 @@ body{
 .stats{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
-    margin-bottom:25px;
+    gap:15px;
+    margin-bottom:15px;
 }
 
 .stat-card{
     background:white;
-    border-radius:15px;
-    padding:25px;
+    border-radius:12px;
+    padding:18px;
     box-shadow:0 2px 10px rgba(0,0,0,.05);
     display:flex;
     align-items:center;
-    gap:20px;
+    gap:15px;
 }
 
 .stat-icon{
-    width:60px;
-    height:60px;
-    border-radius:15px;
+    width:48px;
+    height:48px;
+    border-radius:12px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
+    font-size:18px;
 }
 
 .blue{
@@ -246,19 +247,21 @@ body{
 }
 
 .stat-text p{
+    font-size:13px;
     color:#6b7280;
 }
 
 .stat-text h2{
-    font-size:32px;
+    font-size:24px;
+    margin-top:3px;
 }
 
 /* TABLE */
 
 .table-box{
     background:white;
-    border-radius:15px;
-    padding:25px;
+    border-radius:12px;
+    padding:15px;
     box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
@@ -269,20 +272,22 @@ table{
 
 th{
     background:#eef6ff;
-    padding:15px;
+    padding:12px;
     text-align:left;
+    font-size:13px;
 }
 
 td{
-    padding:15px;
+    padding:12px;
     border-bottom:1px solid #eee;
+    font-size:13px;
 }
 
 .badge{
-    padding:6px 12px;
+    padding:5px 10px;
     border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
+    font-size:11px;
+    font-weight:600;
 }
 
 .approved{
@@ -299,9 +304,12 @@ td{
     background:#0d6efd;
     color:white;
     border:none;
-    padding:10px 18px;
+    padding:8px 12px;
     border-radius:8px;
     cursor:pointer;
+    text-decoration:none;
+    font-size:12px;
+    font-weight:600;
 }
 
 </style>
@@ -378,20 +386,26 @@ td{
         </h1>
 
         <div class="filter-box">
-
+<form method="GET" action="/kps/laporan">
             <div class="filter-row">
 
                 <div class="filter-group">
                     <label>Semester</label>
-                    <select>
-                        <option>2025/2026 Ganjil</option>
-                        <option selected>2025/2026 Genap</option>
-                    </select>
+
+
+
+<select name="semester">
+    <option value="Semua Semester">
+    Semua Semester
+</option>
+    <option value="Ganjil">Ganjil</option>
+    <option value="Genap">Genap</option>
+</select>
                 </div>
 
                 <div class="filter-group">
                     <label>Program Studi</label>
-                    <select>
+                    <select name="prodi">
                         <option>Semua Program Studi</option>
                         <option>D3 Teknik Informatika</option>
                         <option>D3 Teknik Geomatika</option>
@@ -404,20 +418,23 @@ td{
                     </select>
                 </div>
 
-                <button class="btn-filter">
-                    <i class="fa fa-filter"></i>
-                    Filter
-                </button>
+                <button class="btn-filter" type="submit">
+    <i class="fa fa-filter"></i>
+    Filter
+</button>
 
-                <button class="btn-pdf">
-                    <i class="fa fa-file-pdf"></i>
-                    PDF
-                </button>
+                <a href="/kps/laporan/pdf" class="btn-pdf" style="text-decoration:none;display:inline-block;">
+    <i class="fa fa-file-pdf"></i>
+    PDF
+</a>
 
-                <button class="btn-excel">
-                    <i class="fa fa-file-excel"></i>
-                    Excel
-                </button>
+                <a href="/kps/laporan/excel"
+   class="btn-excel"
+   style="text-decoration:none;display:inline-block;">
+    Excel
+</a>
+
+</form>
 
             </div>
 
@@ -432,7 +449,7 @@ td{
 
                 <div class="stat-text">
                     <p>Total Mata Kuliah</p>
-                    <h2>50</h2>
+                    <h2>{{ $total }}</h2>
                 </div>
             </div>
 
@@ -443,7 +460,7 @@ td{
 
                 <div class="stat-text">
                     <p>Nilai Disetujui</p>
-                    <h2>42</h2>
+                    <h2>{{ $disetujui }}</h2>
                 </div>
             </div>
 
@@ -454,7 +471,7 @@ td{
 
                 <div class="stat-text">
                     <p>Nilai Terkunci</p>
-                    <h2>30</h2>
+                    <h2>{{ $terkunci }}</h2>
                 </div>
             </div>
 
@@ -477,47 +494,46 @@ td{
 
                 <tbody>
 
-                    <tr>
-                        <td>Basis Data</td>
-                        <td>Dr. Ahmad Fauzi, M.Kom</td>
-                        <td>D3 Teknik Informatika</td>
-                        <td>Genap</td>
+@foreach($data as $item)
 
-                        <td>
-                            <span class="badge locked">
-                                Terkunci
-                            </span>
-                        </td>
+<tr>
 
-                        <td>
-                            <button class="btn-detail">
-                                <i class="fa fa-eye"></i>
-                                Detail
-                            </button>
-                        </td>
-                    </tr>
+    <td>{{ $item->nama_mk }}</td>
 
-                    <tr>
-                        <td>Pemrograman Web</td>
-                        <td>Dra. Siti Nurhayati, M.Kom</td>
-                        <td>D3 Teknik Informatika</td>
-                        <td>Genap</td>
+    <td>{{ $item->nama_dosen }}</td>
 
-                        <td>
-                            <span class="badge approved">
-                                Disetujui
-                            </span>
-                        </td>
+    <td>{{ $item->nama_prodi }}</td>
 
-                        <td>
-                            <button class="btn-detail">
-                                <i class="fa fa-eye"></i>
-                                Detail
-                            </button>
-                        </td>
-                    </tr>
+    <td>Genap</td>
 
-                </tbody>
+    <td>
+        @if($item->kunci_nilai == 'Terkunci')
+            <span class="badge locked">
+                Terkunci
+            </span>
+        @else
+            <span class="badge approved">
+                Disetujui
+            </span>
+        @endif
+    </td>
+
+    <td>
+    <a href="/kps/laporan/detail/{{ $item->nim }}/{{ $item->kode_mk }}"
+       class="btn-detail"
+       style="text-decoration:none;">
+
+        <i class="fa fa-eye"></i>
+        Detail
+
+    </a>
+</td>
+
+</tr>
+
+@endforeach
+
+</tbody>
 
             </table>
 

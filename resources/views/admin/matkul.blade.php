@@ -8,11 +8,34 @@
     <p class="page-subtitle">
         Kelola data mata kuliah
     </p>
+<div class="toolbar">
 
-    <!-- SEARCH -->
-    <div class="search-box">
-        <input type="text" placeholder="Cari Mata Kuliah...">
-    </div>
+    <a href="/admin/matkul/create" class="btn-success">
+        <i class="fa-solid fa-plus"></i>
+        Tambah Mata Kuliah
+    </a>
+
+    <input
+        type="text"
+        class="search-input"
+        placeholder="Cari Mata Kuliah...">
+
+    <select class="filter-prodi">
+        <option value="">Semua Prodi</option>
+
+        @foreach($prodi as $p)
+        <option value="{{ $p->kode_prodi }}">
+            {{ $p->nama_prodi }}
+        </option>
+        @endforeach
+
+    </select>
+
+    <button class="btn-info">
+    <i class="fa-solid fa-magnifying-glass"></i>
+</button>
+
+</div>
 
     <!-- TABLE -->
     <div class="table-wrappe">
@@ -31,84 +54,44 @@
 
             <tbody>
 
-                <tr>
-                    <td>IF211</td>
-                    <td>Basis Data</td>
-                    <td>3</td>
-                    <td>Teknik Informatika</td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus-hijau">Hapus</button>
-                    </td>
-                </tr>
+@foreach($matkul as $m)
 
-                <tr>
-                    <td>IF210</td>
-                    <td>Pemrograman Web</td>
-                    <td>3</td>
-                    <td>Teknik Informatika</td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus-hijau">Hapus</button>
-                    </td>
-                </tr>
+<tr>
 
-                <tr>
-                    <td>IF207</td>
-                    <td>Proyek Pembuatan Prototipe</td>
-                    <td>3</td>
-                    <td>Teknik Informatika</td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus-hijau">Hapus</button>
-                    </td>
-                </tr>
+    <td>{{ $m->kode_mk }}</td>
 
-                <tr>
-                    <td>IF212</td>
-                    <td>Pemrograman Berorientasi Objek</td>
-                    <td>3</td>
-                    <td>Teknik Informatika</td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus-hijau">Hapus</button>
-                    </td>
-                </tr>
+    <td>{{ $m->nama_mk }}</td>
 
-                <tr>
-                    <td>IF213</td>
-                    <td>Bahasa Inggris</td>
-                    <td>3</td>
-                    <td>Teknik Informatika</td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus-hijau">Hapus</button>
-                    </td>
-                </tr>
+    <td>{{ $m->sks }}</td>
 
-                <tr>
-                    <td>IF209</td>
-                    <td>Jaringan Komputer</td>
-                    <td>3</td>
-                    <td>Teknik Informatika</td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus-hijau">Hapus</button>
-                    </td>
-                </tr>
+    <td>{{ $m->kode_prodi }}</td>
 
-                <tr>
-                    <td>IF208</td>
-                    <td>Dasar Rekayasa Perangkat Lunak</td>
-                    <td>3</td>
-                    <td>Teknik Informatika</td>
-                    <td class="aksi">
-                        <button class="btn-edit">Edit</button>
-                        <button class="btn-hapus-hijau">Hapus</button>
-                    </td>
-                </tr>
+    <td class="aksi" style="white-space:nowrap;">
 
-            </tbody>
+    <a href="/admin/matkul/{{ $m->kode_mk }}" class="btn btn-info">
+    <i class="fa-solid fa-eye"></i>
+    Lihat
+</a>
+
+<a href="/admin/matkul/{{ $m->kode_mk }}/edit" class="btn btn-warning">
+    <i class="fa-solid fa-pen"></i>
+    Edit
+</a>
+
+<a href="/admin/matkul/{{ $m->kode_mk }}/hapus"
+   class="btn btn-danger"
+   onclick="return confirm('Yakin hapus data?')">
+    <i class="fa-solid fa-trash"></i>
+    Hapus
+</a>
+
+</td>
+
+</tr>
+
+@endforeach
+
+</tbody>
 
         </table>
 

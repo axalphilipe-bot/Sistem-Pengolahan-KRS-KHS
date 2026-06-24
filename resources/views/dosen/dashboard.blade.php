@@ -2,38 +2,90 @@
 
     @section('content')
 
-        <div class="dosen-container">
-            <div class="dosen-header">
-                <h2>Selamat Datang, Nama Dosen </h2>
-                <p>Kelola kelas dan KRS mahasiswa dengan mudah.</p>
-            </div>
+        <div class="hero-dosen">
 
-            <div class="dosen-cards">
+    <div class="hero-content">
 
-                <div class="dosen-card">
-                    <h3>{{ $jumlahKelas }}</h3>
-                    <p>Jumlah Kelas</p>
-                </div>
+        <span class="hero-badge">
+            <i class="fas fa-user-tie"></i>
+            Dosen Panel
+        </span>
 
-                <div class="dosen-card">
-                    <h3>{{ $totalMahasiswa }}</h3>
-                    <p>Total Mahasiswa</p>
-                </div>
+        <h1>Selamat Datang, Nama Dosen</h1>
 
-                <div class="dosen-card">
-                    <h3>{{ $krsDisetujui }}</h3>
-                    <p>KRS Disetujui</p>
-                </div>
+        <p>
+            Kelola kelas, validasi KRS, dan input nilai mahasiswa
+            dengan lebih cepat dan mudah.
+        </p>
 
-                <div class="dosen-card">
-                    <h3>{{ $menunggu }}</h3>
-                    <p>Menunggu Persetujuan</p>
-                </div>
+    </div>
 
-            </div>
+    <div class="hero-semester">
+
+        <i class="fas fa-calendar-alt"></i>
+
+        <div>
+            <small>Semester Aktif</small>
+            <strong>2025/2026 Genap</strong>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="dosen-cards">
+
+    <div class="dosen-card">
+        <div class="card-icon blue">
+            <i class="fas fa-book"></i>
+        </div>
+
+        <div class="card-info">
+            <h3>{{ $jumlahKelas }}</h3>
+            <p>Jumlah Kelas</p>
+        </div>
+    </div>
+
+    <div class="dosen-card">
+        <div class="card-icon green">
+            <i class="fas fa-users"></i>
+        </div>
+
+        <div class="card-info">
+            <h3>{{ $totalMahasiswa }}</h3>
+            <p>Total Mahasiswa</p>
+        </div>
+    </div>
+
+    <div class="dosen-card">
+        <div class="card-icon success">
+            <i class="fas fa-check-circle"></i>
+        </div>
+
+        <div class="card-info">
+            <h3>{{ $krsDisetujui }}</h3>
+            <p>KRS Disetujui</p>
+        </div>
+    </div>
+
+    <div class="dosen-card">
+        <div class="card-icon warning">
+            <i class="fas fa-clock"></i>
+        </div>
+
+        <div class="card-info">
+            <h3>{{ $menunggu }}</h3>
+            <p>Menunggu Persetujuan</p>
+        </div>
+    </div>
+
+</div>
 
             <div class="table-box">
-
+<div class="section-info">
+    <i class="fas fa-chalkboard-teacher"></i>
+    Mata kuliah yang sedang Anda ampu pada semester aktif.
+</div>
                 <h3>Daftar Kelas Pengampu</h3>
 
                 <table>
@@ -55,7 +107,7 @@
                                 <td>{{ $m->nama_mk }}</td>
                                 <td>{{ $m->sks }}</td>
                                 <td>{{ $m->semester }}</td>
-                                <td>24</td> 
+                               <td>{{ $m->jumlah_mahasiswa }}</td>
                                 <td>
     <a href="/dosen/kelas/{{ $m->kode_mk }}" class="btn-lihat">
         Lihat KRS

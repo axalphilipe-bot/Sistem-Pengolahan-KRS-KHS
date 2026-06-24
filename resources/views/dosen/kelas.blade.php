@@ -12,12 +12,14 @@
         </select>
 
         <div class="info-box">
-            👥 Total Mahasiswa 96
-        </div>
+    <i class="fas fa-users"></i>
+    Total Mahasiswa 96
+</div>
 
         <div class="info-box warning">
-            ⏰ Menunggu Validasi: 17
-        </div>
+    <i class="fas fa-clock"></i>
+    Menunggu Validasi: 17
+</div>
     </div>
 
     <!-- FILTER SECOND -->
@@ -29,8 +31,14 @@
         </select>
 
         <div class="right-tools">
-            <button class="btn-outline">📘 2025/2026 Genap</button>
-            <button class="btn-danger">📄 Export PDF</button>
+            <button class="btn-outline">
+    <i class="fas fa-calendar-alt"></i>
+    2025/2026 Genap
+</button>
+            <a href="{{ route('dosen.export.pdf') }}" class="btn-export">
+    <i class="fas fa-file-pdf"></i>
+    Export PDF
+</a>
         </div>
     </div>
 
@@ -50,58 +58,44 @@
             </thead>
 
             <tbody>
-                <tr>
-                    <td>IF211</td>
-                    <td>Basis Data</td>
-                    <td>3</td>
-                    <td>IF-A-Pagi</td>
-                    <td>Senin 18:00 - 20:30</td>
-                    <td>30</td>
-                    <td>
-                        <button class="btn-blue">🔍 Lihat</button>
-                        <button class="btn-green">✔ Validasi</button>
-                    </td>
-                </tr>
 
-                <tr>
-                    <td>IF210</td>
-                    <td>Pemograman Web</td>
-                    <td>3</td>
-                    <td>IF-B-Pagi</td>
-                    <td>Selasa 20:30 - 23:00</td>
-                    <td>32</td>
-                    <td>
-                        <button class="btn-blue">🔍 Lihat</button>
-                        <button class="btn-green">✔ Validasi</button>
-                    </td>
-                </tr>
+@foreach($matkul as $m)
 
-                <tr>
-                    <td>IF207</td>
-                    <td>Proyek Pembuatan Prototype</td>
-                    <td>3</td>
-                    <td>IF-C-Malam</td>
-                    <td>Rabu 18:00 - 20:30</td>
-                    <td>28</td>
-                    <td>
-                        <button class="btn-blue">🔍 Lihat</button>
-                        <button class="btn-green">✔ Validasi</button>
-                    </td>
-                </tr>
+<tr>
 
-                <tr>
-                    <td>IF212</td>
-                    <td>Pemograman Berorientasi Objek</td>
-                    <td>3</td>
-                    <td>IF-B-Malam</td>
-                    <td>Kamis 19:20 - 21:00</td>
-                    <td>30</td>
-                    <td>
-                        <button class="btn-blue">🔍 Lihat</button>
-                        <button class="btn-orange">📝 Nilai</button>
-                    </td>
-                </tr>
-            </tbody>
+    <td>{{ $m->kode_mk }}</td>
+
+    <td>{{ $m->nama_mk }}</td>
+
+    <td>{{ $m->sks }}</td>
+
+    <td>-</td>
+
+    <td>-</td>
+
+    <td>24</td>
+
+    <td>
+
+        <a href="/dosen/kelas/{{ $m->kode_mk }}"
+   class="btn-detail">
+    <i class="fas fa-eye"></i>
+    Detail
+</a>
+
+<a href="/dosen/nilai/{{ $m->kode_mk }}"
+   class="btn-nilai-soft">
+    <i class="fas fa-pen"></i>
+    Nilai
+</a>
+
+    </td>
+
+</tr>
+
+@endforeach
+
+</tbody>
         </table>
     </div>
 

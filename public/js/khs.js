@@ -18,6 +18,41 @@ window.onclick = function(e) {
 }
 
 function exportPDF() {
-    const element = document.querySelector('.modal-content');
-    html2pdf().from(element).save('KHS.pdf');
+
+    document
+        .querySelectorAll('.no-print')
+        .forEach(el => el.style.display = 'none');
+
+    const element =
+        document.getElementById('pdfContent');
+
+    html2pdf()
+        .set({
+            margin: 12,
+            filename: 'KHS.pdf',
+
+            image: {
+                type: 'jpeg',
+                quality: 1
+            },
+
+            html2canvas: {
+                scale: 2
+            },
+
+            jsPDF: {
+                unit: 'mm',
+                format: 'a4',
+                orientation: 'portrait'
+            }
+        })
+        .from(element)
+        .save()
+        .then(() => {
+
+            document
+                .querySelectorAll('.no-print')
+                .forEach(el => el.style.display = 'block');
+
+        });
 }

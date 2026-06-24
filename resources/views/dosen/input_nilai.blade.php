@@ -31,6 +31,15 @@
             </p>
         </div>
 
+                <div class="bobot-box">
+
+            <h4>Komposisi Nilai</h4>
+
+            <p>
+Aktif 15% • Proyek 35% • Tugas 10% • Kuis 10% • UTS 15% • UAS 15%
+</p>
+
+        </div>
         <div class="aksi-box">
 
             <a href="{{ route('nilai.template') }}" class="btn-excel">
@@ -38,8 +47,9 @@
             </a>
 
             <form action="{{ route('nilai.import') }}"
-                  method="POST"
-                  enctype="multipart/form-data">
+      method="POST"
+      enctype="multipart/form-data"
+      id="formImport">
 
                 @csrf
 
@@ -61,17 +71,19 @@
                     Belum ada file dipilih
                 </span>
 
-                <button type="submit" class="btn-import">
-                    📤 Import Excel
-                </button>
+<button type="submit"
+        class="btn-import"
+        onclick="console.log('IMPORT DIKLIK')">
+    📤 Import Excel
+</button>
 
             </form>
 
-            <button type="button"
-                    class="btn-simpan-header"
-                    onclick="document.getElementById('formNilai').submit();">
-                💾 Simpan Permanen
-            </button>
+                    <button type="button"
+                class="btn-simpan-header"
+                onclick="document.getElementById('formNilai').submit();">
+             Simpan Nilai
+        </button>
 
         </div>
 
@@ -94,9 +106,7 @@
                     <th>No</th>
                     <th>NIM</th>
                     <th>Nama Mahasiswa</th>
-                    <th>Teamwork</th>
-                    <th>Keaktifan</th>
-                    <th>Laporan</th>
+                    <th>Aktif</th>
                     <th>Proyek</th>
                     <th>Tugas</th>
                     <th>Kuis</th>
@@ -111,7 +121,11 @@
 
             <tbody>
 
-                @foreach($mahasiswa as $no => $m)
+                @foreach($peserta as $no => $item)
+
+@php
+$m = $item->mahasiswa;
+@endphp
 
                 <tr>
 
@@ -125,22 +139,12 @@
                            name="nim[]"
                            value="{{ $m->nim }}">
 
-                    <td>
-                        <input type="number"
-                               name="teamwork[]"
-                               value="{{ optional($m->nilai)->teamwork }}">
-                    </td>
+                    
 
                     <td>
                         <input type="number"
                                name="keaktifan[]"
                                value="{{ optional($m->nilai)->keaktifan }}">
-                    </td>
-
-                    <td>
-                        <input type="number"
-                               name="laporan[]"
-                               value="{{ optional($m->nilai)->laporan }}">
                     </td>
 
                     <td>
@@ -196,19 +200,15 @@
 
                     <td class="aksi-btn">
 
-                        <button type="button" class="btn-update">
-                            Update
-                        </button>
+                    @if($m->nilai)
+                    <a href="{{ route('nilai.hapus', $m->nilai->nim) }}"
+                    class="btn-hapus"
+                    onclick="return confirm('Yakin ingin menghapus nilai?')">
+                        Hapus
+                    </a>
+                    @endif
 
-                        @if($m->nilai)
-                        <a href="{{ route('nilai.hapus', $m->nilai->nim) }}"
-                           class="btn-hapus"
-                           onclick="return confirm('Yakin ingin menghapus nilai?')">
-                            Hapus
-                        </a>
-                        @endif
-
-                    </td>
+                </td>
 
                 </tr>
 
@@ -231,9 +231,7 @@ document.addEventListener("input", function (e) {
 
     if (!row) return;
 
-    let teamwork = parseFloat(row.querySelector('[name="teamwork[]"]').value) || 0;
     let keaktifan = parseFloat(row.querySelector('[name="keaktifan[]"]').value) || 0;
-    let laporan = parseFloat(row.querySelector('[name="laporan[]"]').value) || 0;
     let proyek = parseFloat(row.querySelector('[name="proyek[]"]').value) || 0;
     let tugas = parseFloat(row.querySelector('[name="tugas[]"]').value) || 0;
     let kuis = parseFloat(row.querySelector('[name="kuis[]"]').value) || 0;
@@ -241,14 +239,12 @@ document.addEventListener("input", function (e) {
     let uas = parseFloat(row.querySelector('[name="uas[]"]').value) || 0;
 
     let hasil =
-        (teamwork * 0.15) +
-        (keaktifan * 0.15) +
-        (laporan * 0.10) +
-        (proyek * 0.30) +
-        (tugas * 0.05) +
-        (kuis * 0.05) +
-        (uts * 0.10) +
-        (uas * 0.10);
+    (keaktifan * 0.15) +
+    (proyek * 0.35) +
+    (tugas * 0.10) +
+    (kuis * 0.10) +
+    (uts * 0.15) +
+    (uas * 0.15);
 
     let huruf = "";
     let index = "";
@@ -284,12 +280,14 @@ document.addEventListener("input", function (e) {
     row.querySelector('.nilai-index').value = index;
 });
 
+<script>
 document.addEventListener('DOMContentLoaded', function () {
 
     const fileInput = document.getElementById('fileExcel');
     const namaFile = document.getElementById('namaFile');
 
-    if (fileInput) {
+    if (fileInput && namaFile) {
+
         fileInput.addEventListener('change', function () {
 
             namaFile.textContent =
@@ -298,6 +296,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     : 'Belum ada file dipilih';
 
         });
+
     }
+
 });
 </script>

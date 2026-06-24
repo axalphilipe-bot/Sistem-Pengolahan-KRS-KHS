@@ -1,377 +1,248 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>KPS - Sistem KRS KHS</title>
+@extends('kps.layout')
 
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+@section('content')
 
-    <style>
+<style>
 
-    *{
-        margin:0;
-        padding:0;
-        box-sizing:border-box;
-        font-family:'Segoe UI',sans-serif;
-    }
+.dashboard-header{
+    background:linear-gradient(135deg,#0d6efd,#27a4ff);
+    color:white;
+    padding:14px 20px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
 
-    body{
-        background:#f5f7fb;
-    }
+.dashboard-header h1{
+    font-size:22px;
+    margin-bottom:4px;
+}
 
-    .sidebar{
-        width:270px;
-        height:100vh;
-        background:#fff;
-        position:fixed;
-        left:0;
-        top:0;
-        border-right:1px solid #e5e7eb;
-        display:flex;
-        flex-direction:column;
-    }
+.dashboard-header p{
+    font-size:13px;
+    opacity:.95;
+}
 
-    .logo{
-        text-align:center;
-        padding:25px;
-    }
+.stats-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:15px;
+}
 
-    .logo img{
-        width:120px;
-    }
+.stat-card{
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
 
-    .logo h2{
-        margin-top:10px;
-        color:#374151;
-    }
+.stat-icon{
+    width:42px;
+    height:42px;
+    border-radius:10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:18px;
+    margin-bottom:10px;
+}
 
-    .menu{
-        flex:1;
-        padding:0 20px;
-    }
+.blue-bg{
+    background:#eaf2ff;
+    color:#2563eb;
+}
 
-    .menu-title{
-        font-size:14px;
-        font-weight:700;
-        color:#6b7280;
-        margin:15px 0;
-    }
+.green-bg{
+    background:#dcfce7;
+    color:#16a34a;
+}
 
-    .sidebar a{
-        display:flex;
-        align-items:center;
-        gap:12px;
-        text-decoration:none;
-        color:#374151;
-        padding:12px 15px;
-        border-radius:10px;
-        margin-bottom:8px;
-        transition:.3s;
-    }
+.red-bg{
+    background:#fee2e2;
+    color:#dc2626;
+}
 
-    .sidebar a:hover{
-        background:#eef6ff;
-    }
+.stat-label{
+    color:#6b7280;
+    font-size:13px;
+    margin-bottom:5px;
+}
 
-    .sidebar a.active{
-        background:#27a4ff;
-        color:white;
-    }
+.stat-value{
+    font-size:24px;
+    font-weight:700;
+}
 
-    .logout{
-        padding:20px;
-    }
+.blue{
+    color:#2563eb;
+}
 
-    .logout button{
-        width:100%;
-        border:none;
-        background:#ef4444;
-        color:white;
-        padding:12px;
-        border-radius:10px;
-        cursor:pointer;
-        font-size:15px;
-        font-weight:600;
-    }
+.green{
+    color:#16a34a;
+}
 
-    .logout button:hover{
-        background:#dc2626;
-    }
+.red{
+    color:#dc2626;
+}
 
-    .content{
-        margin-left:270px;
-    }
+.activity-box{
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+    box-shadow:0 2px 8px rgba(0,0,0,.05);
+}
 
-    .topbar{
-        height:70px;
-        background:white;
-        border-bottom:1px solid #e5e7eb;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:0 30px;
-    }
+.activity-box h2{
+    margin-bottom:12px;
+    color:#1f2937;
+    font-size:20px;
+}
 
-    .topbar h2{
-        color:#374151;
-    }
+.activity-table{
+    width:100%;
+    border-collapse:collapse;
+}
 
-    .profile{
-        font-weight:600;
-        color:#374151;
-    }
+.activity-table th{
+    background:#f3f4f6;
+    padding:10px;
+    text-align:left;
+    font-size:13px;
+}
 
-    .main{
-        padding:30px;
-    }
+.activity-table td{
+    padding:10px;
+    border-bottom:1px solid #eee;
+    font-size:13px;
+}
 
-    .welcome-box{
-        background:linear-gradient(135deg,#0d6efd,#27a4ff);
-        color:white;
-        padding:25px;
-        border-radius:15px;
-        margin-bottom:25px;
-    }
+.badge-success{
+    background:#dcfce7;
+    color:#166534;
+    padding:4px 8px;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:600;
+}
 
-    .welcome-box h1{
-        margin-bottom:10px;
-    }
+</style>
 
-    .cards{
-        display:grid;
-        grid-template-columns:repeat(3,1fr);
-        gap:20px;
-        margin-bottom:30px;
-    }
+<div class="dashboard-header">
+    <h1>Dashboard KPS</h1>
+    <p>
+        Kelola proses approval nilai,
+        penguncian nilai,
+        dan monitoring aktivitas akademik.
+    </p>
+</div>
 
-    .card{
-        background:white;
-        padding:25px;
-        border-radius:15px;
-        box-shadow:0 2px 10px rgba(0,0,0,.05);
-        transition:.3s;
-    }
+<div class="stats-grid">
 
-    .card:hover{
-        transform:translateY(-5px);
-    }
+    <div class="stat-card">
 
-    .card i{
-        font-size:28px;
-        margin-bottom:15px;
-    }
+        <div class="stat-icon blue-bg">
+            <i class="fa fa-clock"></i>
+        </div>
 
-    .card p{
-        color:#6b7280;
-        margin-bottom:10px;
-        font-size:18px;
-    }
+        <div class="stat-label">
+            Menunggu Approval
+        </div>
 
-    .card h2{
-        font-size:42px;
-    }
+        <div class="stat-value blue">
+            {{ $menunggu }}
+        </div>
 
-    .blue{
-        color:#0d6efd;
-    }
-
-    .green{
-        color:#22c55e;
-    }
-
-    .red{
-        color:#ef4444;
-    }
-
-    .table-box{
-        background:white;
-        border-radius:15px;
-        padding:25px;
-        box-shadow:0 2px 10px rgba(0,0,0,.05);
-    }
-
-    .table-box h2{
-        margin-bottom:20px;
-    }
-
-    table{
-        width:100%;
-        border-collapse:collapse;
-    }
-
-    th{
-        background:#eef6ff;
-        padding:15px;
-        text-align:left;
-    }
-
-    td{
-        padding:15px;
-        border-bottom:1px solid #eee;
-    }
-
-    .badge{
-        background:#dcfce7;
-        color:#166534;
-        padding:6px 12px;
-        border-radius:20px;
-        font-size:12px;
-        font-weight:bold;
-    }
-
-    </style>
-
-</head>
-<body>
-
-<div class="sidebar">
-
-    <div class="logo">
-        <img src="{{ asset('img/logo.png') }}">
-        <h2>KPS</h2>
     </div>
 
-    <div class="menu">
+    <div class="stat-card">
 
-        <div class="menu-title">
-            Menu Utama
-        </div>
-
-        <a href="/kps" class="active">
-            <i class="fa fa-home"></i>
-            Dashboard
-        </a>
-
-        <div class="menu-title">
-            Pengelolaan Nilai
-        </div>
-
-        <a href="/kps/approve">
+        <div class="stat-icon green-bg">
             <i class="fa fa-check-circle"></i>
-            Approve Nilai
-        </a>
+        </div>
 
-        <a href="/kps/kunci">
+        <div class="stat-label">
+            Sudah Disetujui
+        </div>
+
+        <div class="stat-value green">
+            {{ $disetujui }}
+        </div>
+
+    </div>
+
+    <div class="stat-card">
+
+        <div class="stat-icon red-bg">
             <i class="fa fa-lock"></i>
-            Kunci Nilai
-        </a>
-
-        <div class="menu-title">
-            Laporan
         </div>
 
-        <a href="/kps/laporan">
-            <i class="fa fa-file"></i>
-            Laporan Nilai
-        </a>
-
-    </div>
-
-    <div class="logout">
-
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-
-            <button type="submit">
-                <i class="fa fa-sign-out-alt"></i>
-                Logout
-            </button>
-
-        </form>
-
-    </div>
-
-</div>
-
-<div class="content">
-
-    <div class="topbar">
-
-        <h2>Sistem Pengelolaan KRS & KHS</h2>
-
-        <div class="profile">
-            <i class="fa fa-user-circle"></i>
-            KPS Informatika
+        <div class="stat-label">
+            Nilai Terkunci
         </div>
 
-    </div>
-
-    <div class="main">
-
-        <div class="welcome-box">
-            <h1>Dashboard KPS</h1>
-            <p>
-                Kelola proses approval nilai, penguncian nilai,
-                dan monitoring aktivitas akademik.
-            </p>
-        </div>
-
-        <div class="cards">
-
-            <div class="card">
-                <i class="fa fa-clock blue"></i>
-                <p>Menunggu Approve</p>
-                <h2 class="blue">15</h2>
-            </div>
-
-            <div class="card">
-                <i class="fa fa-check-circle green"></i>
-                <p>Sudah Approve</p>
-                <h2 class="green">50</h2>
-            </div>
-
-            <div class="card">
-                <i class="fa fa-lock red"></i>
-                <p>Nilai Terkunci</p>
-                <h2 class="red">30</h2>
-            </div>
-
-        </div>
-
-        <div class="table-box">
-
-            <h2>Aktivitas Terbaru</h2>
-
-            <table>
-
-                <thead>
-                    <tr>
-                        <th>Tanggal</th>
-                        <th>Aktivitas</th>
-                        <th>Detail</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-
-                    <tr>
-                        <td>14 Juni 2026</td>
-                        <td>Approve Nilai</td>
-                        <td>Basis Data</td>
-                        <td>
-                            <span class="badge">Berhasil</span>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>14 Juni 2026</td>
-                        <td>Kunci Nilai</td>
-                        <td>Pemrograman Web</td>
-                        <td>
-                            <span class="badge">Berhasil</span>
-                        </td>
-                    </tr>
-
-                </tbody>
-
-            </table>
-
+        <div class="stat-value red">
+            {{ $terkunci }}
         </div>
 
     </div>
 
 </div>
 
-</body>
-</html>
+<div class="activity-box">
+
+    <h2>Aktivitas Terbaru</h2>
+
+    <table class="activity-table">
+
+        <thead>
+            <tr>
+                <th>Tanggal</th>
+                <th>Aktivitas</th>
+                <th>Mata Kuliah</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        @forelse($aktivitas as $item)
+
+        <tr>
+
+            <td>
+                {{ date('d M Y', strtotime($item->updated_at)) }}
+            </td>
+
+            <td>
+                {{ $item->status }}
+            </td>
+
+            <td>
+                {{ $item->nama_mk ?? '-' }}
+            </td>
+
+            <td>
+                <span class="badge-success">
+                    Berhasil
+                </span>
+            </td>
+
+        </tr>
+
+        @empty
+
+        <tr>
+            <td colspan="4" style="text-align:center;">
+                Belum ada aktivitas
+            </td>
+        </tr>
+
+        @endforelse
+
+        </tbody>
+
+    </table>
+
+</div>
+
+@endsection

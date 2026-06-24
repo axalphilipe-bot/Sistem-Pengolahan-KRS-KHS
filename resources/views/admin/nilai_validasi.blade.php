@@ -9,31 +9,51 @@
     <p class="page-subtitle">
         Validasi nilai yang sudah diinput
     </p>
+    @if(session('success'))
+    <div class="alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
-    <div class="filter-wrapper">
+    <form method="GET" action="/admin/validasi" class="filter-wrapper">
 
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
+    <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
 
-            <input type="text"
+        <input
+            type="text"
+            name="search"
+            value="{{ request('search') }}"
             placeholder="Cari NIM atau Nama Mahasiswa...">
-        </div>
-
-   
-        <select class="filter-select">
-            <option>Semua Kelas</option>
-            <option>Kelas A</option>
-            <option>Kelas B</option>
-        </select>
-
-    
-        <button class="btn-simpan-semua">
-            Simpan Nilai
-        </button>
-
     </div>
 
-    <div class="table-wrappe">
+    <select
+        name="status"
+        class="filter-select"
+        onchange="this.form.submit()">
+
+        <option value="">Semua Status</option>
+
+        <option value="Menunggu Approval"
+            {{ request('status') == 'Menunggu Approval' ? 'selected' : '' }}>
+            Menunggu Approval
+        </option>
+
+        <option value="Disetujui"
+            {{ request('status') == 'Disetujui' ? 'selected' : '' }}>
+            Disetujui
+        </option>
+
+        <option value="Ditolak"
+            {{ request('status') == 'Ditolak' ? 'selected' : '' }}>
+            Ditolak
+        </option>
+
+    </select>
+
+</form>
+
+    <div class="table-wrapper">
 
         <table class="custom-table">
 
@@ -50,117 +70,63 @@
 
             <tbody>
 
+                @foreach($nilai as $item)
+
                 <tr>
-                    <td>125346179</td>
-                    <td>Axal Philipe Samuel Stankovick </td>
-                    <td>Basis Data</td>
-                    <td>A</td>
-                    <td>Draft</td>
+                    <td>{{ $item->nim }}</td>
+                    <td>{{ $item->mahasiswa->nama ?? '-' }}</td>
+                    <td>{{ $item->kode_mk }}</td>
+                    <td>{{ $item->nilai_huruf }}</td>
+                    <td>
+
+@if($item->status == 'Disetujui')
+
+    <span class="status-disetujui">
+        Disetujui
+    </span>
+
+@elseif($item->status == 'Ditolak')
+
+    <span class="status-ditolak">
+        Ditolak
+    </span>
+
+@else
+
+    <span class="status-menunggu">
+        Menunggu Approval
+    </span>
+
+@endif
+
+</td>
 
                     <td>
-                        <button class="btn-validasi">
-                            Validasi
-                        </button>
+
+                        @if($item->status == 'Menunggu Approval')
+
+                            <a href="/admin/validasi/setujui/{{ $item->nim }}"
+   class="btn-setujui"
+   onclick="return confirm('Setujui nilai ini?')">
+    Setujui
+</a>
+
+                            <a href="/admin/validasi/tolak/{{ $item->nim }}"
+   class="btn-tolak"
+   onclick="return confirm('Apakah Anda yakin ingin menolak nilai ini?')">
+    Tolak
+</a>
+
+                        @else
+
+                            -
+
+                        @endif
+
                     </td>
                 </tr>
 
-                <tr>
-                    <td>607624351</td>
-                    <td>Ananda Shadiva Wansa</td>
-                    <td>Basis Data</td>
-                    <td>A</td>
-                    <td>Draft</td>
-
-                    <td>
-                        <button class="btn-validasi">
-                            Validasi
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>143256735</td>
-                    <td>Devicha Reta Sashara</td>
-                    <td>Basis Data</td>
-                    <td>A</td>
-                    <td>Draft</td>
-
-                    <td>
-                        <button class="btn-validasi">
-                            Validasi
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>867965411</td>
-                    <td>Muhammad Zacky A</td>
-                    <td>Basis Data</td>
-                    <td>A</td>
-                    <td>Draft</td>
-
-                    <td>
-                        <button class="btn-validasi">
-                            Validasi
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>987624315</td>
-                    <td>Aliya Putri Ramadhani</td>
-                    <td>Basis Data</td>
-                    <td>A</td>
-                    <td>Draft</td>
-
-                    <td>
-                        <button class="btn-validasi">
-                            Validasi
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>981524367</td>
-                    <td>Adinda Salsabila</td>
-                    <td>Basis Data</td>
-                    <td>A</td>
-                    <td>Draft</td>
-
-                    <td>
-                        <button class="btn-validasi">
-                            Validasi
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>546372819</td>
-                    <td>Muhammad Farhan</td>
-                    <td>Basis Data</td>
-                    <td>A</td>
-                    <td>Draft</td>
-
-                    <td>
-                        <button class="btn-validasi">
-                            Validasi
-                        </button>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>9825364718</td>
-                    <td>Natalia Kristin</td>
-                    <td>Basis Data</td>
-                    <td>-</td>
-                    <td>Draft</td>
-
-                    <td>
-                        <button class="btn-validasi">
-                            Validasi
-                        </button>
-                    </td>
-                </tr>
+                @endforeach
 
             </tbody>
 

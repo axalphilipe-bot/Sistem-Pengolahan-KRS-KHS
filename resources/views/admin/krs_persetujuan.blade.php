@@ -49,122 +49,74 @@
 
             <tbody>
 
-                <tr>
-                    <td>956423172</td>
-                    <td>Muhammad Farhan</td>
-                    <td>2</td>
-                    <td>11 Mei 2025</td>
+@foreach($krs as $item)
 
-                    <td>
-                        <span class="status pending">
-                            Pending
-                        </span>
-                    </td>
+<tr>
 
-                    <td class="aksi">
-                        <button class="btn-setuju">
-                            Setujui
-                        </button>
+    <td>{{ $item->nim }}</td>
 
-                        <button class="btn-tolak">
-                            Tolak
-                        </button>
-                    </td>
-                </tr>
+    <td>{{ $item->mahasiswa->nama ?? '-' }}</td>
 
-                <tr>
-                    <td>1133409498</td>
-                    <td>Devicha Retha Sashara</td>
-                    <td>2</td>
-                    <td>11 Mei 2025</td>
+    <td>{{ $item->mahasiswa->semester ?? '-' }}</td>
 
-                    <td>
-                        <span class="status pending">
-                            Pending
-                        </span>
-                    </td>
+    <td>
+    {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
+</td>
 
-                    <td class="aksi">
-                        <button class="btn-setuju">
-                            Setujui
-                        </button>
+    <td>
 
-                        <button class="btn-tolak">
-                            Tolak
-                        </button>
-                    </td>
-                </tr>
+@if($item->status == 'Pending')
 
-                <tr>
-                    <td>1919068459</td>
-                    <td>Ananda Shadiva Wansa</td>
-                    <td>2</td>
-                    <td>12 Mei 2025</td>
+    <span class="status pending">
+        Pending
+    </span>
 
-                    <td>
-                        <span class="status pending">
-                            Pending
-                        </span>
-                    </td>
+@elseif($item->status == 'Disetujui')
 
-                    <td class="aksi">
-                        <button class="btn-setuju">
-                            Setujui
-                        </button>
+    <span class="status approved">
+        Disetujui
+    </span>
 
-                        <button class="btn-tolak">
-                            Tolak
-                        </button>
-                    </td>
-                </tr>
+@else
 
-                <tr>
-                    <td>1857497941</td>
-                    <td>Aliya Putri Ramadhani</td>
-                    <td>2</td>
-                    <td>12 Mei 2025</td>
+    <span class="status rejected">
+        Ditolak
+    </span>
 
-                    <td>
-                        <span class="status pending">
-                            Pending
-                        </span>
-                    </td>
+@endif
 
-                    <td class="aksi">
-                        <button class="btn-setuju">
-                            Setujui
-                        </button>
+</td>
 
-                        <button class="btn-tolak">
-                            Tolak
-                        </button>
-                    </td>
-                </tr>
+<td class="aksi">
 
-                <tr>
-                    <td>1092712899</td>
-                    <td>Axal Philipe Samuel</td>
-                    <td>2</td>
-                    <td>11 Mei 2025</td>
+@if($item->status == 'Pending')
 
-                    <td>
-                        <span class="status pending">
-                            Pending
-                        </span>
-                    </td>
+    <a href="/admin/krs/setujui/{{ $item->id }}"
+       class="btn-setuju">
+       Setujui
+    </a>
 
-                    <td class="aksi">
-                        <button class="btn-setuju">
-                            Setujui
-                        </button>
+    <a href="/admin/krs/tolak/{{ $item->id }}"
+       class="btn-tolak">
+       Tolak
+    </a>
 
-                        <button class="btn-tolak">
-                            Tolak
-                        </button>
-                    </td>
-                </tr>
+@else
 
-            </tbody>
+    <a href="/admin/krs/{{ $item->nim }}"
+       class="btn-lihat">
+       Detail
+    </a>
+
+@endif
+
+</td>
+
+</tr>
+
+@endforeach
+
+</tbody>
 
         </table>
 

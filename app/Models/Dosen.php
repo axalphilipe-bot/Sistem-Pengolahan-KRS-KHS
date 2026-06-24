@@ -9,23 +9,23 @@ class Dosen extends Model
     protected $table = 'dosen';
 
     protected $fillable = [
-        'nidn',
+        'nuptk',
         'nama',
         'email',
         'jabatan',
-        'prodi_id'
+        'kode_prodi'
     ];
-protected $primaryKey = 'nidn';
-public $incrementing = false;
-protected $keyType = 'string';
-    /*
-    |--------------------------------------------------------------------------
-    | RELASI PRODI
-    |--------------------------------------------------------------------------
-    */
 
-     public function prodi()
+    protected $primaryKey = 'nuptk';
+    public $incrementing = false;
+    protected $keyType = 'string';
+
+    public function prodi()
     {
-        return $this->belongsTo(Prodi::class);
+        return $this->belongsTo(
+            Prodi::class,
+            'kode_prodi',
+            'kode_prodi'
+        );
     }
 }

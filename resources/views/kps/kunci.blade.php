@@ -21,23 +21,8 @@ body{
 
 /* SIDEBAR */
 
-.topbar{
-    height:70px;
-    background:white;
-    border-bottom:1px solid #e5e7eb;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 30px;
-}
-
-.profile{
-    font-weight:600;
-    color:#374151;
-}
-
 .sidebar{
-    width:270px;
+    width:250px;
     height:100vh;
     background:white;
     position:fixed;
@@ -48,38 +33,40 @@ body{
 
 .logo{
     text-align:center;
-    padding:25px;
+    padding:18px;
 }
 
 .logo img{
-    width:120px;
+    width:95px;
 }
 
 .logo h2{
-    margin-top:10px;
+    margin-top:8px;
+    font-size:18px;
     color:#374151;
 }
 
 .menu{
-    padding:0 20px;
+    padding:0 15px;
 }
 
 .menu-title{
-    font-size:14px;
+    font-size:13px;
     font-weight:700;
     color:#6b7280;
-    margin:15px 0;
+    margin:12px 0;
 }
 
 .sidebar a{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:10px;
     text-decoration:none;
     color:#374151;
-    padding:12px 15px;
-    border-radius:10px;
-    margin-bottom:8px;
+    padding:10px 12px;
+    border-radius:8px;
+    margin-bottom:6px;
+    font-size:14px;
     transition:.3s;
 }
 
@@ -95,79 +82,80 @@ body{
 /* CONTENT */
 
 .content{
-    margin-left:270px;
+    margin-left:250px;
 }
 
 .topbar{
-    height:70px;
+    height:60px;
     background:white;
     border-bottom:1px solid #e5e7eb;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 30px;
+    padding:0 25px;
 }
 
 .topbar h2{
+    font-size:18px;
     color:#374151;
 }
 
 .profile{
+    font-size:14px;
     font-weight:600;
     color:#374151;
 }
 
 .main{
-    padding:30px;
+    padding:20px;
 }
 
 .page-title{
-    margin-bottom:20px;
+    font-size:26px;
     color:#1f2937;
+    margin-bottom:15px;
 }
 
 /* FILTER */
 
 .filter-box{
     background:white;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:15px;
     box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
 .filter-row{
     display:flex;
-    gap:20px;
+    gap:15px;
     align-items:end;
     flex-wrap:wrap;
 }
 
-.filter-group{
-    display:flex;
-    flex-direction:column;
-}
-
 .filter-group label{
-    margin-bottom:8px;
+    display:block;
+    margin-bottom:5px;
+    font-size:13px;
     font-weight:600;
-    color:#374151;
 }
 
 .filter-group select{
-    width:280px;
-    padding:12px;
+    width:240px;
+    padding:10px;
     border:1px solid #ddd;
-    border-radius:10px;
+    border-radius:8px;
+    font-size:13px;
 }
 
 .btn-filter{
     background:#0d6efd;
     color:white;
     border:none;
-    padding:12px 25px;
-    border-radius:10px;
+    padding:10px 18px;
+    border-radius:8px;
     cursor:pointer;
+    font-size:13px;
 }
 
 /* STAT */
@@ -175,28 +163,28 @@ body{
 .stats{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
-    margin-bottom:25px;
+    gap:15px;
+    margin-bottom:15px;
 }
 
 .stat-card{
     background:white;
-    border-radius:15px;
-    padding:25px;
+    border-radius:12px;
+    padding:18px;
     box-shadow:0 2px 10px rgba(0,0,0,.05);
     display:flex;
     align-items:center;
-    gap:20px;
+    gap:15px;
 }
 
 .stat-icon{
-    width:60px;
-    height:60px;
-    border-radius:15px;
+    width:48px;
+    height:48px;
+    border-radius:12px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
+    font-size:18px;
 }
 
 .orange{
@@ -216,19 +204,20 @@ body{
 
 .stat-text p{
     color:#6b7280;
+    font-size:13px;
 }
 
 .stat-text h2{
-    margin-top:5px;
-    font-size:32px;
+    font-size:24px;
+    margin-top:3px;
 }
 
 /* TABLE */
 
 .table-box{
     background:white;
-    border-radius:15px;
-    padding:25px;
+    border-radius:12px;
+    padding:15px;
     box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
@@ -239,20 +228,22 @@ table{
 
 th{
     background:#eef6ff;
-    padding:15px;
+    padding:12px;
     text-align:left;
+    font-size:13px;
 }
 
 td{
-    padding:15px;
+    padding:12px;
     border-bottom:1px solid #eee;
+    font-size:13px;
 }
 
 .badge{
-    padding:6px 12px;
+    padding:5px 10px;
     border-radius:20px;
-    font-size:12px;
-    font-weight:bold;
+    font-size:11px;
+    font-weight:600;
 }
 
 .unlocked{
@@ -267,28 +258,26 @@ td{
 
 .btn{
     border:none;
-    padding:10px 18px;
+    padding:8px 12px;
     border-radius:8px;
     color:white;
     cursor:pointer;
     font-weight:600;
-
     display:inline-flex;
     align-items:center;
-    justify-content:center;
-    gap:8px;
+    gap:5px;
+    text-decoration:none;
+    font-size:12px;
 }
 
 .btn-lock{
     background:#ef4444;
-    color:white;
-    min-width:120px;
+    min-width:105px;
 }
 
 .btn-unlock{
     background:#22c55e;
-    color:white;
-    min-width:120px;
+    min-width:105px;
 }
 
 .btn-lock:hover{
@@ -298,12 +287,15 @@ td{
 .btn-unlock:hover{
     background:#16a34a;
 }
+
+/* LOGOUT */
+
 .logout{
     position:absolute;
-    bottom:20px;
+    bottom:15px;
     left:0;
     width:100%;
-    padding:0 20px;
+    padding:0 15px;
 }
 
 .logout button{
@@ -311,10 +303,10 @@ td{
     border:none;
     background:#ef4444;
     color:white;
-    padding:12px;
-    border-radius:10px;
+    padding:10px;
+    border-radius:8px;
     cursor:pointer;
-    font-size:15px;
+    font-size:14px;
     font-weight:600;
 }
 

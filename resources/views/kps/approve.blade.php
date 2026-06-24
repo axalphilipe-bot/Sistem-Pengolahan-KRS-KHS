@@ -33,39 +33,41 @@ body{
 
 .logo{
     text-align:center;
-    padding:25px;
+    padding:20px;
 }
 
 .logo img{
-    width:120px;
+    width:100px;
 }
 
 .logo h2{
-    margin-top:10px;
+    margin-top:8px;
     color:#374151;
+    font-size:18px;
 }
 
 .menu{
-    padding:0 20px;
+    padding:0 15px;
 }
 
 .menu-title{
-    font-size:14px;
+    font-size:13px;
     font-weight:700;
     color:#6b7280;
-    margin:15px 0;
+    margin:12px 0;
 }
 
 .sidebar a{
     display:flex;
     align-items:center;
-    gap:12px;
+    gap:10px;
     text-decoration:none;
     color:#374151;
-    padding:12px 15px;
-    border-radius:10px;
-    margin-bottom:8px;
+    padding:10px 12px;
+    border-radius:8px;
+    margin-bottom:6px;
     transition:.3s;
+    font-size:14px;
 }
 
 .sidebar a:hover{
@@ -84,46 +86,49 @@ body{
 }
 
 .topbar{
-    height:70px;
+    height:60px;
     background:white;
     border-bottom:1px solid #e5e7eb;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:0 30px;
+    padding:0 25px;
 }
 
 .topbar h2{
     color:#374151;
+    font-size:20px;
 }
 
 .profile{
     font-weight:600;
     color:#374151;
+    font-size:14px;
 }
 
 .main{
-    padding:30px;
+    padding:20px;
 }
 
 .page-title{
-    margin-bottom:20px;
+    margin-bottom:15px;
     color:#1f2937;
+    font-size:38px;
 }
 
 /* FILTER */
 
 .filter-box{
     background:white;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:15px;
     box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
 .filter-row{
     display:flex;
-    gap:20px;
+    gap:15px;
     align-items:end;
     flex-wrap:wrap;
 }
@@ -134,33 +139,37 @@ body{
 }
 
 .filter-group label{
-    margin-bottom:8px;
+    margin-bottom:6px;
     font-weight:600;
     color:#374151;
+    font-size:13px;
 }
 
 .filter-group select{
-    width:280px;
-    padding:12px;
+    width:250px;
+    padding:10px;
     border:1px solid #ddd;
-    border-radius:10px;
+    border-radius:8px;
+    font-size:14px;
 }
 
 .btn-filter{
     background:#0d6efd;
     color:white;
     border:none;
-    padding:12px 25px;
-    border-radius:10px;
+    padding:10px 18px;
+    border-radius:8px;
     cursor:pointer;
+    font-size:13px;
 }
 
 .btn-reset{
     background:white;
     border:1px solid #ddd;
-    padding:12px 25px;
-    border-radius:10px;
+    padding:10px 18px;
+    border-radius:8px;
     cursor:pointer;
+    font-size:13px;
 }
 
 /* STAT */
@@ -168,28 +177,28 @@ body{
 .stats{
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    gap:20px;
-    margin-bottom:25px;
+    gap:15px;
+    margin-bottom:15px;
 }
 
 .stat-card{
     background:white;
-    border-radius:15px;
-    padding:25px;
+    border-radius:12px;
+    padding:18px;
     box-shadow:0 2px 10px rgba(0,0,0,.05);
     display:flex;
     align-items:center;
-    gap:20px;
+    gap:15px;
 }
 
 .stat-icon{
-    width:60px;
-    height:60px;
-    border-radius:15px;
+    width:50px;
+    height:50px;
+    border-radius:12px;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:24px;
+    font-size:20px;
 }
 
 .blue{
@@ -209,19 +218,20 @@ body{
 
 .stat-text p{
     color:#6b7280;
+    font-size:13px;
 }
 
 .stat-text h2{
-    margin-top:5px;
-    font-size:32px;
+    margin-top:3px;
+    font-size:26px;
 }
 
 /* TABLE */
 
 .table-box{
     background:white;
-    border-radius:15px;
-    padding:25px;
+    border-radius:12px;
+    padding:15px;
     box-shadow:0 2px 10px rgba(0,0,0,.05);
 }
 
@@ -232,19 +242,21 @@ table{
 
 th{
     background:#eef6ff;
-    padding:15px;
+    padding:12px;
     text-align:left;
+    font-size:14px;
 }
 
 td{
-    padding:15px;
+    padding:12px;
     border-bottom:1px solid #eee;
+    font-size:14px;
 }
 
 .badge{
-    padding:6px 12px;
+    padding:5px 10px;
     border-radius:20px;
-    font-size:12px;
+    font-size:11px;
     font-weight:bold;
 }
 
@@ -257,14 +269,15 @@ td{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    gap:6px;
+    gap:5px;
     text-decoration:none;
     border:none;
-    padding:10px 18px;
-    border-radius:8px;
+    padding:8px 14px;
+    border-radius:7px;
     color:white;
     cursor:pointer;
     font-weight:600;
+    font-size:12px;
 }
 
 .btn-success{
