@@ -1,0 +1,48 @@
+@startuml activity-13-pengaturan-sistem
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram Pengaturan Sistem\n(PengaturanController)\n(Menggantikan CRUD Semester/Prodi terpisah)
+
+|Admin|
+start
+:Buka Menu Pengaturan\n(GET /admin/pengaturan);
+
+|Sistem|
+:PengaturanSistem::current;
+:Tampilkan form pengaturan\n(nama, institusi, tahun akademik,\nsemester aktif, maks SKS,\nbatas KRS, status sistem);
+
+|Admin|
+:Ubah data pengaturan;
+:Klik Simpan\n(POST /admin/pengaturan);
+
+|Sistem|
+:Validasi input;
+if (Valid?) then (Ya)
+  :PengaturanSistem::update;
+  :LogAktivitas::catat;
+  |Admin|
+  :Notifikasi "Pengaturan berhasil disimpan";
+  stop
+else (Tidak)
+  |Admin|
+  :Tampilkan pesan validasi error;
+  stop
+endif
+
+note right
+  Semester aktif & maks SKS
+  diatur di sini, bukan modul
+  CRUD Semester terpisah.
+  Tabel prodi hanya referensi.
+end note
+
+@enduml

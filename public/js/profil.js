@@ -1,20 +1,60 @@
-const modal = document.getElementById("editModal");
-const btn = document.getElementById("openModal");
-const close = document.querySelector(".close");
+document.addEventListener('DOMContentLoaded', function () {
+    const editModal = document.getElementById('editModal');
+    const passwordModal = document.getElementById('passwordModal');
+    const openEdit = document.getElementById('openModal');
+    const openPassword = document.getElementById('openPasswordModal');
 
-// buka modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-// tutup modal
-close.onclick = function() {
-    modal.style.display = "none";
-}
-
-// klik luar modal
-window.onclick = function(e) {
-    if (e.target == modal) {
-        modal.style.display = "none";
+    function openModal(modal) {
+        if (!modal) return;
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
     }
-}
+
+    function closeModal(modal) {
+        if (!modal) return;
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
+
+    function closeAll() {
+        closeModal(editModal);
+        closeModal(passwordModal);
+    }
+
+    if (openEdit) {
+        openEdit.addEventListener('click', function () {
+            closeModal(passwordModal);
+            openModal(editModal);
+        });
+    }
+
+    if (openPassword) {
+        openPassword.addEventListener('click', function () {
+            closeModal(editModal);
+            openModal(passwordModal);
+        });
+    }
+
+    document.querySelectorAll('[data-close]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            const id = btn.getAttribute('data-close');
+            closeModal(document.getElementById(id));
+        });
+    });
+
+    [editModal, passwordModal].forEach(function (modal) {
+        if (!modal) return;
+
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) {
+                closeModal(modal);
+            }
+        });
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeAll();
+        }
+    });
+});

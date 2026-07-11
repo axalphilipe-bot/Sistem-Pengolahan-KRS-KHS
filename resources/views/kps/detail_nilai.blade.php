@@ -1,197 +1,166 @@
 @extends('kps.layout')
 
+@section('title', 'Detail Nilai')
+
 @section('content')
 
-<style>
+@php
+    $dosenNama = $nilai->nama_dosen ?: ($nilai->dosen_pengampu ?? '-');
+    $gradeKey = strtolower(substr(preg_replace('/[^A-Za-z]/', '', $nilai->nilai_huruf ?? ''), 0, 1)) ?: 'x';
+    $isLocked = \App\Models\Nilai::isLockedValue($nilai->kunci_nilai);
+    $initial = strtoupper(substr($nilai->nama ?? '-', 0, 1));
+    $semesterLabel = ucfirst($nilai->semester_mk ?? '-');
 
-.detail-wrapper{
-    display:flex;
-    justify-content:center;
-}
+    $components = [
+        ['label' => 'Keaktifan', 'value' => $nilai->keaktifan, 'weight' => 15, 'icon' => 'fa-solid fa-hand-sparkles'],
+        ['label' => 'Proyek', 'value' => $nilai->proyek, 'weight' => 35, 'icon' => 'fa-solid fa-diagram-project'],
+        ['label' => 'Tugas', 'value' => $nilai->tugas, 'weight' => 10, 'icon' => 'fa-solid fa-file-lines'],
+        ['label' => 'Kuis', 'value' => $nilai->kuis, 'weight' => 10, 'icon' => 'fa-solid fa-circle-question'],
+        ['label' => 'UTS', 'value' => $nilai->uts, 'weight' => 15, 'icon' => 'fa-solid fa-pen-to-square'],
+        ['label' => 'UAS', 'value' => $nilai->uas, 'weight' => 15, 'icon' => 'fa-solid fa-clipboard-check'],
+    ];
+@endphp
 
-.detail-card{
-    width:550px;
-    background:#fff;
-    border-radius:12px;
-    padding:20px;
-    box-shadow:0 2px 10px rgba(0,0,0,.08);
-}
+<div class="kps-page kps-detail-nilai-page">
 
-.detail-title{
-    text-align:center;
-    margin-bottom:15px;
-    color:#1f2937;
-    font-size:28px;
-    font-weight:700;
-}
+    <a href="/kps/laporan" class="kps-detail-back">
+        <i class="fa-solid fa-arrow-left"></i>
+        Kembali ke Laporan
+    </a>
 
-.info{
-    margin-bottom:15px;
-    line-height:1.8;
-    font-size:15px;
-}
-
-.info strong{
-    color:#111827;
-}
-
-.nilai-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-.nilai-table td{
-    padding:10px;
-    border-bottom:1px solid #eee;
-    font-size:15px;
-}
-
-.nilai-table td:first-child{
-    font-weight:600;
-    color:#374151;
-}
-
-.nilai-table td:last-child{
-    text-align:right;
-    font-weight:bold;
-}
-
-.summary{
-    display:flex;
-    justify-content:space-between;
-    gap:10px;
-    margin-top:18px;
-}
-
-.summary-card{
-    flex:1;
-    padding:12px;
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
-    border-radius:10px;
-    text-align:center;
-}
-
-.summary-card h5{
-    color:#6b7280;
-    margin-bottom:8px;
-    font-size:13px;
-}
-
-.summary-card h2{
-    color:#2563eb;
-    margin:0;
-    font-size:28px;
-}
-
-.grade{
-    display:inline-block;
-    background:#22c55e;
-    color:white;
-    padding:5px 12px;
-    border-radius:8px;
-    font-size:18px;
-    font-weight:bold;
-}
-
-.btn-back{
-    display:inline-block;
-    margin-top:18px;
-    background:#2563eb;
-    color:white;
-    padding:10px 18px;
-    border-radius:8px;
-    text-decoration:none;
-    font-size:14px;
-    font-weight:600;
-}
-
-.btn-back:hover{
-    background:#1d4ed8;
-}
-
-</style>
-
-<div class="detail-wrapper">
-
-    <div class="detail-card">
-
-        <h1 class="detail-title">
-            Detail Nilai Mahasiswa
-        </h1>
-
-        <div class="info">
-            <strong>Nama Mahasiswa :</strong>
-            {{ $nilai->nama }}
-            <br>
-
-            <strong>Mata Kuliah :</strong>
-            {{ $nilai->nama_mk }}
-            <br>
-
-            <strong>Dosen :</strong>
-            {{ $nilai->nama_dosen }}
+    {{-- Hero --}}
+    <div class="kps-page-hero kps-detail-hero">
+        <div class="kps-page-hero-content">
+            <span class="kps-page-hero-badge">
+                <i class="fa-solid fa-user-graduate"></i>
+                Detail Nilai Mahasiswa
+            </span>
+            <h1>
+                <span class="kps-detail-avatar">{{ $initial }}</span>
+                {{ $nilai->nama }}
+            </h1>
+            <p>
+                <span class="kps-kode-tag kps-detail-nim">{{ $nilai->nim }}</span>
+                &middot; {{ $nilai->nama_mk }}
+                &middot; {{ $nilai->nama_prodi ?? '-' }}
+            </p>
         </div>
 
-        <table class="nilai-table">
+        <div class="kps-page-hero-stat kps-detail-grade-stat">
+            <small>Nilai Huruf</small>
+            <span class="kps-grade-badge grade-{{ $gradeKey }} kps-detail-grade-badge">
+                {{ $nilai->nilai_huruf ?? '-' }}
+            </span>
+        </div>
+    </div>
 
-            <tr>
-                <td>Keaktifan</td>
-                <td>{{ $nilai->keaktifan }}</td>
-            </tr>
-
-            <tr>
-                <td>Proyek</td>
-                <td>{{ $nilai->proyek }}</td>
-            </tr>
-
-            <tr>
-                <td>Tugas</td>
-                <td>{{ $nilai->tugas }}</td>
-            </tr>
-
-            <tr>
-                <td>Kuis</td>
-                <td>{{ $nilai->kuis }}</td>
-            </tr>
-
-            <tr>
-                <td>UTS</td>
-                <td>{{ $nilai->uts }}</td>
-            </tr>
-
-            <tr>
-                <td>UAS</td>
-                <td>{{ $nilai->uas }}</td>
-            </tr>
-
-        </table>
-
-        <div class="summary">
-
-            <div class="summary-card">
-                <h5>Nilai Akhir</h5>
-                <h2>{{ $nilai->nilai_akhir }}</h2>
+    {{-- Info cards --}}
+    <div class="kps-detail-info-grid">
+        <div class="kps-detail-info-card">
+            <div class="kps-detail-info-icon blue">
+                <i class="fa-solid fa-book"></i>
             </div>
-
-            <div class="summary-card">
-                <h5>Nilai Huruf</h5>
-                <span class="grade">
-                    {{ $nilai->nilai_huruf }}
-                </span>
+            <div>
+                <small>Mata Kuliah</small>
+                <strong>{{ $nilai->nama_mk }}</strong>
+                <span class="kps-td-muted">{{ $nilai->kode_mk }}</span>
             </div>
-
-            <div class="summary-card">
-                <h5>Index Nilai</h5>
-                <h2>{{ $nilai->index_nilai }}</h2>
-            </div>
-
         </div>
 
-        <a href="/kps/laporan" class="btn-back">
-            ← Kembali ke Laporan
-        </a>
+        <div class="kps-detail-info-card">
+            <div class="kps-detail-info-icon purple">
+                <i class="fa-solid fa-chalkboard-user"></i>
+            </div>
+            <div>
+                <small>Dosen Pengampu</small>
+                <strong>{{ $dosenNama }}</strong>
+            </div>
+        </div>
 
+        <div class="kps-detail-info-card">
+            <div class="kps-detail-info-icon orange">
+                <i class="fa-solid fa-calendar"></i>
+            </div>
+            <div>
+                <small>Semester</small>
+                <strong>{{ $semesterLabel }}</strong>
+            </div>
+        </div>
+
+        <div class="kps-detail-info-card">
+            <div class="kps-detail-info-icon {{ $isLocked ? 'red' : 'green' }}">
+                <i class="fa-solid {{ $isLocked ? 'fa-lock' : 'fa-circle-check' }}"></i>
+            </div>
+            <div>
+                <small>Status Nilai</small>
+                @if($isLocked)
+                    <span class="kps-badge locked"><i class="fa-solid fa-lock"></i> Terkunci</span>
+                @else
+                    <span class="kps-badge approved"><i class="fa-solid fa-check"></i> Disetujui</span>
+                @endif
+            </div>
+        </div>
+    </div>
+
+    {{-- Komponen nilai --}}
+    <div class="kps-data-table-panel kps-detail-panel">
+        <div class="kps-data-table-header">
+            <h3><i class="fa-solid fa-chart-simple"></i> Komponen Nilai</h3>
+            <span class="kps-result-info kps-result-muted">
+                Bobot: Aktif 15% · Proyek 35% · Tugas 10% · Kuis 10% · UTS 15% · UAS 15%
+            </span>
+        </div>
+
+        <div class="kps-detail-components">
+            @foreach($components as $component)
+                @php
+                    $score = (float) ($component['value'] ?? 0);
+                    $barWidth = min(max($score, 0), 100);
+                @endphp
+                <div class="kps-detail-component">
+                    <div class="kps-detail-component-head">
+                        <div class="kps-detail-component-label">
+                            <i class="{{ $component['icon'] }}"></i>
+                            <span>{{ $component['label'] }}</span>
+                            <small class="kps-td-muted">{{ $component['weight'] }}%</small>
+                        </div>
+                        <strong>{{ number_format($score, 0) }}</strong>
+                    </div>
+                    <div class="kps-detail-progress">
+                        <div class="kps-detail-progress-bar" style="width: {{ $barWidth }}%"></div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    {{-- Ringkasan --}}
+    <div class="kps-detail-summary">
+        <div class="kps-detail-summary-card">
+            <div class="kps-detail-summary-icon blue">
+                <i class="fa-solid fa-calculator"></i>
+            </div>
+            <small>Nilai Akhir</small>
+            <strong>{{ number_format($nilai->nilai_akhir ?? 0, 1) }}</strong>
+        </div>
+
+        <div class="kps-detail-summary-card highlight">
+            <div class="kps-detail-summary-icon green">
+                <i class="fa-solid fa-star"></i>
+            </div>
+            <small>Nilai Huruf</small>
+            <span class="kps-grade-badge grade-{{ $gradeKey }} kps-detail-summary-grade">
+                {{ $nilai->nilai_huruf ?? '-' }}
+            </span>
+        </div>
+
+        <div class="kps-detail-summary-card">
+            <div class="kps-detail-summary-icon indigo">
+                <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <small>Index Nilai</small>
+            <strong>{{ number_format($nilai->index_nilai ?? 0, 2) }}</strong>
+        </div>
     </div>
 
 </div>

@@ -1,61 +1,84 @@
-<div class="sidebar">
+<aside class="mhs-sidebar" id="mhsSidebar">
 
-    <!-- LOGO -->
-    <div class="logo-section">
-        <img src="{{ asset('img/logo.png') }}" alt="Logo">
+    <button type="button" class="mhs-sidebar-close" id="mhsSidebarClose" aria-label="Tutup menu">
+        <i class="fa-solid fa-xmark"></i>
+    </button>
+
+    <div class="mhs-sidebar-brand">
+        <div class="mhs-sidebar-logo-wrap">
+            <img src="{{ asset('img/logo.png') }}" alt="Polibatam" class="mhs-sidebar-logo">
+        </div>
+        <div class="mhs-sidebar-brand-text">
+            <h2 class="mhs-sidebar-title">Sistem KRS & KHS</h2>
+            <p class="mhs-sidebar-subtitle">
+                <i class="fa-solid fa-user-graduate"></i>
+                Panel Mahasiswa
+            </p>
+        </div>
     </div>
 
-    <!-- MENU -->
-    <div class="menu-section">
+    <nav class="mhs-sidebar-menu">
 
-        <!-- MENU UTAMA -->
-        <h4 class="menu-title">Menu Utama</h4>
+        <div class="mhs-sidebar-group">
+            <p class="mhs-sidebar-label">Menu Utama</p>
 
-        <a href="/home"
-           class="{{ request()->is('home') ? 'active' : '' }}">
-            <i class="fas fa-home"></i>
-            Dashboard
-        </a>
+            <a href="/home"
+               class="mhs-sidebar-link {{ request()->is('home') ? 'active' : '' }}">
+                <span class="mhs-sidebar-icon"><i class="fa-solid fa-house"></i></span>
+                <span class="mhs-sidebar-link-text">Dashboard</span>
+            </a>
 
-        <a href="/krs"
-           class="{{ request()->is('krs') ? 'active' : '' }}">
-            <i class="fas fa-book"></i>
-            KRS
-        </a>
+            <a href="/krs"
+               class="mhs-sidebar-link {{ request()->is('krs*') ? 'active' : '' }}">
+                <span class="mhs-sidebar-icon"><i class="fa-solid fa-file-signature"></i></span>
+                <span class="mhs-sidebar-link-text">KRS</span>
+            </a>
 
-        <a href="/khs"
-           class="{{ request()->is('khs') ? 'active' : '' }}">
-            <i class="fas fa-file-alt"></i>
-            KHS
-        </a>
+            <a href="/khs"
+               class="mhs-sidebar-link {{ request()->is('khs*') ? 'active' : '' }}">
+                <span class="mhs-sidebar-icon"><i class="fa-solid fa-file-lines"></i></span>
+                <span class="mhs-sidebar-link-text">KHS</span>
+            </a>
+        </div>
 
-        <!-- GARIS -->
-        <div class="menu-divider"></div>
+        <div class="mhs-sidebar-group">
+            <p class="mhs-sidebar-label">Akun</p>
 
-        <!-- AKUN -->
-        <h4 class="menu-title">Akun</h4>
+            <a href="/profil"
+               class="mhs-sidebar-link {{ request()->is('profil*') ? 'active' : '' }}">
+                <span class="mhs-sidebar-icon"><i class="fa-solid fa-user"></i></span>
+                <span class="mhs-sidebar-link-text">Profil</span>
+            </a>
 
-        <a href="/profil"
-           class="{{ request()->is('profil') ? 'active' : '' }}">
-            <i class="fas fa-user"></i>
-            Profil
-        </a>
+            <a href="/panduan"
+               class="mhs-sidebar-link {{ request()->is('panduan*') ? 'active' : '' }}">
+                <span class="mhs-sidebar-icon"><i class="fa-solid fa-circle-question"></i></span>
+                <span class="mhs-sidebar-link-text">Panduan</span>
+            </a>
+        </div>
 
-        <a href="/panduan"
-   class="{{ request()->is('panduan') ? 'active' : '' }}">
-    <i class="fas fa-circle-info"></i>
-    Panduan
-</a>
+    </nav>
 
-<form action="{{ route('logout') }}" method="POST">
-    @csrf
+    <div class="mhs-sidebar-footer">
+        <div class="mhs-sidebar-user">
+            <div class="mhs-sidebar-avatar">
+                {{ strtoupper(substr(auth()->user()->name ?? 'M', 0, 1)) }}
+            </div>
+            <div class="mhs-sidebar-user-info">
+                <strong>{{ auth()->user()->name ?? 'Mahasiswa' }}</strong>
+                <span><i class="fa-solid fa-circle"></i> Mahasiswa Aktif</span>
+            </div>
+        </div>
 
-    <button type="submit" class="logout-btn">
-        <i class="fas fa-sign-out-alt"></i>
-        Logout
-    </button>
-</form>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="mhs-sidebar-logout">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
+            </button>
+        </form>
+    </div>
 
-</div>
+</aside>
 
-</div>
+<div class="mhs-sidebar-overlay" id="mhsSidebarOverlay"></div>

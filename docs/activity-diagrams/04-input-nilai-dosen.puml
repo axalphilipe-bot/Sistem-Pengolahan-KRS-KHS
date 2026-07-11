@@ -1,0 +1,49 @@
+@startuml activity-04-input-nilai-dosen
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram Input Nilai Dosen\n(DosenController::inputNilai / simpanNilai)
+
+|Dosen|
+start
+:Buka menu Input Nilai\n(GET /dosen/nilai);
+:Pilih Mata Kuliah\n(GET /dosen/nilai/{kode});
+
+|Sistem|
+:Ambil peserta KRS Disetujui;
+if (Ada peserta?) then (Tidak)
+  |Dosen|
+  :Redirect dengan pesan error\n"Belum ada mahasiswa disetujui";
+  stop
+else (Ya)
+  :Tampilkan form input nilai\nper mahasiswa;
+  |Dosen|
+  :Input komponen nilai\n(Keaktifan, Proyek, Tugas,\nKuis, UTS, UAS);
+  :Klik Simpan\n(POST /nilai/simpan);
+  |Sistem|
+  if (Nilai sudah dikunci KPS?) then (Ya)
+    |Dosen|
+    :Tampilkan error\n"Nilai telah dikunci oleh KPS";
+    stop
+  else (Tidak)
+    :Hitung Nilai Akhir\n(bobot: 15/35/10/10/15/15);
+    :Hitung Nilai Huruf\n(A s/d E);
+    :Hitung Index Nilai\n(4.0 s/d 0);
+    :Nilai::updateOrCreate\ntabel nilais;
+    :Set status = Pending\nkunci_nilai = 0;
+    :LogAktivitas::catat;
+    |Dosen|
+    :Tampilkan notifikasi berhasil\n/ perubahan disimpan;
+    stop
+  endif
+endif
+
+@enduml

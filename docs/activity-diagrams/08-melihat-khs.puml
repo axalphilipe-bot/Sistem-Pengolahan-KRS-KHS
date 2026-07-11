@@ -1,0 +1,37 @@
+@startuml activity-08-melihat-khs
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram Melihat KHS Mahasiswa\n(KrsController::khs / getKhsData)
+
+|Mahasiswa|
+start
+:Buka Menu KHS\n(GET /khs);
+
+|Sistem|
+:Mahasiswa::forAuthenticatedUser;
+if (Data mahasiswa ada?) then (Tidak)
+  |Mahasiswa|
+  :Redirect login\n"Data mahasiswa tidak ditemukan";
+  stop
+else (Ya)
+  :Nilai::published()\nstatus = Disetujui\nAND kunci_nilai = 1;
+  :Ambil nilai + relasi matkul;
+  :Hitung Total SKS;
+  :Hitung IPS\n(total mutu / total SKS);
+  :Hitung IPK\n(saat ini = IPS);
+  :Render view mahasiswa.khs;
+  |Mahasiswa|
+  :Tampilkan daftar nilai\nIPS dan IPK;
+  stop
+endif
+
+@enduml

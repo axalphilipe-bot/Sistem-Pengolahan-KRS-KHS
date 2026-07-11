@@ -1,58 +1,40 @@
+document.addEventListener('DOMContentLoaded', function () {
+    const modal = document.getElementById('khsModal');
+    const btn = document.getElementById('openModal');
+    const closeBtn = document.querySelector('.khs-modal-close');
+    const closeFooterBtn = document.querySelector('.btn-modal-close');
 
-const modal = document.getElementById("khsModal");
-const btn = document.getElementById("openModal");
-const close = document.querySelector(".close");
+    if (!modal || !btn) return;
 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-
-close.onclick = function() {
-    modal.style.display = "none";
-}
-
-window.onclick = function(e) {
-    if (e.target == modal) {
-        modal.style.display = "none";
+    function openModal() {
+        modal.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
     }
-}
 
-function exportPDF() {
+    function closeModal() {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+    }
 
-    document
-        .querySelectorAll('.no-print')
-        .forEach(el => el.style.display = 'none');
+    btn.addEventListener('click', openModal);
 
-    const element =
-        document.getElementById('pdfContent');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
 
-    html2pdf()
-        .set({
-            margin: 12,
-            filename: 'KHS.pdf',
+    if (closeFooterBtn) {
+        closeFooterBtn.addEventListener('click', closeModal);
+    }
 
-            image: {
-                type: 'jpeg',
-                quality: 1
-            },
+    modal.addEventListener('click', function (e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
 
-            html2canvas: {
-                scale: 2
-            },
-
-            jsPDF: {
-                unit: 'mm',
-                format: 'a4',
-                orientation: 'portrait'
-            }
-        })
-        .from(element)
-        .save()
-        .then(() => {
-
-            document
-                .querySelectorAll('.no-print')
-                .forEach(el => el.style.display = 'block');
-
-        });
-}
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+            closeModal();
+        }
+    });
+});

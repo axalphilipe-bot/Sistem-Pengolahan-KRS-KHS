@@ -1,0 +1,62 @@
+@startuml activity-03-persetujuan-krs-dosen
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram Persetujuan KRS Dosen\n(DosenController::validasi / approve / reject)
+
+|Dosen|
+start
+:Buka menu Persetujuan KRS\n(GET /dosen/validasi);
+
+|Sistem|
+:Filter KRS mahasiswa wali\n(nuptk_wali = nuptk dosen);
+:Tampilkan daftar pengajuan KRS\n(status Pending/Disetujui/Ditolak);
+
+|Dosen|
+:Pilih pengajuan KRS mahasiswa;
+if (Keputusan?) then (Setujui)
+  :Klik Setujui\n(GET /dosen/krs/approve/{id});
+  |Sistem|
+  :Verifikasi dosen wali\n(mahasiswa.nuptk_wali);
+  if (Akses valid?) then (Ya)
+    :Update semua KRS Pending\nmahasiswa → Disetujui;
+    :LogAktivitas::catat\n("Menyetujui pengajuan KRS");
+    |Dosen|
+    :Kembali ke halaman validasi;
+    stop
+  else (Tidak)
+    |Dosen|
+    :HTTP 403 Akses ditolak;
+    stop
+  endif
+else (Tolak)
+  :Klik Tolak\n(GET /dosen/krs/reject/{id});
+  |Sistem|
+  :Verifikasi dosen wali;
+  if (Akses valid?) then (Ya)
+    :Update semua KRS Pending\nmahasiswa → Ditolak;
+    :LogAktivitas::catat\n("Menolak pengajuan KRS");
+    |Dosen|
+    :Kembali ke halaman validasi;
+    stop
+  else (Tidak)
+    |Dosen|
+    :HTTP 403 Akses ditolak;
+    stop
+  endif
+endif
+
+note right
+  Persetujuan KRS Admin dinonaktifkan
+  (KrsController::setujui/tolak redirect).
+end note
+
+@enduml

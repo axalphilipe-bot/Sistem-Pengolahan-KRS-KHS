@@ -1,550 +1,505 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Approve Nilai - KPS</title>
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Segoe UI',sans-serif;
-}
-
-body{
-    background:#f5f7fb;
-}
-
-/* SIDEBAR */
-
-.sidebar{
-    width:270px;
-    height:100vh;
-    background:white;
-    position:fixed;
-    left:0;
-    top:0;
-    border-right:1px solid #e5e7eb;
-}
-
-.logo{
-    text-align:center;
-    padding:20px;
-}
-
-.logo img{
-    width:100px;
-}
-
-.logo h2{
-    margin-top:8px;
-    color:#374151;
-    font-size:18px;
-}
-
-.menu{
-    padding:0 15px;
-}
-
-.menu-title{
-    font-size:13px;
-    font-weight:700;
-    color:#6b7280;
-    margin:12px 0;
-}
-
-.sidebar a{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    text-decoration:none;
-    color:#374151;
-    padding:10px 12px;
-    border-radius:8px;
-    margin-bottom:6px;
-    transition:.3s;
-    font-size:14px;
-}
-
-.sidebar a:hover{
-    background:#eef6ff;
-}
-
-.sidebar a.active{
-    background:#27a4ff;
-    color:white;
-}
-
-/* CONTENT */
-
-.content{
-    margin-left:270px;
-}
-
-.topbar{
-    height:60px;
-    background:white;
-    border-bottom:1px solid #e5e7eb;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 25px;
-}
-
-.topbar h2{
-    color:#374151;
-    font-size:20px;
-}
-
-.profile{
-    font-weight:600;
-    color:#374151;
-    font-size:14px;
-}
-
-.main{
-    padding:20px;
-}
-
-.page-title{
-    margin-bottom:15px;
-    color:#1f2937;
-    font-size:38px;
-}
-
-/* FILTER */
-
-.filter-box{
-    background:white;
-    padding:15px;
-    border-radius:12px;
-    margin-bottom:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,.05);
-}
-
-.filter-row{
-    display:flex;
-    gap:15px;
-    align-items:end;
-    flex-wrap:wrap;
-}
-
-.filter-group{
-    display:flex;
-    flex-direction:column;
-}
-
-.filter-group label{
-    margin-bottom:6px;
-    font-weight:600;
-    color:#374151;
-    font-size:13px;
-}
-
-.filter-group select{
-    width:250px;
-    padding:10px;
-    border:1px solid #ddd;
-    border-radius:8px;
-    font-size:14px;
-}
-
-.btn-filter{
-    background:#0d6efd;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:13px;
-}
-
-.btn-reset{
-    background:white;
-    border:1px solid #ddd;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:13px;
-}
-
-/* STAT */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:15px;
-    margin-bottom:15px;
-}
-
-.stat-card{
-    background:white;
-    border-radius:12px;
-    padding:18px;
-    box-shadow:0 2px 10px rgba(0,0,0,.05);
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
-
-.stat-icon{
-    width:50px;
-    height:50px;
-    border-radius:12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:20px;
-}
-
-.blue{
-    background:#e8f1ff;
-    color:#0d6efd;
-}
-
-.yellow{
-    background:#fff7db;
-    color:#d97706;
-}
-
-.green{
-    background:#dcfce7;
-    color:#16a34a;
-}
-
-.stat-text p{
-    color:#6b7280;
-    font-size:13px;
-}
-
-.stat-text h2{
-    margin-top:3px;
-    font-size:26px;
-}
-
-/* TABLE */
-
-.table-box{
-    background:white;
-    border-radius:12px;
-    padding:15px;
-    box-shadow:0 2px 10px rgba(0,0,0,.05);
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th{
-    background:#eef6ff;
-    padding:12px;
-    text-align:left;
-    font-size:14px;
-}
-
-td{
-    padding:12px;
-    border-bottom:1px solid #eee;
-    font-size:14px;
-}
-
-.badge{
-    padding:5px 10px;
-    border-radius:20px;
-    font-size:11px;
-    font-weight:bold;
-}
-
-.waiting{
-    background:#fef3c7;
-    color:#92400e;
-}
-
-.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:5px;
-    text-decoration:none;
-    border:none;
-    padding:8px 14px;
-    border-radius:7px;
-    color:white;
-    cursor:pointer;
-    font-weight:600;
-    font-size:12px;
-}
-
-.btn-success{
-    background:#22c55e;
-}
-
-.btn-danger{
-    background:#ef4444;
-}
-
-.btn-success:hover{
-    background:#16a34a;
-}
-
-.btn-danger:hover{
-    background:#dc2626;
-}
-
-</style>
-</head>
-<body>
-
-<div class="sidebar">
-
-    <div class="logo">
-        <img src="{{ asset('img/logo.png') }}">
-        <h2>KPS</h2>
-    </div>
-
-    <div class="menu">
-
-        <div class="menu-title">Menu Utama</div>
-
-        <a href="/kps">
-            <i class="fa fa-home"></i>
-            Dashboard
-        </a>
-
-        <div class="menu-title">Pengelolaan Nilai</div>
-
-        <a href="/kps/approve" class="active">
-            <i class="fa fa-check-circle"></i>
-            Approve Nilai
-        </a>
-
-        <a href="/kps/kunci">
-            <i class="fa fa-lock"></i>
-            Kunci Nilai
-        </a>
-
-        <div class="menu-title">Laporan</div>
-
-        <a href="/kps/laporan">
-            <i class="fa fa-file"></i>
-            Laporan Nilai
-        </a>
-
-    </div>
-
-</div>
-
-<div class="content">
-
-    <div class="topbar">
-
-        <h2>Sistem Pengelolaan KRS & KHS</h2>
-
-        <div class="profile">
-            <i class="fa fa-user-circle"></i>
-            KPS Informatika
+@extends('kps.layout')
+
+
+
+@section('title', 'Validasi Nilai')
+
+
+
+@section('content')
+
+
+
+@php
+
+    $pendingCount   = $nilais->whereIn('status', ['Pending', 'Menunggu Approval'])->count();
+
+    $disetujuiCount = $nilais->where('status', 'Disetujui')->count();
+
+    $ditolakCount   = $nilais->where('status', 'Ditolak')->count();
+
+    $totalMahasiswa = $mahasiswaList->count();
+
+@endphp
+
+
+
+<div class="kps-page kps-approve-page">
+
+
+
+    {{-- Hero --}}
+
+    <div class="kps-page-hero">
+
+        <div class="kps-page-hero-content">
+
+            <span class="kps-page-hero-badge">
+
+                <i class="fa-solid fa-circle-check"></i>
+
+                Pengelolaan Nilai
+
+            </span>
+
+            <h1>
+
+                <i class="fa-solid fa-square-check"></i>
+
+                Validasi Nilai
+
+            </h1>
+
+            <p>Tinjau dan setujui nilai mahasiswa per NIM sebelum dipublikasikan ke KHS.</p>
+
+        </div>
+
+
+
+        <div class="kps-page-hero-stat">
+
+            <small>Total Mahasiswa</small>
+
+            <strong>{{ $totalMahasiswa }}</strong>
+
         </div>
 
     </div>
 
-    <div class="main">
 
-        <h1 class="page-title">
-            Approve Nilai
-        </h1>
 
-        <div class="filter-box">
+    {{-- Mini stats --}}
 
-            <div class="filter-row">
+    <div class="kps-mini-stats">
 
-                <div class="filter-group">
-    <label>Semester</label>
+        <div class="kps-mini-stat-card">
 
-    <select>
-        <option>2025/2026 Ganjil</option>
-        <option selected>2025/2026 Genap</option>
-    </select>
+            <div class="kps-mini-stat-icon yellow">
 
-</div>
+                <i class="fa-solid fa-clock"></i>
 
-<div class="filter-group">
-    <label>Program Studi</label>
+            </div>
 
-    <select>
+            <div class="kps-mini-stat-info">
 
-        <option selected>
-            Semua Program Studi
-        </option>
+                <small>Pending</small>
 
-        <option>
-            D3 Teknik Informatika
-        </option>
-
-        <option>
-            D3 Teknik Geomatika
-        </option>
-
-        <option>
-            D4 Animasi
-        </option>
-
-        <option>
-            D4 Teknologi Rekayasa Multimedia
-        </option>
-
-        <option>
-            D4 Keamanan Siber
-        </option>
-
-        <option>
-            D4 Rekayasa Perangkat Lunak
-        </option>
-
-        <option>
-            D4 Teknologi Permainan
-        </option>
-
-        <option>
-            Magister Terapan Teknik Komputer
-        </option>
-
-    </select>
-
-</div>
-
-                <button class="btn-filter">
-                    <i class="fa fa-filter"></i>
-                    Filter
-                </button>
-
-                <button class="btn-reset">
-                    <i class="fa fa-rotate-right"></i>
-                    Reset
-                </button>
+                <strong>{{ $pendingCount }}</strong>
 
             </div>
 
         </div>
 
-        <div class="stats">
 
-            <div class="stat-card">
-                <div class="stat-icon blue">
-                    <i class="fa fa-clock"></i>
-                </div>
 
-                <div class="stat-text">
-                    <p>Menunggu Approval</p>
-                    <h2>42</h2>
-                </div>
+        <div class="kps-mini-stat-card">
+
+            <div class="kps-mini-stat-icon green">
+
+                <i class="fa-solid fa-circle-check"></i>
+
             </div>
 
-            <div class="stat-card">
-                <div class="stat-icon yellow">
-                    <i class="fa fa-users"></i>
-                </div>
+            <div class="kps-mini-stat-info">
 
-                <div class="stat-text">
-                    <p>Total Mahasiswa</p>
-                    <h2>1.248</h2>
-                </div>
-            </div>
+                <small>Disetujui</small>
 
-            <div class="stat-card">
-                <div class="stat-icon green">
-                    <i class="fa fa-book"></i>
-                </div>
+                <strong>{{ $disetujuiCount }}</strong>
 
-                <div class="stat-text">
-                    <p>Total Nilai</p>
-                    <h2>42</h2>
-                </div>
             </div>
 
         </div>
 
-        <div class="table-box">
 
-            <table>
+
+        <div class="kps-mini-stat-card">
+
+            <div class="kps-mini-stat-icon red">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </div>
+
+            <div class="kps-mini-stat-info">
+
+                <small>Ditolak</small>
+
+                <strong>{{ $ditolakCount }}</strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    {{-- Toolbar --}}
+
+    <div class="kps-panel-toolbar">
+
+        <div class="kps-toolbar-left">
+
+            @if($adaDisetujuiBelumDikunci)
+
+                <form method="POST" action="/kps/approve/kunci-semua" class="kps-lock-all-form">
+
+                    @csrf
+
+                    <button type="submit" class="kps-btn-lock-all"
+
+                            onclick="return confirm('Kunci semua nilai yang berstatus Disetujui? Dosen tidak dapat mengubah nilai setelah dikunci.')">
+
+                        <i class="fa-solid fa-lock"></i>
+
+                        Kunci Semua Nilai
+
+                    </button>
+
+                </form>
+
+            @endif
+
+        </div>
+
+
+
+        <div class="kps-toolbar-right">
+
+            <input type="text" id="kpsApproveSearch" class="kps-search-input"
+
+                   placeholder="Cari NIM, nama, atau mata kuliah...">
+
+            <select id="kpsApproveFilter" class="kps-filter-select">
+
+                <option value="">Semua Status</option>
+
+                <option value="pending">Pending</option>
+
+                <option value="disetujui">Disetujui</option>
+
+                <option value="ditolak">Ditolak</option>
+
+                <option value="locked">Terkunci</option>
+
+            </select>
+
+        </div>
+
+    </div>
+
+
+
+    {{-- Tabel --}}
+
+    <div class="kps-data-table-panel">
+
+        <div class="kps-data-table-header">
+
+            <h3><i class="fa-solid fa-table-list"></i> Daftar Mahasiswa</h3>
+
+            <span class="kps-result-info">Menampilkan <strong id="kpsApproveCount">{{ $totalMahasiswa }}</strong> mahasiswa</span>
+
+        </div>
+
+
+
+        <div class="kps-data-table-scroll">
+
+            @if($mahasiswaList->isEmpty())
+
+                <div class="kps-empty-state">
+
+                    <i class="fa-solid fa-inbox"></i>
+
+                    <p>Belum ada data nilai untuk divalidasi.</p>
+
+                </div>
+
+            @else
+
+                <table class="kps-data-table" id="kpsApproveTable">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>NIM</th>
+
+                            <th>Mahasiswa</th>
+
+                            <th>Jumlah MK</th>
+
+                            <th>Ringkasan</th>
+
+                            <th>Status Validasi</th>
+
+                            <th>Aksi</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @foreach($mahasiswaList as $mhs)
+
+                            @php
+
+                                $initial = strtoupper(substr($mhs->nama, 0, 1));
+
+                                $detailItems = $mhs->nilais->map(function ($nilai) {
+
+                                    $status = in_array($nilai->status, ['Pending', 'Menunggu Approval'])
+
+                                        ? 'Pending'
+
+                                        : $nilai->status;
+
+                                    $terkunci = \App\Models\Nilai::isLockedValue($nilai->kunci_nilai);
+
+
+
+                                    return [
+
+                                        'kode_mk' => $nilai->kode_mk,
+
+                                        'nama_mk' => $nilai->nama_mk ?? $nilai->kode_mk,
+
+                                        'nilai_huruf' => $nilai->nilai_huruf ?? '-',
+
+                                        'nilai_akhir' => number_format($nilai->nilai_akhir ?? 0, 1),
+
+                                        'index_nilai' => $nilai->index_nilai ?? '-',
+
+                                        'status' => $terkunci ? 'Terkunci' : $status,
+
+                                    ];
+
+                                })->values();
+
+                            @endphp
+
+                            <tr data-search="{{ $mhs->search_text }}" data-status="{{ $mhs->status }}">
+
+                                <td>
+
+                                    <span class="kps-kode-tag">{{ $mhs->nim }}</span>
+
+                                </td>
+
+                                <td>
+
+                                    <div class="kps-student-cell">
+
+                                        <div class="kps-student-avatar">{{ $initial }}</div>
+
+                                        <div>
+
+                                            <strong>{{ $mhs->nama }}</strong>
+
+                                        </div>
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    <strong>{{ $mhs->jumlah_mk }}</strong>
+
+                                    <br>
+
+                                    <small class="kps-td-muted">mata kuliah</small>
+
+                                </td>
+
+                                <td>
+
+                                    <p class="kps-approve-summary">{{ \Illuminate\Support\Str::limit($mhs->ringkasan, 55) }}</p>
+
+                                    <button type="button"
+
+                                            class="kps-btn-detail-link kps-approve-detail-btn"
+
+                                            data-nim="{{ $mhs->nim }}"
+
+                                            data-nama="{{ $mhs->nama }}"
+
+                                            data-detail='@json($detailItems)'>
+
+                                        <i class="fa-solid fa-eye"></i>
+
+                                        Lihat Detail
+
+                                    </button>
+
+                                </td>
+
+                                <td>
+
+                                    @if($mhs->status === 'locked')
+
+                                        <span class="kps-badge locked"><i class="fa-solid fa-lock"></i> Terkunci</span>
+
+                                    @elseif($mhs->status === 'pending')
+
+                                        <span class="kps-badge waiting"><i class="fa-solid fa-clock"></i> Pending</span>
+
+                                    @elseif($mhs->status === 'disetujui')
+
+                                        <span class="kps-badge approved"><i class="fa-solid fa-check"></i> Disetujui</span>
+
+                                    @else
+
+                                        <span class="kps-badge rejected"><i class="fa-solid fa-xmark"></i> Ditolak</span>
+
+                                    @endif
+
+                                </td>
+
+                                <td class="kps-action-cell">
+
+                                    @if($mhs->status === 'locked')
+
+                                        <span class="kps-action-muted"><i class="fa-solid fa-lock"></i> Sudah dikunci</span>
+
+                                    @elseif($mhs->can_act)
+
+                                        <div class="kps-approve-action-group">
+
+                                            <a href="/kps/approve/setujui/{{ $mhs->nim }}/{{ $mhs->first_kode_mk }}"
+
+                                               class="kps-btn-action approve-all"
+
+                                               onclick="return confirm('Setujui semua nilai Pending mahasiswa {{ $mhs->nama }}?')">
+
+                                                <i class="fa-solid fa-check"></i>
+
+                                                Setujui Semua
+
+                                            </a>
+
+                                            <a href="/kps/approve/tolak/{{ $mhs->nim }}/{{ $mhs->first_kode_mk }}"
+
+                                               class="kps-btn-action reject-all"
+
+                                               onclick="return confirm('Tolak semua nilai mahasiswa {{ $mhs->nama }}?')">
+
+                                                <i class="fa-solid fa-xmark"></i>
+
+                                                Tolak Semua
+
+                                            </a>
+
+                                        </div>
+
+                                    @elseif($mhs->status === 'disetujui')
+
+                                        <span class="kps-action-muted"><i class="fa-solid fa-hourglass-half"></i> Menunggu dikunci</span>
+
+                                    @else
+
+                                        <span class="kps-action-muted">—</span>
+
+                                    @endif
+
+                                </td>
+
+                            </tr>
+
+                        @endforeach
+
+                    </tbody>
+
+                </table>
+
+
+
+                <div class="kps-empty-state kps-filter-empty" id="kpsApproveEmpty" hidden>
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <p>Tidak ada data yang cocok dengan pencarian.</p>
+
+                </div>
+
+            @endif
+
+        </div>
+
+    </div>
+
+
+
+</div>
+
+
+
+{{-- Modal Detail --}}
+
+<div class="kps-approve-modal" id="kpsApproveModal" hidden>
+
+    <div class="kps-approve-modal-backdrop" data-close-modal></div>
+
+    <div class="kps-approve-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="kpsApproveModalTitle">
+
+        <div class="kps-approve-modal-header">
+
+            <div>
+
+                <span class="kps-approve-modal-badge"><i class="fa-solid fa-list-check"></i> Detail Nilai</span>
+
+                <h3 id="kpsApproveModalTitle">—</h3>
+
+                <p id="kpsApproveModalSubtitle">—</p>
+
+            </div>
+
+            <button type="button" class="kps-approve-modal-close" data-close-modal aria-label="Tutup">&times;</button>
+
+        </div>
+
+        <div class="kps-approve-modal-body">
+
+            <table class="kps-data-table kps-approve-detail-table">
 
                 <thead>
+
                     <tr>
+
                         <th>Mata Kuliah</th>
-                        <th>Dosen</th>
-                        <th>Tanggal</th>
+
+                        <th>Nilai</th>
+
+                        <th>Index</th>
+
                         <th>Status</th>
-                        <th>Aksi</th>
+
                     </tr>
+
                 </thead>
 
-                <tbody>
+                <tbody id="kpsApproveModalBody"></tbody>
 
-@foreach($nilais as $nilai)
+            </table>
 
-<tr>
+        </div>
 
-    <td>{{ $nilai->kode_mk }}</td>
+    </div>
 
-    <td>Dosen Informatika</td>
+</div>
 
-    <td>
-        {{ date('d M Y', strtotime($nilai->created_at)) }}
-    </td>
 
-    <td>
 
-        @if($nilai->status == 'Menunggu Approval')
+@endsection
 
-            <span class="badge waiting">
-                Menunggu
-            </span>
 
-        @elseif($nilai->status == 'Disetujui')
 
-            <span class="badge"
-            style="background:#dcfce7;color:#166534;">
-                Disetujui
-            </span>
+@push('scripts')
 
-        @else
+<script src="{{ asset('js/kps-approve.js') }}"></script>
 
-            <span class="badge"
-            style="background:#fee2e2;color:#991b1b;">
-                Ditolak
-            </span>
+@endpush
 
-        @endif
 
-    </td>
-
-    <td>
-
-        <a href="/kps/approve/setujui/{{ $nilai->nim }}"
-           class="btn btn-success">
-
-            <i class="fa fa-check"></i>
-            Approve
-
-        </a>
-
-        <a href="/kps/approve/tolak/{{ $nilai->nim }}"
-           class="btn btn-danger">
-
-            <i class="fa fa-times"></i>
-            Tolak
-
-        </a>
-
-    </td>
-
-</tr>
-
-@endforeach
-
-</tbody>
-</html>

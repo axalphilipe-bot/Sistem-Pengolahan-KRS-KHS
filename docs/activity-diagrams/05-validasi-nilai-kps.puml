@@ -1,0 +1,53 @@
+@startuml activity-05-validasi-nilai-kps
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram Validasi Nilai KPS\n(KpsController::approve / setujui / tolak)
+
+|KPS|
+start
+:Buka Validasi Nilai\n(GET /kps/approve);
+
+|Sistem|
+:Join nilais + mahasiswa\n+ mata_kuliahs;
+:Tampilkan daftar nilai\n(semua status);
+
+|KPS|
+:Pilih nilai mahasiswa;
+if (Keputusan?) then (Setujui)
+  :Klik Setujui\n(/kps/approve/setujui/{nim}/{kode_mk});
+  |Sistem|
+  if (Nilai belum dikunci?) then (Ya)
+    :Update status = Disetujui;
+    |KPS|
+    :Notifikasi "Nilai berhasil disetujui";
+    stop
+  else (Tidak)
+    |KPS|
+    :Notifikasi error\n"sudah terkunci / tidak ditemukan";
+    stop
+  endif
+else (Tolak)
+  :Klik Tolak\n(/kps/approve/tolak/{nim}/{kode_mk});
+  |Sistem|
+  if (Nilai belum dikunci?) then (Ya)
+    :Update status = Ditolak;
+    |KPS|
+    :Notifikasi "Nilai berhasil ditolak";
+    stop
+  else (Tidak)
+    |KPS|
+    :Notifikasi error;
+    stop
+  endif
+endif
+
+@enduml

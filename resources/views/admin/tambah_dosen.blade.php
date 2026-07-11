@@ -2,99 +2,67 @@
 
 @section('content')
 
-<h1>Tambah Dosen</h1>
+<div class="admin-page">
 
-<form action="/admin/dosen/store" method="POST">
+    <div class="form-card">
+        <div class="form-header">
+            <h1>Tambah Dosen</h1>
+            <p>Lengkapi data dosen baru untuk didaftarkan ke sistem.</p>
+        </div>
 
-    @csrf
+        <form action="/admin/dosen/store" method="POST" class="admin-form">
+            @csrf
 
-    <div>
-        <label>NUPTK</label>
-        <input type="text" name="nuptk">
+            <div class="form-section-title">Identitas</div>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="nuptk">NUPTK</label>
+                    <input type="text" id="nuptk" name="nuptk" value="{{ old('nuptk') }}" placeholder="Contoh: 166558900007" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="nama">Nama Dosen</label>
+                    <input type="text" id="nama" name="nama" value="{{ old('nama') }}" placeholder="Nama lengkap" required>
+                </div>
+
+                <div class="form-field form-field-wide">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" placeholder="nama@polibatam.ac.id" required>
+                </div>
+            </div>
+
+            <div class="form-section-title">Akademik</div>
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="jabatan">Jabatan</label>
+                    <select id="jabatan" name="jabatan" required>
+                        <option value="">Pilih Jabatan</option>
+                        @foreach(['Dosen Tetap', 'Dosen Tidak Tetap', 'Lektor', 'Lektor Kepala', 'Kaprodi', 'Sekretaris Prodi'] as $jabatan)
+                            <option value="{{ $jabatan }}" @selected(old('jabatan') == $jabatan)>{{ $jabatan }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="kode_prodi">Program Studi</label>
+                    <select id="kode_prodi" name="kode_prodi" required>
+                        <option value="">Pilih Program Studi</option>
+                        @foreach($prodi as $p)
+                            <option value="{{ $p->kode_prodi }}" @selected(old('kode_prodi') == $p->kode_prodi)>
+                                {{ $p->nama_prodi }} ({{ $p->kode_prodi }})
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <a href="/admin/dosen" class="btn-form-cancel">Batal</a>
+                <button type="submit" class="btn-form-submit">Simpan Dosen</button>
+            </div>
+        </form>
     </div>
 
-    <br>
-
-    <div>
-        <label>Nama</label>
-        <input type="text" name="nama">
-    </div>
-
-    <br>
-
-    <div>
-        <label>Email</label>
-        <input type="email" name="email">
-    </div>
-
-    <br>
-
-    <div>
-    <label>Jabatan</label>
-
-    <select name="jabatan">
-
-        <option value="">
-            -- Pilih Jabatan --
-        </option>
-
-        <option value="Dosen Tetap">
-            Dosen Tetap
-        </option>
-
-        <option value="Dosen Tidak Tetap">
-            Dosen Tidak Tetap
-        </option>
-
-        <option value="Kaprodi">
-            Kaprodi
-        </option>
-
-        <option value="Sekretaris Prodi">
-            Sekretaris Prodi
-        </option>
-
-    </select>
 </div>
-
-    <br>
-
-    <div>
-    <label>Program Studi</label>
-
-    <select name="kode_prodi">
-
-        <option value="">
-            -- Pilih Program Studi --
-        </option>
-
-        @foreach($prodi as $p)
-
-            <option value="{{ $p->kode_prodi }}">
-                {{ $p->kode_prodi }} - {{ $p->nama_prodi }}
-            </option>
-
-        @endforeach
-
-    </select>
-</div>
-
-    <br>
-
-    <button
-    type="submit"
-    style="
-        background:#2563eb;
-        color:white;
-        border:none;
-        padding:10px 20px;
-        border-radius:8px;
-        cursor:pointer;
-        font-weight:600;
-    ">
-      Simpan
-</button>
-
-</form>
 
 @endsection

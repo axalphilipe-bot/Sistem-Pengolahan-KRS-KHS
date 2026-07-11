@@ -16,7 +16,8 @@ class Mahasiswa extends Model
     'kelas_huruf',
     'jenjang',
     'semester',
-    'kode_prodi'
+    'kode_prodi',
+    'nuptk_wali',
 ];
     
 protected $primaryKey = 'nim';
@@ -36,6 +37,16 @@ protected $keyType = 'string';
         'kode_prodi'
     );
 }
+
+    public function dosenWali()
+    {
+        return $this->belongsTo(
+            Dosen::class,
+            'nuptk_wali',
+            'nuptk'
+        );
+    }
+
 public function nilai()
 {
     return $this->hasOne(
@@ -52,4 +63,45 @@ public function krs()
         'nim'
     );
 }
+
+    public static function forAuthenticatedUser(): ?self
+    {
+        $user = auth()->user();
+
+        if (!$user || $user->role !== 'mahasiswa' || empty($user->nim)) {
+            return null;
+        }
+
+        $mahasiswa = static::with('prodi')
+            ->where('nim', $user->nim)
+            ->first();
+
+        if (!$mahasiswa && !empty($user->email)) {
+            $mahasiswa = static::with('prodi')
+                ->where('email', $user->email)
+                ->first();
+        }
+
+        if (!$mahasiswa) {
+            $kodeProdi = Prodi::query()->value('kode_prodi');
+
+            if (!$kodeProdi) {
+                return null;
+            }
+
+            $mahasiswa = static::create([
+                'nim' => $user->nim,
+                'nama' => mb_substr($user->name, 0, 50),
+                'email' => mb_substr($user->email ?? ($user->nim . '@polibatam.ac.id'), 0, 100),
+                'kelas' => mb_substr($user->kelas ?? 'TI-3A', 0, 10),
+                'jenjang' => 'D4',
+                'semester' => 5,
+                'kode_prodi' => $kodeProdi,
+            ]);
+
+            $mahasiswa->load('prodi');
+        }
+
+        return $mahasiswa;
+    }
 }

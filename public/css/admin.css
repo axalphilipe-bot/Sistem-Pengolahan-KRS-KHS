@@ -26,30 +26,14 @@ body{
 
 .admin-container{
     display:flex;
-    min-height:calc(100vh - 65px);
+    min-height:100vh;
 }
 
 /* ====================================
-   SIDEBAR
+   SIDEBAR — see admin-sidebar.css
 ==================================== */
 
-.sidebar{
-    width:270px;
-    background:white;
-
-    border-right:1px solid #e5e7eb;
-
-    padding:20px;
-
-    overflow-y:auto;
-}
-
-.sidebar-logo{
-    width:140px;
-    display:block;
-    margin:0 auto 20px;
-}
-
+/* Legacy sidebar selectors (backward compat) */
 .sidebar h3{
     font-size:18px;
     margin-bottom:15px;
@@ -58,43 +42,35 @@ body{
 .sidebar-title{
     margin-top:25px;
     margin-bottom:10px;
-
     font-size:14px;
     font-weight:700;
-
     color:#6b7280;
 }
 
-.sidebar a{
+.sidebar a:not(.sidebar-link){
     display:flex;
     align-items:center;
     gap:10px;
-
     text-decoration:none;
-
     color:#4b5563;
-
     padding:12px 15px;
-
     border-radius:12px;
-
     margin-bottom:6px;
-
     transition:.25s;
 }
 
-.sidebar a:hover{
+.sidebar a:not(.sidebar-link):hover{
     background:#e0f2fe;
     color:#0284c7;
 }
 
-.sidebar a.active{
+.sidebar a:not(.sidebar-link).active{
     background:#2196f3;
     color:white;
     font-weight:600;
 }
 
-.sidebar i{
+.sidebar a:not(.sidebar-link) i{
     width:18px;
 }
 
@@ -308,14 +284,6 @@ table tr:hover{
 ==================================== */
 
 @media(max-width:768px){
-
-    .admin-container{
-        flex-direction:column;
-    }
-
-    .sidebar{
-        width:100%;
-    }
 
     .main-content{
         padding:15px;
@@ -696,25 +664,43 @@ table tr:hover{
 /* SEARCH BOX */
 
 .search-box{
-    margin-bottom:0;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:20px 0;
 }
 
 .search-box input{
-    width:100%;
-    height:45px;
-    padding-left:40px;
-    border:1px solid #dbeafe;
-    border-radius:8px;
+    flex:1;
+    padding:12px 15px;
+    border:1px solid #dbe5f1;
+    border-radius:10px;
+    outline:none;
     font-size:14px;
-    box-sizing:border-box;
 }
 
+.search-box input:focus{
+    border-color:#2d8cf0;
+}
 .search-box i{
-    position:absolute;
-    left:15px;
-    top:50%;
-    transform:translateY(-50%);
-    color:#888;
+    color:#6c757d;
+    font-size:18px;
+    margin-right:10px;
+}
+.btn-search{
+    padding:12px 26px;
+    border-radius:10px;
+    background:#2d8cf0;
+    color:#fff;
+    font-weight:600;
+    border:none;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.btn-search:hover{
+    background:#1976d2;
+    transform:translateY(-2px);
 }
 
 .btn-validasi{
@@ -805,11 +791,19 @@ table tr:hover{
     background:#4da6ff;
     color:white;
     padding:14px;
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
 }
 
 .custom-table td{
     padding:14px;
     border-bottom:1px solid #eee;
+}
+.custom-table tbody tr{
+    transition:.2s;
+}
+
+.custom-table tbody tr:hover{
+    background:#f6fbff;
 }
 .stats-grid{
     display:grid;
@@ -834,6 +828,14 @@ table tr:hover{
 .stat-card h2{
     font-size:30px;
     font-weight:700;
+}
+.stat-card{
+    transition:.3s;
+}
+
+.stat-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
 }
 
 .success{
@@ -993,3 +995,2135 @@ table tr:hover{
     margin-bottom:20px;
     font-weight:600;
 }
+/* ===========================
+   KRS SUMMARY
+=========================== */
+
+.krs-summary{
+    display:flex;
+    gap:20px;
+    margin:25px 0;
+    flex-wrap:wrap;
+}
+
+.summary-card{
+
+    flex:1;
+    min-width:200px;
+
+    background:#fff;
+
+    border-radius:12px;
+
+    padding:22px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    border-left:5px solid #2d8cf0;
+
+}
+
+.summary-card p{
+
+    color:#777;
+
+    font-size:14px;
+
+    margin-bottom:10px;
+
+}
+
+.summary-card h2{
+
+    font-size:32px;
+
+    color:#1d3557;
+
+    margin:0;
+
+}
+/* ======================
+STATUS BADGE
+====================== */
+
+.status-badge{
+
+    padding:7px 16px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    display:inline-block;
+
+}
+
+.status-badge.pending{
+
+    background:#FFF3CD;
+
+    color:#856404;
+
+}
+
+.status-badge.approved{
+
+    background:#D4EDDA;
+
+    color:#155724;
+
+}
+
+.status-badge.rejected{
+
+    background:#F8D7DA;
+
+    color:#721C24;
+
+}
+/* ==========================
+DETAIL BUTTON
+========================== */
+
+.btn-detail{
+
+    background:#2d8cf0;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:8px 16px;
+
+    border-radius:8px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:.3s;
+
+}
+
+.btn-detail:hover{
+
+    background:#1565c0;
+
+    color:white;
+
+    transform:translateY(-2px);
+
+}
+/* ===========================
+   DASHBOARD HERO
+=========================== */
+
+.dashboard-hero{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+
+padding:38px 42px;
+
+margin-bottom:28px;
+
+border-radius:24px;
+
+background:#9CCFFF;
+
+color:#fff;
+
+box-shadow:0 12px 30px rgba(53,88,114,.18);
+
+}
+
+.dashboard-hero h1{
+
+font-size:42px;
+
+font-weight:700;
+
+margin-bottom:10px;
+
+color:#fff;
+
+letter-spacing:-1px;
+
+}
+
+.dashboard-hero p{
+
+font-size:15px;
+
+line-height:1.8;
+
+color:rgba(255,255,255,.92);
+
+max-width:560px;
+
+margin:0;
+
+}
+
+.hero-date{
+
+text-align:right;
+
+}
+
+.hero-date span{
+
+font-size:14px;
+
+opacity:.8;
+
+}
+
+.hero-date h3{
+
+margin:8px 0;
+
+font-size:28px;
+
+font-weight:700;
+
+color:white;
+
+}
+
+.hero-date small{
+
+opacity:.85;
+
+font-size:14px;
+
+}
+
+
+/* ===========================
+   CARD
+=========================== */
+
+.stats-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:22px;
+
+margin-bottom:28px;
+
+}
+
+.stats-card{
+
+background:#fff;
+
+border-radius:20px;
+
+padding:26px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+border:1px solid #EEF2F7;
+
+box-shadow:0 8px 24px rgba(15,23,42,.05);
+
+transition:.35s;
+
+}
+
+.stats-card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:0 18px 40px rgba(15,23,42,.10);
+
+}
+
+.stats-card small{
+
+display:block;
+
+font-size:14px;
+
+color:#64748B;
+
+margin-bottom:8px;
+
+}
+
+.stats-card h2{
+
+font-size:38px;
+
+font-weight:700;
+
+color:#1E293B;
+
+margin:0;
+
+}
+
+.stats-card i{
+
+width:72px;
+
+height:72px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+border-radius:18px;
+
+font-size:28px;
+
+color:white;
+
+}
+
+
+/* soft colors */
+
+.blue i{
+
+background:#7C9CF8;
+
+}
+
+.green i{
+
+background:#59C79A;
+
+}
+
+.orange i{
+
+background:#F4B860;
+
+}
+
+.red i{
+
+background:#F27D7D;
+
+}
+
+
+/* ===========================
+   TABLE
+=========================== */
+
+.modern-table{
+
+background:#fff;
+
+padding:26px;
+
+border-radius:22px;
+
+border:1px solid #EEF2F7;
+
+box-shadow:0 8px 24px rgba(15,23,42,.05);
+
+}
+
+.table-header{
+
+margin-bottom:18px;
+
+}
+
+.table-header h3{
+
+font-size:22px;
+
+font-weight:700;
+
+color:#334155;
+
+}
+
+.modern-table table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+.modern-table thead{
+
+background:linear-gradient(135deg,#7BAAF7,#5C95E8);
+
+}
+
+.modern-table th{
+
+padding:18px;
+
+font-size:15px;
+
+font-weight:700;
+
+color:#ffffff;
+
+text-align:left;
+
+letter-spacing:.3px;
+
+}
+
+.modern-table td{
+
+padding:18px;
+
+color:#475569;
+
+border-top:1px solid #EEF2F7;
+
+}
+
+.modern-table tbody tr{
+
+transition:.3s;
+
+}
+
+.modern-table tbody tr:hover{
+
+background:#F8FBFF;
+
+}
+
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:900px){
+
+.dashboard-hero{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+.hero-date{
+
+text-align:left;
+
+}
+
+}
+.modern-table thead th{
+    color:#fff !important;
+    font-weight:700 !important;
+}
+
+/* ===========================
+   MAHASISWA TOOLBAR
+=========================== */
+
+.page-header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+
+}
+
+.page-title{
+
+display:flex;
+align-items:center;
+gap:12px;
+
+font-size:34px;
+
+color:#355872;
+
+margin:0;
+
+}
+
+.page-title i{
+
+color:#355872;
+
+}
+
+.page-subtitle{
+
+margin-top:8px;
+
+font-size:15px;
+
+color:#64748B;
+
+}
+
+.toolbar{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:20px;
+
+margin-bottom:22px;
+
+flex-wrap:wrap;
+
+}
+
+.toolbar-left{
+
+display:flex;
+
+gap:10px;
+
+}
+
+.search-modern{
+
+width:280px;
+
+padding:12px 18px;
+
+border:1px solid #DCE5EF;
+
+border-radius:12px;
+
+transition:.3s;
+
+}
+
+.search-modern:focus{
+
+outline:none;
+
+border-color:#355872;
+
+box-shadow:0 0 0 4px rgba(53,88,114,.10);
+
+}
+
+.btn-primary-custom,
+.btn-secondary-custom,
+.btn-success-custom,
+.btn-template-custom,
+.btn-pdf-custom{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+padding:11px 18px;
+
+border-radius:12px;
+
+text-decoration:none;
+
+font-weight:600;
+
+border:none;
+
+cursor:pointer;
+
+transition:.25s;
+
+font-family:inherit;
+
+font-size:14px;
+
+}
+
+.btn-primary-custom{
+
+background:#355872;
+
+color:white;
+
+}
+
+.btn-primary-custom:hover{
+
+background:#2D4C63;
+
+}
+
+.btn-secondary-custom{
+
+background:#EEF4F8;
+
+color:#355872;
+
+}
+
+.btn-secondary-custom:hover{
+
+background:#E3EBF1;
+
+}
+
+.btn-success-custom{
+
+background:#3FAE74;
+
+color:white;
+
+}
+
+.btn-success-custom:hover{
+
+background:#329461;
+
+}
+
+.btn-template-custom{
+
+background:#fff7ed;
+
+color:#c2410c;
+
+border:1px solid #fed7aa;
+
+}
+
+.btn-template-custom:hover{
+
+background:#ffedd5;
+
+border-color:#fdba74;
+
+transform:translateY(-1px);
+
+}
+
+.btn-pdf-custom{
+
+background:#475569;
+
+color:#fff;
+
+}
+
+.btn-pdf-custom:hover{
+
+background:#334155;
+
+color:#fff;
+
+transform:translateY(-1px);
+
+}
+
+.alert-success-custom,
+.alert-error-custom{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:12px 16px;
+
+border-radius:12px;
+
+font-size:14px;
+
+font-weight:500;
+
+margin-bottom:16px;
+
+}
+
+.alert-success-custom{
+
+background:#ecfdf5;
+
+border:1px solid #bbf7d0;
+
+color:#15803d;
+
+}
+
+.alert-error-custom{
+
+background:#fef2f2;
+
+border:1px solid #fecaca;
+
+color:#b91c1c;
+
+}
+
+/* ===============================
+   ICON BUTTON CRUD
+================================*/
+
+.btn-icon{
+
+width:38px;
+
+height:38px;
+
+display:inline-flex;
+
+align-items:center;
+
+justify-content:center;
+
+border-radius:10px;
+
+text-decoration:none;
+
+color:white;
+
+transition:.25s;
+
+margin-right:6px;
+
+}
+
+.btn-view{
+
+background:#7AAACE;
+
+}
+
+.btn-edit{
+
+background:#F59E0B;
+
+}
+
+.btn-delete{
+
+background:#FF8383;
+
+}
+
+.btn-icon:hover{
+
+transform:translateY(-2px);
+
+filter:brightness(.95);
+
+}
+
+
+/* ===============================
+STATUS
+================================*/
+
+.badge-success{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:8px;
+
+background:#ECFDF5;
+
+color:#9AD872;
+
+padding:8px 14px;
+
+border-radius:30px;
+
+font-size:13px;
+
+font-weight:600;
+
+}
+
+.badge-success i{
+
+font-size:12px;
+
+}
+/* ===========================
+   SEARCH BOX
+=========================== */
+
+.search-form{
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+}
+
+.toolbar-filters{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+.filter-prodi-modern{
+    min-width:220px;
+    height:48px;
+    border:1px solid #D9E3EE;
+    border-radius:12px;
+    padding:0 16px;
+    font-size:14px;
+    color:#334155;
+    background:#fff;
+    cursor:pointer;
+    transition:.25s;
+}
+
+.filter-prodi-modern:focus{
+    outline:none;
+    border-color:#355872;
+    box-shadow:0 0 0 4px rgba(53,88,114,.10);
+}
+
+.search-modern{
+
+    width:260px;
+    height:48px;
+
+    border:1px solid #D9E3EE;
+    border-radius:12px;
+
+    padding:0 16px;
+
+    font-size:14px;
+
+    transition:.25s;
+
+}
+
+.search-modern:focus{
+
+    outline:none;
+
+    border-color:#355872;
+
+    box-shadow:0 0 0 4px rgba(53,88,114,.10);
+
+}
+
+.btn-search{
+
+    width:48px;
+    height:48px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#355872;
+
+    color:#fff;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:15px;
+
+}
+
+.btn-search:hover{
+
+    background:#2D4C63;
+
+    transform:translateY(-2px);
+
+}
+.search-btn{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:12px;
+    background:#355872;
+    color:white;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:.3s;
+}
+
+.search-btn:hover{
+    background:#28485f;
+}
+/* ===========================
+   FILTER BAR MATA KULIAH
+=========================== */
+
+.filter-bar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.filter-bar input{
+    width:340px;
+    height:48px;
+    padding:0 16px;
+    border:1px solid #d9e2ef;
+    border-radius:12px;
+    font-size:14px;
+    outline:none;
+    transition:.25s;
+}
+
+.filter-bar input:focus{
+    border-color:#355872;
+    box-shadow:0 0 0 3px rgba(53,88,114,.12);
+}
+
+.filter-bar select{
+    width:170px;
+    height:48px;
+    padding:0 14px;
+    border:1px solid #d9e2ef;
+    border-radius:12px;
+    background:#fff;
+    font-size:14px;
+    cursor:pointer;
+}
+
+.search-btn{
+    width:48px;
+    height:48px;
+    border:none;
+    border-radius:12px;
+    background:#355872;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:.25s;
+    flex-shrink:0;
+}
+
+.search-btn:hover{
+    background:#2b475d;
+}
+/* ===========================
+   MODERN SELECT
+=========================== */
+
+.filter-bar select{
+
+    appearance:none;
+    -webkit-appearance:none;
+    -moz-appearance:none;
+
+    background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' fill='%23355872' viewBox='0 0 16 16'%3E%3Cpath fill-rule='evenodd' d='M1.646 5.646a.5.5 0 0 1 .708 0L8 11.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3E%3C/svg%3E") no-repeat right 16px center;
+
+    padding-right:45px;
+
+    transition:
+        border-color .25s ease,
+        box-shadow .25s ease,
+        transform .18s ease,
+        background-color .25s ease;
+
+    cursor:pointer;
+}
+
+.filter-bar select:hover{
+
+    border-color:#355872;
+    background-color:#f8fbfd;
+    transform:translateY(-1px);
+
+}
+
+.filter-bar select:focus{
+
+    border-color:#355872;
+    box-shadow:0 0 0 4px rgba(53,88,114,.12);
+    outline:none;
+
+}
+
+.search-btn{
+
+    transition:
+        background .25s ease,
+        transform .18s ease,
+        box-shadow .25s ease;
+
+}
+
+.search-btn:hover{
+
+    background:#28485f;
+    transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(53,88,114,.25);
+
+}
+
+.search-btn:active{
+
+    transform:scale(.96);
+
+}
+/* ===========================
+KRS CARD
+=========================== */
+
+.summary-card{
+
+    transition:.3s;
+
+}
+
+.summary-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+}
+
+.summary-card.blue{
+
+    border-left:5px solid #355872;
+
+}
+
+.summary-card.success{
+
+    border-left:5px solid #3FAE74;
+
+}
+
+.summary-card.warning{
+
+    border-left:5px solid #F4B860;
+
+}
+
+.summary-card.danger{
+
+    border-left:5px solid #F27D7D;
+
+}
+
+/* PAGINATION */
+
+.pagination-wrapper{
+
+margin-top:25px;
+
+display:flex;
+
+justify-content:center;
+
+}
+
+/* ===============================
+   FORM CARD (TAMBAH/EDIT)
+================================ */
+
+.admin-page .form-card {
+    background: #fff;
+    border-radius: 20px;
+    border: 1px solid #eef2f7;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    padding: 28px 32px;
+    max-width: 880px;
+}
+
+.admin-page .form-card-wide {
+    max-width: none;
+    width: 100%;
+}
+
+.admin-page .form-header {
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.admin-page .form-header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 4px;
+}
+
+.admin-page .form-header p {
+    font-size: 13px;
+    color: #64748b;
+    margin: 0;
+}
+
+.admin-page .form-section-title {
+    margin: 20px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #eef2f7;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+    color: #355872;
+}
+
+.admin-page .form-section-title:first-of-type {
+    margin-top: 0;
+}
+
+.admin-page .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 16px;
+}
+
+.admin-page .form-field-wide {
+    grid-column: 1 / -1;
+}
+
+.admin-page .form-field label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 6px;
+}
+
+.admin-page .form-field input,
+.admin-page .form-field select {
+    display: block;
+    width: 100%;
+    height: 42px;
+    padding: 0 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #334155;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-page .form-field select {
+    padding-right: 32px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.admin-page .form-field input:focus,
+.admin-page .form-field select:focus {
+    outline: none;
+    border-color: #355872;
+    box-shadow: 0 0 0 3px rgba(53, 88, 114, 0.1);
+}
+
+.admin-page .form-field input::placeholder {
+    color: #94a3b8;
+}
+
+.admin-page .form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.admin-page .btn-form-cancel {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 18px;
+    border-radius: 10px;
+    background: #f1f5f9;
+    color: #475569;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease;
+}
+
+.admin-page .btn-form-cancel:hover {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.admin-page .btn-form-submit {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    border: none;
+    border-radius: 10px;
+    background: #355872;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.admin-page .btn-form-submit:hover {
+    background: #2D4C63;
+}
+
+@media (max-width: 768px) {
+    .admin-page .form-card {
+        padding: 20px 18px;
+    }
+
+    .admin-page .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-page .form-field-wide {
+        grid-column: auto;
+    }
+
+    .admin-page .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .admin-page .btn-form-cancel,
+    .admin-page .btn-form-submit {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ===============================
+   DATA MAHASISWA (LIST)
+================================ */
+
+.mahasiswa-page .btn-icon.btn-delete,
+.dosen-page .btn-icon.btn-delete,
+.matkul-page .btn-icon.btn-delete {
+    background: #64748b;
+}
+
+.mahasiswa-page .btn-icon.btn-delete:hover,
+.dosen-page .btn-icon.btn-delete:hover,
+.matkul-page .btn-icon.btn-delete:hover {
+    background: #475569;
+}
+
+.mahasiswa-page .student-cell-plain,
+.dosen-page .student-cell-plain,
+.matkul-page .student-cell-plain {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.dosen-page .text-muted,
+.matkul-page .text-muted {
+    color: #94a3b8;
+}
+
+.mahasiswa-detail-page .kode-text,
+.matkul-detail-page .kode-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    color: #355872;
+}
+
+.matkul-detail-page .detail-profile-header .jenis-badge {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+/* ===============================
+   DETAIL MAHASISWA
+================================ */
+
+.mahasiswa-detail-page .detail-top-bar {
+    margin-bottom: 14px;
+}
+
+.mahasiswa-detail-page .detail-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.mahasiswa-detail-page .detail-back-link:hover {
+    color: #355872;
+}
+
+.mahasiswa-detail-page .detail-profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 22px 26px;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    border: 1px solid #c5daf5;
+    background: linear-gradient(135deg, #f5f9ff 0%, #e8f2fc 45%, #dce9f9 100%);
+    box-shadow: 0 6px 20px rgba(53, 88, 114, 0.08);
+}
+
+.mahasiswa-detail-page .detail-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #5b7fa8;
+    margin-bottom: 6px;
+}
+
+.mahasiswa-detail-page .detail-profile-main h1 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+.mahasiswa-detail-page .detail-profile-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.mahasiswa-detail-page .detail-profile-meta .meta-sep {
+    color: #94a3b8;
+}
+
+.mahasiswa-detail-page .detail-profile-header .status-pill-active {
+    background: #fff;
+    border: 1px solid #bbf7d0;
+    box-shadow: 0 2px 6px rgba(21, 128, 61, 0.08);
+}
+
+.mahasiswa-detail-page .detail-card-single {
+    background: #fff;
+    border: 1px solid #eef2f7;
+    border-radius: 16px;
+    padding: 20px 22px;
+    box-shadow: 0 6px 20px rgba(15, 23, 42, 0.04);
+}
+
+.mahasiswa-detail-page .detail-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+.mahasiswa-detail-page .detail-group-title {
+    margin: 0 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #eef2f7;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.45px;
+    color: #355872;
+}
+
+.mahasiswa-detail-page .detail-fields {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.mahasiswa-detail-page .detail-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 12px;
+    border-radius: 10px;
+    background: #f8fafc;
+    border: 1px solid #f1f5f9;
+}
+
+.mahasiswa-detail-page .detail-field dt {
+    flex-shrink: 0;
+    margin: 0;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+    color: #94a3b8;
+}
+
+.mahasiswa-detail-page .detail-field dd {
+    margin: 0;
+    text-align: right;
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    line-height: 1.35;
+}
+
+.mahasiswa-detail-page .nim-text,
+.mahasiswa-detail-page .nuptk-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    color: #355872;
+}
+
+.mahasiswa-detail-page .field-sub {
+    display: block;
+    margin-top: 1px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.mahasiswa-detail-page .text-muted {
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+.mahasiswa-detail-page .status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.mahasiswa-detail-page .status-pill-active {
+    background: #ecfdf5;
+    color: #15803d;
+}
+
+@media (max-width: 768px) {
+    .mahasiswa-detail-page .detail-profile-header {
+        padding: 18px 20px;
+    }
+
+    .mahasiswa-detail-page .detail-profile-main h1 {
+        font-size: 20px;
+    }
+
+    .mahasiswa-detail-page .detail-columns {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .mahasiswa-detail-page .detail-card-single {
+        padding: 16px;
+    }
+
+    .mahasiswa-detail-page .detail-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .mahasiswa-detail-page .detail-field dd {
+        text-align: left;
+    }
+}
+
+/* ===============================
+   EDIT MAHASISWA
+================================ */
+
+.mahasiswa-edit-page .detail-top-bar {
+    margin-bottom: 14px;
+}
+
+.mahasiswa-edit-page .detail-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.mahasiswa-edit-page .detail-back-link:hover {
+    color: #355872;
+}
+
+.mahasiswa-edit-page .detail-profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+    border-radius: 16px;
+    border: 1px solid #c5daf5;
+    background: linear-gradient(135deg, #f5f9ff 0%, #e8f2fc 45%, #dce9f9 100%);
+    box-shadow: 0 6px 20px rgba(53, 88, 114, 0.08);
+}
+
+.mahasiswa-edit-page .detail-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #5b7fa8;
+    margin-bottom: 6px;
+}
+
+.mahasiswa-edit-page .detail-profile-main h1 {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+.mahasiswa-edit-page .detail-profile-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 0;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.mahasiswa-edit-page .detail-profile-meta .meta-sep {
+    color: #94a3b8;
+}
+
+.mahasiswa-edit-page .nim-text,
+.mahasiswa-edit-page .nuptk-text,
+.mahasiswa-edit-page .kode-text {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 12px;
+    color: #355872;
+}
+
+.mahasiswa-edit-page .form-card-wide {
+    max-width: none;
+}
+
+.pengaturan-page .form-card-wide .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 1200px) {
+    .pengaturan-page .form-card-wide .form-grid-akademik {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .mahasiswa-edit-page .detail-profile-header {
+        padding: 18px 20px;
+    }
+
+    .mahasiswa-edit-page .detail-profile-main h1 {
+        font-size: 20px;
+    }
+}
+
+/* ===============================
+   PENGAJUAN KRS
+================================ */
+
+.krs-pengajuan-page .mini-stats.mini-stats-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.krs-pengajuan-page .mini-stats-4 .mini-stat-card {
+    padding: 16px 14px;
+    gap: 12px;
+    min-width: 0;
+}
+
+.krs-pengajuan-page .mini-stats-4 .mini-stat-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.krs-pengajuan-page .mini-stats-4 .mini-stat-info small {
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.krs-pengajuan-page .mini-stats-4 .mini-stat-info strong {
+    font-size: 22px;
+}
+
+.krs-pengajuan-page .mini-stat-icon.slate {
+    background: linear-gradient(135deg, #94a3b8, #64748b);
+}
+
+.krs-pengajuan-page .toolbar-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #64748b;
+    flex: 1;
+    min-width: 200px;
+}
+
+.krs-pengajuan-page .toolbar-note i {
+    color: #355872;
+}
+
+.krs-pengajuan-page .student-cell-plain {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.krs-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.krs-status-pending {
+    background: #fffbeb;
+    color: #b45309;
+}
+
+.krs-status-approved {
+    background: #ecfdf5;
+    color: #15803d;
+}
+
+.krs-status-rejected {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+.krs-detail-page .detail-profile-header .krs-status {
+    padding: 5px 14px;
+    font-size: 12px;
+}
+
+.krs-detail-page .krs-matkul-panel {
+    margin-top: 16px;
+}
+
+@media (max-width: 1100px) {
+    .krs-pengajuan-page .mini-stats.mini-stats-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .krs-pengajuan-page .mini-stats-4 .mini-stat-info small {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .krs-pengajuan-page .mini-stats.mini-stats-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .krs-pengajuan-page .panel-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .krs-pengajuan-page .search-form {
+        width: 100%;
+    }
+}
+
+/* ===============================
+   LAPORAN KRS & KHS
+================================ */
+
+.laporan-krs-page .mini-stats.mini-stats-4,
+.laporan-khs-page .mini-stats.mini-stats-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.laporan-krs-page .mini-stats-4 .mini-stat-card,
+.laporan-khs-page .mini-stats-4 .mini-stat-card {
+    padding: 16px 14px;
+    gap: 12px;
+    min-width: 0;
+}
+
+.laporan-krs-page .mini-stats-4 .mini-stat-icon,
+.laporan-khs-page .mini-stats-4 .mini-stat-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.laporan-krs-page .mini-stat-icon.slate,
+.laporan-khs-page .mini-stat-icon.slate {
+    background: linear-gradient(135deg, #94a3b8, #64748b);
+}
+
+.laporan-krs-page .mini-stats-4 .mini-stat-info strong,
+.laporan-khs-page .mini-stats-4 .mini-stat-info strong {
+    font-size: 22px;
+}
+
+.laporan-krs-page .laporan-toolbar,
+.laporan-khs-page .laporan-toolbar {
+    flex-wrap: wrap;
+}
+
+.laporan-krs-page .laporan-filter-form,
+.laporan-khs-page .laporan-filter-form {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.laporan-krs-page .laporan-filter-form .search-modern,
+.laporan-khs-page .laporan-filter-form .search-modern {
+    width: 240px;
+    min-width: 160px;
+}
+
+.laporan-krs-page .laporan-filter-form .filter-select,
+.laporan-khs-page .laporan-filter-form .filter-select {
+    min-width: 140px;
+    height: 48px;
+    padding: 0 14px;
+    border: 1px solid #d9e3ee;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: inherit;
+    color: #475569;
+    background: #fff;
+}
+
+.laporan-krs-page .student-cell-plain,
+.laporan-khs-page .student-cell-plain {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.laporan-krs-page .mk-sub,
+.laporan-khs-page .mk-sub {
+    margin-top: 3px;
+    font-size: 11px;
+    color: #94a3b8;
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nilai-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.nilai-badge-a {
+    background: #ecfdf5;
+    color: #15803d;
+}
+
+.nilai-badge-b {
+    background: #fffbeb;
+    color: #b45309;
+}
+
+.nilai-badge-c {
+    background: #f1f5f9;
+    color: #64748b;
+}
+
+@media (max-width: 992px) {
+    .laporan-krs-page .mini-stats.mini-stats-4,
+    .laporan-khs-page .mini-stats.mini-stats-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .laporan-krs-page .laporan-toolbar,
+    .laporan-khs-page .laporan-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .laporan-krs-page .laporan-filter-form,
+    .laporan-khs-page .laporan-filter-form {
+        width: 100%;
+    }
+
+    .laporan-krs-page .laporan-filter-form .search-modern,
+    .laporan-khs-page .laporan-filter-form .search-modern {
+        flex: 1;
+        width: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .laporan-krs-page .mini-stats.mini-stats-4,
+    .laporan-khs-page .mini-stats.mini-stats-4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===============================
+   PENGATURAN
+================================ */
+
+.pengaturan-page .mini-stats-3 {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.pengaturan-page .mini-stats-3 .mini-stat-card {
+    padding: 16px 14px;
+    gap: 12px;
+}
+
+.pengaturan-page .mini-stats-3 .mini-stat-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+}
+
+.pengaturan-page .mini-stats-3 .mini-stat-info strong {
+    font-size: 20px;
+}
+
+.admin-page .field-error {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #dc2626;
+}
+
+.admin-page .field-hint {
+    display: block;
+    margin-top: 4px;
+    font-size: 11px;
+    color: #94a3b8;
+}
+
+@media (max-width: 768px) {
+    .pengaturan-page .mini-stats-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===============================
+   PENGGUNA
+================================ */
+
+.pengguna-page .mini-stats.mini-stats-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.pengguna-page .mini-stats-4 .mini-stat-card {
+    padding: 16px 14px;
+    gap: 12px;
+    min-width: 0;
+}
+
+.pengguna-page .mini-stats-4 .mini-stat-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.pengguna-page .mini-stat-icon.purple {
+    background: linear-gradient(135deg, #a78bfa, #7c3aed);
+}
+
+.pengguna-page .mini-stats-4 .mini-stat-info strong {
+    font-size: 22px;
+}
+
+.pengguna-page .login-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #94a3b8;
+    margin-bottom: 4px;
+}
+
+.pengguna-page .login-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    word-break: break-all;
+}
+
+.pengguna-page .role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.pengguna-page .role-badge.role-admin {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.pengguna-page .role-badge.role-dosen {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.pengguna-page .role-badge.role-mahasiswa {
+    background: #ffedd5;
+    color: #c2410c;
+}
+
+.pengguna-page .role-badge.role-kps {
+    background: #e2e8f0;
+    color: #475569;
+}
+
+.pengguna-form-page .detail-profile-meta .role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: capitalize;
+    vertical-align: middle;
+}
+
+.pengguna-form-page .detail-profile-meta .role-badge.role-admin {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.pengguna-form-page .detail-profile-meta .role-badge.role-dosen {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.pengguna-form-page .detail-profile-meta .role-badge.role-mahasiswa {
+    background: #ffedd5;
+    color: #c2410c;
+}
+
+.pengguna-form-page .detail-profile-meta .role-badge.role-kps {
+    background: #e2e8f0;
+    color: #475569;
+}
+
+.pengguna-page .status-inactive {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.pengguna-page .status-inactive i {
+    font-size: 7px;
+    color: #94a3b8;
+}
+
+.pengguna-page .btn-icon.btn-delete,
+.pengguna-page .btn-icon.btn-delete:hover {
+    background: #64748b;
+    color: #fff;
+}
+
+.pengguna-page .student-cell-plain,
+.pengguna-form-page .form-card-wide {
+    max-width: none;
+    width: 100%;
+}
+
+@media (max-width: 1100px) {
+    .pengguna-page .mini-stats.mini-stats-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .pengguna-page .mini-stats-4 .mini-stat-info small {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pengguna-page .mini-stats.mini-stats-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pengguna-page .panel-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .pengguna-page .search-form {
+        width: 100%;
+    }
+}
+
+.pengaturan-form-page .form-card-wide {
+    max-width: none;
+    width: 100%;
+}
+
+/* ===============================
+   LOG AKTIVITAS
+================================ */
+
+.log-page .mini-stats.mini-stats-4 {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.log-page .mini-stats-4 .mini-stat-card {
+    padding: 16px 14px;
+    gap: 12px;
+    min-width: 0;
+}
+
+.log-page .mini-stats-4 .mini-stat-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+    flex-shrink: 0;
+}
+
+.log-page .mini-stats-4 .mini-stat-info strong {
+    font-size: 22px;
+}
+
+.log-page .toolbar-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.log-page .log-time span {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.log-page .log-time small {
+    display: block;
+    font-size: 12px;
+    color: #94a3b8;
+    margin-top: 2px;
+}
+
+.log-page .role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+
+.log-page .role-badge.role-admin { background: #dbeafe; color: #1d4ed8; }
+.log-page .role-badge.role-dosen { background: #dcfce7; color: #15803d; }
+.log-page .role-badge.role-mahasiswa { background: #ffedd5; color: #c2410c; }
+.log-page .role-badge.role-kps { background: #e2e8f0; color: #475569; }
+.log-page .role-badge.role-sistem { background: #f1f5f9; color: #64748b; }
+
+@media (max-width: 768px) {
+    .log-page .mini-stats.mini-stats-4 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .log-page .panel-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .log-page .search-form {
+        width: 100%;
+    }
+}
+

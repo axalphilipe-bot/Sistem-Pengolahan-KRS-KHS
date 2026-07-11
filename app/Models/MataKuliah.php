@@ -24,7 +24,11 @@ class MataKuliah extends Model
 
     public function prodi()
     {
-        return $this->belongsTo(Prodi::class);
+        return $this->belongsTo(
+            Prodi::class,
+            'kode_prodi',
+            'kode_prodi'
+        );
     }
     public function krs()
 {

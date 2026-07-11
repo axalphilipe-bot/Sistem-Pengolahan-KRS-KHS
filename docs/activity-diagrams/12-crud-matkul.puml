@@ -1,0 +1,46 @@
+@startuml activity-12-crud-matkul
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram CRUD Mata Kuliah\n(AdminMatkulController)
+
+|Admin|
+start
+:Buka Menu Mata Kuliah\n(GET /admin/matkul);
+
+|Sistem|
+:Tampilkan daftar mata kuliah\n(filter prodi/semester);
+
+|Admin|
+if (Aksi?) then (Tambah)
+  :Form tambah\n(GET /admin/matkul/create);
+  :Submit\n(POST /admin/matkul/store);
+  |Sistem|
+  :MataKuliah::create;
+elseif (Edit) then
+  :Form edit\n(GET /admin/matkul/{kode}/edit);
+  :Submit update;
+  |Sistem|
+  :MataKuliah::update;
+elseif (Hapus) then
+  :Hapus\n(GET /admin/matkul/{kode}/hapus);
+  |Sistem|
+  :MataKuliah::delete;
+else (Import/Export)
+  :Import atau Export Excel;
+  |Sistem|
+  :Proses file Excel;
+endif
+|Admin|
+:Kembali ke daftar matkul;
+stop
+
+@enduml

@@ -4,119 +4,166 @@
 
 <div class="page-content">
 
-    <h1 class="page-title">Persetujuan KRS</h1>
+    <h1 class="page-title">
+    <i class="fa-solid fa-circle-check"></i>
+    Persetujuan KRS
+</h1>
 
     <p class="page-subtitle">
-        Setujui atau tolak pengajuan KRS Mahasiswa
+        Setujui atau tolak pengajuan KRS mahasiswa.
     </p>
 
-    <!-- FILTER -->
-    <div class="filter-wrapper">
+    {{-- SEARCH --}}
+    <form method="GET"
+      action="/admin/krs-approve"
+      style="
+        display:flex;
+        align-items:center;
+        gap:12px;
+        margin-bottom:25px;
+      ">
 
-        <!-- SEARCH -->
-        <div class="search-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
+    <input
+        type="text"
+        name="search"
+        value="{{ request('search') }}"
+        placeholder="Cari NIM atau Nama Mahasiswa..."
+        style="
+            flex:1;
+            height:50px;
+            border:1px solid #dbe4f1;
+            border-radius:12px;
+            padding:0 18px;
+            font-size:15px;
+            outline:none;
+        ">
 
-            <input type="text"
-            placeholder="Cari NIM atau Nama Mahasiswa...">
-        </div>
+    <button
+        type="submit"
+        style="
+            width:50px;
+            height:50px;
+            border:none;
+            border-radius:12px;
+            background:#355872;
+            color:white;
+            cursor:pointer;
+        ">
 
-        <!-- SELECT -->
-        <select class="filter-status">
-            <option>Semua Status</option>
-            <option>Pending</option>
-            <option>Disetujui</option>
-            <option>Ditolak</option>
-        </select>
+        <i class="fa-solid fa-magnifying-glass"></i>
 
-    </div>
+    </button>
 
-    <!-- TABLE -->
-    <div class="table-wrappe">
+</form>
+
+    {{-- TABLE --}}
+    <div class="table-wrapper">
 
         <table class="custom-table">
 
             <thead>
+
                 <tr>
+
+                    <th>No</th>
                     <th>NIM</th>
                     <th>Nama Mahasiswa</th>
                     <th>Semester</th>
                     <th>Tanggal Pengajuan</th>
                     <th>Status</th>
                     <th>Aksi</th>
+
                 </tr>
+
             </thead>
 
             <tbody>
 
-@foreach($krs as $item)
+            @forelse($krs as $item)
 
-<tr>
+                <tr>
 
-    <td>{{ $item->nim }}</td>
+                    <td>{{ $loop->iteration }}</td>
 
-    <td>{{ $item->mahasiswa->nama ?? '-' }}</td>
+                    <td>{{ $item->nim }}</td>
 
-    <td>{{ $item->mahasiswa->semester ?? '-' }}</td>
+                    <td>
+                        {{ $item->mahasiswa->nama ?? '-' }}
+                    </td>
 
-    <td>
-    {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
-</td>
+                    <td>
+                        {{ $item->mahasiswa->semester ?? '-' }}
+                    </td>
 
-    <td>
+                    <td>
+                        {{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}
+                    </td>
 
-@if($item->status == 'Pending')
+                    <td>
 
-    <span class="status pending">
-        Pending
-    </span>
+                        @if($item->status == 'Pending')
 
-@elseif($item->status == 'Disetujui')
+                            <span class="status pending">
+                                Pending
+                            </span>
 
-    <span class="status approved">
-        Disetujui
-    </span>
+                        @elseif($item->status == 'Disetujui')
 
-@else
+                            <span class="status approved">
+                                Disetujui
+                            </span>
 
-    <span class="status rejected">
-        Ditolak
-    </span>
+                        @else
 
-@endif
+                            <span class="status rejected">
+                                Ditolak
+                            </span>
 
-</td>
+                        @endif
 
-<td class="aksi">
+                    </td>
 
-@if($item->status == 'Pending')
+                    <td>
 
-    <a href="/admin/krs/setujui/{{ $item->id }}"
-       class="btn-setuju">
-       Setujui
-    </a>
+                        @if($item->status == 'Pending')
 
-    <a href="/admin/krs/tolak/{{ $item->id }}"
-       class="btn-tolak">
-       Tolak
-    </a>
+                            <a href="/admin/krs/setujui/{{ $item->id }}"
+class="btn-success-custom">
 
-@else
+                            <a href="/admin/krs/tolak/{{ $item->id }}"
+class="btn-danger-custom">
 
-    <a href="/admin/krs/{{ $item->nim }}"
-       class="btn-lihat">
-       Detail
-    </a>
+                        @else
 
-@endif
+                            <a href="/admin/krs/{{ $item->nim }}"
+   class="btn-icon btn-view"
+   title="Detail">
 
-</td>
+    <i class="fa-solid fa-eye"></i>
 
-</tr>
+</a>
 
-@endforeach
+                        @endif
 
-</tbody>
+                    </td>
+
+                </tr>
+
+            @empty
+
+                <tr>
+
+                    <td colspan="7" style="text-align:center;padding:30px;">
+
+                        Tidak ada pengajuan KRS yang menunggu persetujuan.
+
+                    </td>
+
+                </tr>
+
+            @endforelse
+
+            </tbody>
 
         </table>
 

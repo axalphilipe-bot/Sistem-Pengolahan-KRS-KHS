@@ -1,0 +1,69 @@
+@startuml activity-02-pengambilan-krs
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram Pengisian KRS\n(KrsController::index / store)
+
+|Mahasiswa|
+start
+:Buka menu KRS\n(GET /krs);
+
+|Pilih semester dan\nprogram studi (filter)|
+
+|Sistem|
+:Ambil data mahasiswa\n(Mahasiswa::forAuthenticatedUser);
+:Tampilkan daftar mata kuliah\n(filter semester + kode_prodi);
+:Tampilkan KRS yang sudah diambil\nbeserta statusnya;
+
+|Mahasiswa|
+:Pilih mata kuliah\n(checkbox);
+:Klik Ajukan KRS\n(POST /krs/store);
+
+|Sistem|
+if (Mata kuliah dipilih?) then (Tidak)
+  |Mahasiswa|
+  :Tampilkan pesan error\n"Pilih mata kuliah terlebih dahulu";
+  stop
+else (Ya)
+  if (Data mahasiswa ditemukan?) then (Tidak)
+    |Mahasiswa|
+    :Tampilkan pesan error\n"Data mahasiswa tidak ditemukan";
+    stop
+  else (Ya)
+    repeat
+      :Cek KRS sudah ada\n(nim + kode_mk)?;
+      if (Sudah pernah diajukan?) then (Ya)
+        :Lewati mata kuliah\n(catat duplikat);
+      else (Tidak)
+        :Krs::create\nstatus = Pending;
+      endif
+    repeat while (Masih ada mata kuliah?)
+    if (Semua MK duplikat?) then (Ya)
+      |Mahasiswa|
+      :Tampilkan peringatan\n"Mata Kuliah Sudah Diambil";
+      stop
+    else (Tidak)
+      :LogAktivitas::catat\n("Mengajukan KRS");
+      |Mahasiswa|
+      :Tampilkan notifikasi berhasil\n(status Pending);
+      stop
+    endif
+  endif
+endif
+
+note right
+  Validasi SKS (maks_sks) belum
+  diimplementasi di KrsController::store.
+  Batas SKS hanya disimpan di
+  pengaturan_sistem.
+end note
+
+@enduml

@@ -16,7 +16,7 @@ class LaporanNilaiExport implements FromCollection
             ->where('nilais.status', 'Disetujui')
             ->select(
                 'mata_kuliahs.nama_mk',
-                'nilais.nama_dosen',
+                DB::raw('mata_kuliahs.dosen as nama_dosen'),
                 'prodi.nama_prodi',
                 'mata_kuliahs.semester',
                 'nilais.kunci_nilai'

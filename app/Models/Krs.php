@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Mahasiswa;
+use App\Models\MataKuliah;
 
 class Krs extends Model
 {
@@ -14,6 +16,7 @@ class Krs extends Model
         'status'
     ];
 
+    // Relasi ke Mahasiswa
     public function mahasiswa()
     {
         return $this->belongsTo(
@@ -22,12 +25,14 @@ class Krs extends Model
             'nim'
         );
     }
+
+    // Relasi ke Mata Kuliah
     public function mataKuliah()
-{
-    return $this->belongsTo(
-        MataKuliah::class,
-        'kode_mk',
-        'kode_mk'
-    );
-}
+    {
+        return $this->belongsTo(
+            MataKuliah::class,
+            'kode_mk',
+            'kode_mk'
+        );
+    }
 }

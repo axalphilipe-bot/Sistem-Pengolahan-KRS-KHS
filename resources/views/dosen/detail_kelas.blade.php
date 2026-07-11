@@ -235,31 +235,19 @@ class="btn-input">
         <tbody>
 
 @forelse($peserta as $item)
-
 <tr>
-
-```
-<td>{{ $loop->iteration }}</td>
-
-<td>{{ $item->nim }}</td>
-
-<td>{{ $item->mahasiswa->nama ?? '-' }}</td>
-
-<td>
-    <span class="badge badge-success">
-        Disetujui
-    </span>
-</td>
-
-<td>
-    <a href="/dosen/nilai/{{ $matkul->kode_mk }}"
-class="btn-nilai-soft">
-    <i class="fas fa-pen"></i>
-    Nilai
-</a>
-</td>
-```
-
+    <td>{{ $loop->iteration }}</td>
+    <td>{{ $item->nim }}</td>
+    <td>{{ $item->mahasiswa->nama ?? '-' }}</td>
+    <td>
+        <span class="badge badge-success">Disetujui</span>
+    </td>
+    <td>
+        <a href="/dosen/nilai/{{ $matkul->kode_mk }}" class="btn-detail">
+            <i class="fas fa-pen"></i>
+            Nilai
+        </a>
+    </td>
 </tr>
 
 @empty
@@ -278,7 +266,6 @@ class="btn-nilai-soft">
     </table>
 
 </div>
-```
 
 </div>
 

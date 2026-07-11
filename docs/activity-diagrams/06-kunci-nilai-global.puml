@@ -1,0 +1,57 @@
+@startuml activity-06-kunci-nilai-global
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram Kunci Nilai Global\n(KpsController::kunciSemua)
+
+|KPS|
+start
+:Buka Validasi Nilai\n(GET /kps/approve);
+
+|Sistem|
+:Tampilkan daftar nilai;
+if (Ada nilai Disetujui\nbelum dikunci?) then (Tidak)
+  |KPS|
+  :Tombol "Kunci Semua" tidak tampil;
+  stop
+else (Ya)
+  |KPS|
+  :Klik "Kunci Semua Nilai"\n(POST /kps/approve/kunci-semua);
+  :Konfirmasi dialog\n(confirm JavaScript);
+  if (Yakin?) then (Ya)
+    |Sistem|
+    :Update nilai status Disetujui\n& belum dikunci;
+    :Set kunci_nilai = 1;
+    :Set tanggal_kunci = now();
+    if (Ada record terupdate?) then (Ya)
+      |KPS|
+      :Notifikasi berhasil\n"Berhasil mengunci N nilai";
+      stop
+    else (Tidak)
+      |KPS|
+      :Notifikasi error\n"Tidak ada nilai siap dikunci";
+      stop
+    endif
+  else (Tidak)
+    |KPS|
+    :Batal aksi;
+    stop
+  endif
+endif
+
+note right
+  Kunci global tidak memfilter
+  semester/prodi. Mengunci
+  semua nilai Disetujui
+  yang belum terkunci.
+end note
+
+@enduml

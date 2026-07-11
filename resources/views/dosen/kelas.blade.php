@@ -7,28 +7,20 @@
     <h2 class="title">Kelas Saya</h2>
 
     <div class="top-filter">
-        <select>
-            <option>Cari Mata Kuliah...</option>
-        </select>
-
         <div class="info-box">
     <i class="fas fa-users"></i>
-    Total Mahasiswa 96
+    Total Mahasiswa {{ $totalMahasiswa }}
 </div>
 
         <div class="info-box warning">
     <i class="fas fa-clock"></i>
-    Menunggu Validasi: 17
+    Menunggu Validasi: {{ $menunggu }}
 </div>
     </div>
 
     <!-- FILTER SECOND -->
     <div class="filter-bar">
         <input type="text" placeholder="Cari Mata Kuliah...">
-        
-        <select>
-            <option>Filter Kelas</option>
-        </select>
 
         <div class="right-tools">
             <button class="btn-outline">
@@ -50,8 +42,6 @@
                     <th>Kode MK</th>
                     <th>Mata Kuliah</th>
                     <th>SKS</th>
-                    <th>Kelas</th>
-                    <th>Jadwal</th>
                     <th>Jumlah Mahasiswa</th>
                     <th>Aksi</th>
                 </tr>
@@ -59,8 +49,7 @@
 
             <tbody>
 
-@foreach($matkul as $m)
-
+@forelse($matkul as $m)
 <tr>
 
     <td>{{ $m->kode_mk }}</td>
@@ -69,11 +58,7 @@
 
     <td>{{ $m->sks }}</td>
 
-    <td>-</td>
-
-    <td>-</td>
-
-    <td>24</td>
+    <td>{{ $m->jumlah_mahasiswa }}</td>
 
     <td>
 
@@ -93,16 +78,20 @@
 
 </tr>
 
-@endforeach
+@empty
+<tr>
+    <td colspan="5">Belum ada mata kuliah yang Anda ampu.</td>
+</tr>
+@endforelse
 
 </tbody>
         </table>
     </div>
 
     <!-- FOOTER -->
-    <div class="table-footer">
-        Total Kelas ditampilkan: 4 dari 4
-    </div>
+   <div class="table-footer">
+    Total Kelas ditampilkan: {{ $jumlahKelas }} dari {{ $jumlahKelas }}
+</div>
 
 </div>
 @endsection

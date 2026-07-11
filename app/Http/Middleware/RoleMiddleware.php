@@ -16,11 +16,21 @@ class RoleMiddleware
     public function handle($request, Closure $next, $role)
 {
     if (!auth()->check()) {
-        return redirect('/login');
+        return redirect('/login')
+            ->with('error', 'Silakan login terlebih dahulu.');
     }
 
     if (auth()->user()->role != $role) {
-        abort(403); // akses ditolak
+        $home = match (auth()->user()->role) {
+            'admin' => '/admin',
+            'dosen' => '/dosen',
+            'kps' => '/kps',
+            'mahasiswa' => '/home',
+            default => '/login',
+        };
+
+        return redirect($home)
+            ->with('error', 'Akses ditolak. Halaman ini khusus untuk role ' . $role . '.');
     }
 
     return $next($request);

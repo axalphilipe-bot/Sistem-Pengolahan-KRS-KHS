@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dosen | Sistem Pengelolaan KRS & KHS</title>
+
+    <link rel="stylesheet" href="{{ asset('css/dosen.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dosen-sidebar.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dosen-dashboard.css') }}">
+
+    @stack('styles')
 
     <link rel="stylesheet"
-    href="{{ asset('css/dosen.css') }}">
-
-    <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="dosen-layout">
 
-    {{-- SIDEBAR --}}
     @include('layouts.sidebar_dosen')
 
-    {{-- CONTENT --}}
-    <div class="main-content">
+    <button type="button" class="dosen-sidebar-toggle" id="dosenSidebarToggle" aria-label="Buka menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <main class="main-content">
 
         {{-- NAVBAR --}}
         <div class="topbar">
@@ -30,15 +37,19 @@
 
     <div class="profile">
         <i class="fas fa-user-circle"></i>
-        Dosen Informatika
+        {{ auth()->user()->name }}
     </div>
 
 </div>
         @yield('content')
 
-    </div>
+    </main>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/countup.js@2.8.0/dist/countUp.umd.js"></script>
+
+<script src="{{ asset('js/dosen-sidebar.js') }}"></script>
+
 @stack('scripts')
 </body>
 </html>

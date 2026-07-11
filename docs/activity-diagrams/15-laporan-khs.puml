@@ -1,0 +1,43 @@
+@startuml activity-15-laporan-khs
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram Laporan KHS\n(LaporanKhsController)
+
+|Admin|
+start
+:Buka Laporan KHS\n(GET /admin/laporan-khs);
+
+|Admin|
+:Input filter\n(search NIM/nama, nilai huruf);
+
+|Sistem|
+:Query Nilai::with mahasiswa, matkul;
+:Filter & pagination;
+:Hitung statistik\n(total, grade A/B/C-D-E);
+:Tampilkan tabel laporan nilai;
+
+|Admin|
+if (Export?) then (PDF)
+  :Klik Export PDF\n(/admin/laporan-khs/pdf);
+  |Sistem|
+  :Generate PDF laporan;
+  :Download file;
+elseif (Excel) then
+  :Klik Export Excel\n(/admin/laporan-khs/excel);
+  |Sistem|
+  :KhsExport Excel download;
+else (Lihat saja)
+  :Selesai melihat laporan;
+endif
+stop
+
+@enduml

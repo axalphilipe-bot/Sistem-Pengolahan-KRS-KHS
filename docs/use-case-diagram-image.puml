@@ -1,0 +1,135 @@
+@startuml
+skinparam backgroundColor #3A3A3A
+skinparam shadowing false
+skinparam roundcorner 20
+skinparam ArrowColor #D1D5DB
+skinparam ArrowThickness 1.2
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam titleFontSize 16
+skinparam titleFontColor #F9FAFB
+skinparam actor {
+  BackgroundColor #F9FAFB
+  BorderColor #F9FAFB
+  FontColor #F9FAFB
+  FontSize 13
+  FontStyle bold
+}
+skinparam usecase {
+  BorderColor #FFFFFF
+  FontColor #FFFFFF
+  FontSize 12
+}
+
+title Use Case Diagram\nSistem Pengelolaan KRS & KHS
+
+left to right direction
+
+actor "Mahasiswa" as Mhs
+actor "Dosen" as Dsn
+Mhs -[hidden]down- Dsn
+
+actor "Admin" as Admin
+actor "KPS" as KPS
+Admin -[hidden]down- KPS
+
+usecase "Login" #7C3AED as UC_Login
+usecase "Lihat Semester Aktif" #7C3AED as UC_Sem
+
+usecase "Lihat Daftar\nMata Kuliah" #2563EB as UC_M1
+usecase "Mengisi / Submit KRS" #2563EB as UC_M2
+usecase "Lihat Status KRS" #2563EB as UC_M3
+usecase "Lihat KHS / Nilai" #2563EB as UC_M4
+usecase "Cetak KHS (PDF)" #2563EB as UC_M5
+
+usecase "Input Nilai\nMahasiswa" #16A34A as UC_D1
+usecase "Edit Nilai" #16A34A as UC_D2
+usecase "Lihat KRS\nMahasiswa Wali" #16A34A as UC_D3
+usecase "Setujui / Tolak KRS" #16A34A as UC_D4
+usecase "Import Nilai Excel" #16A34A as UC_D5
+
+usecase "Kelola Data\nMahasiswa" #D97706 as UC_A1
+usecase "Kelola Data Dosen" #D97706 as UC_A2
+usecase "Kelola\nMata Kuliah" #D97706 as UC_A3
+usecase "Pengaturan Sistem" #D97706 as UC_A4
+usecase "Lihat Pengajuan KRS" #D97706 as UC_A5
+usecase "Validasi Nilai Admin" #D97706 as UC_A6
+usecase "Laporan KRS & KHS" #D97706 as UC_A7
+usecase "Manajemen\nAkun User" #D97706 as UC_A8
+
+usecase "Validasi Nilai" #DB2777 as UC_K1
+usecase "Setujui / Tolak Nilai" #DB2777 as UC_K2
+usecase "Kunci Nilai Global" #DB2777 as UC_K3
+usecase "Kunci / Buka Nilai" #DB2777 as UC_K4
+usecase "Laporan Nilai" #DB2777 as UC_K5
+
+UC_Login -[hidden]down- UC_Sem
+UC_Sem -[hidden]down- UC_M1
+UC_M1 -[hidden]down- UC_M2
+UC_M2 -[hidden]down- UC_M3
+UC_M3 -[hidden]down- UC_M4
+UC_M4 -[hidden]down- UC_M5
+UC_M5 -[hidden]down- UC_D1
+UC_D1 -[hidden]down- UC_D2
+UC_D2 -[hidden]down- UC_D3
+UC_D3 -[hidden]down- UC_D4
+UC_D4 -[hidden]down- UC_D5
+
+UC_Login -[hidden]right- UC_A1
+UC_A1 -[hidden]down- UC_A2
+UC_A2 -[hidden]down- UC_A3
+UC_A3 -[hidden]down- UC_A4
+UC_A4 -[hidden]down- UC_A5
+UC_A5 -[hidden]down- UC_A6
+UC_A6 -[hidden]down- UC_A7
+UC_A7 -[hidden]down- UC_A8
+UC_A8 -[hidden]down- UC_K1
+UC_K1 -[hidden]down- UC_K2
+UC_K2 -[hidden]down- UC_K3
+UC_K3 -[hidden]down- UC_K4
+UC_K4 -[hidden]down- UC_K5
+
+Mhs -[hidden]right- UC_M1
+Dsn -[hidden]right- UC_D1
+Admin -[hidden]left- UC_A1
+KPS -[hidden]left- UC_K1
+
+Mhs --> UC_Login
+Mhs --> UC_Sem
+Mhs --> UC_M1
+Mhs --> UC_M2
+Mhs --> UC_M3
+Mhs --> UC_M4
+Mhs --> UC_M5
+
+Dsn --> UC_Login
+Dsn --> UC_Sem
+Dsn --> UC_D1
+Dsn --> UC_D2
+Dsn --> UC_D3
+Dsn --> UC_D4
+Dsn --> UC_D5
+
+Admin --> UC_Login
+Admin --> UC_Sem
+Admin --> UC_A1
+Admin --> UC_A2
+Admin --> UC_A3
+Admin --> UC_A4
+Admin --> UC_A5
+Admin --> UC_A6
+Admin --> UC_A7
+Admin --> UC_A8
+
+KPS --> UC_Login
+KPS --> UC_Sem
+KPS --> UC_K1
+KPS --> UC_K2
+KPS --> UC_K3
+KPS --> UC_K4
+KPS --> UC_K5
+
+UC_M4 ..> UC_M5 : <<extend>>
+UC_D2 ..> UC_D1 : <<extend>>
+
+@enduml

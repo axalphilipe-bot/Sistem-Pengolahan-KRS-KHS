@@ -1,0 +1,253 @@
+@startuml Sistem_Pengelolaan_KRS_KHS_Use_Case
+' ============================================================
+' Use Case Diagram — Sistem Pengelolaan KRS & KHS
+' Berdasarkan implementasi aktual (routes, controller, model)
+' Standar UML 2.x | PlantUML
+' ============================================================
+
+skinparam packageStyle rectangle
+skinparam actorStyle awesome
+skinparam usecase {
+  BackgroundColor #FEFEFE
+  BorderColor #333333
+  ArrowColor #333333
+}
+skinparam rectangle {
+  BorderColor #1565C0
+  FontColor #1565C0
+}
+
+title Use Case Diagram\nSistem Pengelolaan KRS & KHS\n(Berdasarkan Implementasi Laravel)
+
+' ===================== AKTOR =====================
+actor "Admin" as Admin
+actor "Mahasiswa" as Mhs
+actor "Dosen" as Dosen
+actor "Ketua Program Studi\n(KPS)" as KPS
+
+' ===================== SYSTEM BOUNDARY =====================
+rectangle "Sistem Pengelolaan KRS & KHS" as System {
+
+  ' ---------- Autentikasi (semua role) ----------
+  package "Autentikasi" {
+    usecase "Login" as UC_Login
+    usecase "Logout" as UC_Logout
+  }
+
+  ' ---------- Admin ----------
+  package "Modul Admin" {
+    usecase "Lihat Dashboard Admin" as UC_A_Dash
+
+    usecase "Kelola Mahasiswa\n(CRUD)" as UC_A_Mhs
+    usecase "Import Mahasiswa Excel" as UC_A_MhsImp
+    usecase "Export Mahasiswa Excel" as UC_A_MhsExp
+
+    usecase "Kelola Dosen\n(CRUD)" as UC_A_Dsn
+    usecase "Import Dosen Excel" as UC_A_DsnImp
+    usecase "Export Dosen Excel" as UC_A_DsnExp
+
+    usecase "Kelola Mata Kuliah\n(CRUD)" as UC_A_Mk
+    usecase "Import Mata Kuliah Excel" as UC_A_MkImp
+    usecase "Export Mata Kuliah Excel" as UC_A_MkExp
+
+    usecase "Kelola Pengguna\n(CRUD)" as UC_A_User
+    usecase "Kelola Pengaturan Sistem" as UC_A_Setting
+
+    usecase "Lihat Pengajuan KRS" as UC_A_KrsView
+    usecase "Lihat Detail Pengajuan KRS" as UC_A_KrsDetail
+
+    usecase "Validasi Nilai Admin" as UC_A_ValNilai
+    usecase "Setujui Nilai Admin" as UC_A_ApproveNilai
+    usecase "Tolak Nilai Admin" as UC_A_RejectNilai
+
+    usecase "Lihat Laporan KRS" as UC_A_LapKrs
+    usecase "Export Laporan KRS PDF" as UC_A_LapKrsPdf
+    usecase "Export Laporan KRS Excel" as UC_A_LapKrsXls
+
+    usecase "Lihat Laporan KHS" as UC_A_LapKhs
+    usecase "Export Laporan KHS PDF" as UC_A_LapKhsPdf
+    usecase "Export Laporan KHS Excel" as UC_A_LapKhsXls
+
+    usecase "Lihat Log Aktivitas" as UC_A_Log
+  }
+
+  ' ---------- Mahasiswa ----------
+  package "Modul Mahasiswa" {
+    usecase "Lihat Dashboard Mahasiswa" as UC_M_Dash
+    usecase "Melihat Mata Kuliah" as UC_M_Mk
+    usecase "Mengambil KRS" as UC_M_AmbilKrs
+    usecase "Mengajukan KRS" as UC_M_AjukanKrs
+    usecase "Melihat Status\nPersetujuan KRS" as UC_M_StatusKrs
+    usecase "Melihat Profil" as UC_M_Profil
+    usecase "Ubah Profil" as UC_M_EditProfil
+    usecase "Ubah Password" as UC_M_GantiPwd
+    usecase "Melihat Panduan" as UC_M_Panduan
+    usecase "Melihat KHS" as UC_M_Khs
+    usecase "Mengunduh PDF KHS" as UC_M_KhsPdf
+  }
+
+  ' ---------- Dosen ----------
+  package "Modul Dosen" {
+    usecase "Lihat Dashboard Dosen" as UC_D_Dash
+    usecase "Melihat Daftar\nMata Kuliah" as UC_D_MkList
+    usecase "Melihat Mahasiswa\nKelas" as UC_D_Kelas
+    usecase "Melihat Pengajuan KRS\nMahasiswa Wali" as UC_D_KrsList
+    usecase "Menyetujui KRS" as UC_D_ApproveKrs
+    usecase "Menolak KRS" as UC_D_RejectKrs
+    usecase "Input Nilai" as UC_D_InputNilai
+    usecase "Edit Nilai" as UC_D_EditNilai
+    usecase "Import Nilai Excel" as UC_D_ImpNilai
+    usecase "Download Template\nNilai Excel" as UC_D_TmplNilai
+    usecase "Melihat Nilai" as UC_D_LihatNilai
+    usecase "Melihat Panduan Dosen" as UC_D_Panduan
+    usecase "Export Daftar Kelas PDF" as UC_D_ExpKelas
+  }
+
+  ' ---------- KPS ----------
+  package "Modul KPS" {
+    usecase "Lihat Dashboard KPS" as UC_K_Dash
+    usecase "Validasi Nilai" as UC_K_ValNilai
+    usecase "Menyetujui Nilai" as UC_K_ApproveNilai
+    usecase "Menolak Nilai" as UC_K_RejectNilai
+    usecase "Mengunci Nilai Global" as UC_K_KunciGlobal
+    usecase "Mengunci Nilai\nPer Mahasiswa" as UC_K_KunciItem
+    usecase "Membuka Kunci Nilai" as UC_K_Unlock
+    usecase "Melihat Status Nilai" as UC_K_StatusNilai
+    usecase "Melihat Laporan Nilai" as UC_K_Laporan
+    usecase "Export Laporan Nilai PDF" as UC_K_LapPdf
+    usecase "Export Laporan Nilai Excel" as UC_K_LapXls
+    usecase "Melihat Detail Nilai" as UC_K_DetailNilai
+  }
+
+  ' ---------- Use Case Sistem (included) ----------
+  package "Proses Internal Sistem" {
+    usecase "Menghitung IPS" as UC_S_HitungIPS
+    usecase "Menghitung IPK" as UC_S_HitungIPK
+    usecase "Mengambil Data Nilai\nTerbit (Disetujui & Terkunci)" as UC_S_AmbilNilai
+    usecase "Hitung Nilai Akhir" as UC_S_HitungAkhir
+    usecase "Hitung Nilai Huruf" as UC_S_HitungHuruf
+    usecase "Hitung Index Nilai" as UC_S_HitungIndex
+    usecase "Update Status Locked" as UC_S_UpdateLock
+  }
+}
+
+' ===================== ASSOCIASI AKTOR → USE CASE =====================
+
+' --- Autentikasi ---
+Admin --> UC_Login
+Admin --> UC_Logout
+Mhs --> UC_Login
+Mhs --> UC_Logout
+Dosen --> UC_Login
+Dosen --> UC_Logout
+KPS --> UC_Login
+KPS --> UC_Logout
+
+' --- Admin ---
+Admin --> UC_A_Dash
+Admin --> UC_A_Mhs
+Admin --> UC_A_MhsImp
+Admin --> UC_A_MhsExp
+Admin --> UC_A_Dsn
+Admin --> UC_A_DsnImp
+Admin --> UC_A_DsnExp
+Admin --> UC_A_Mk
+Admin --> UC_A_MkImp
+Admin --> UC_A_MkExp
+Admin --> UC_A_User
+Admin --> UC_A_Setting
+Admin --> UC_A_KrsView
+Admin --> UC_A_KrsDetail
+Admin --> UC_A_ValNilai
+Admin --> UC_A_LapKrs
+Admin --> UC_A_LapKrsPdf
+Admin --> UC_A_LapKrsXls
+Admin --> UC_A_LapKhs
+Admin --> UC_A_LapKhsPdf
+Admin --> UC_A_LapKhsXls
+Admin --> UC_A_Log
+
+' --- Mahasiswa ---
+Mhs --> UC_M_Dash
+Mhs --> UC_M_Mk
+Mhs --> UC_M_AmbilKrs
+Mhs --> UC_M_StatusKrs
+Mhs --> UC_M_Profil
+Mhs --> UC_M_EditProfil
+Mhs --> UC_M_GantiPwd
+Mhs --> UC_M_Panduan
+Mhs --> UC_M_Khs
+Mhs --> UC_M_KhsPdf
+
+' --- Dosen ---
+Dosen --> UC_D_Dash
+Dosen --> UC_D_MkList
+Dosen --> UC_D_Kelas
+Dosen --> UC_D_KrsList
+Dosen --> UC_D_ApproveKrs
+Dosen --> UC_D_RejectKrs
+Dosen --> UC_D_InputNilai
+Dosen --> UC_D_ImpNilai
+Dosen --> UC_D_TmplNilai
+Dosen --> UC_D_LihatNilai
+Dosen --> UC_D_Panduan
+Dosen --> UC_D_ExpKelas
+
+' --- KPS ---
+KPS --> UC_K_Dash
+KPS --> UC_K_ValNilai
+KPS --> UC_K_KunciGlobal
+KPS --> UC_K_KunciItem
+KPS --> UC_K_Unlock
+KPS --> UC_K_StatusNilai
+KPS --> UC_K_Laporan
+KPS --> UC_K_LapPdf
+KPS --> UC_K_LapXls
+KPS --> UC_K_DetailNilai
+
+' ===================== RELASI <<include>> =====================
+
+UC_M_AmbilKrs ..> UC_M_AjukanKrs : <<include>>
+
+UC_M_Khs ..> UC_S_HitungIPS : <<include>>
+UC_M_Khs ..> UC_S_HitungIPK : <<include>>
+UC_M_Khs ..> UC_S_AmbilNilai : <<include>>
+
+UC_D_InputNilai ..> UC_S_HitungAkhir : <<include>>
+UC_D_InputNilai ..> UC_S_HitungHuruf : <<include>>
+UC_D_InputNilai ..> UC_S_HitungIndex : <<include>>
+
+UC_K_ValNilai ..> UC_K_ApproveNilai : <<include>>
+UC_K_ValNilai ..> UC_K_RejectNilai : <<include>>
+
+UC_K_KunciGlobal ..> UC_S_UpdateLock : <<include>>
+UC_K_KunciItem ..> UC_S_UpdateLock : <<include>>
+
+UC_A_ValNilai ..> UC_A_ApproveNilai : <<include>>
+UC_A_ValNilai ..> UC_A_RejectNilai : <<include>>
+
+' ===================== RELASI <<extend>> =====================
+
+UC_D_EditNilai ..> UC_D_InputNilai : <<extend>>\n[nilai belum dikunci]
+UC_M_KhsPdf ..> UC_M_Khs : <<extend>>
+
+note right of UC_A_KrsView
+  Persetujuan KRS oleh Admin
+  dinonaktifkan (CP5).
+  Validasi KRS dialihkan ke Dosen Wali.
+  Route: KrsController::setujui/tolak
+end note
+
+note bottom of UC_A_Setting
+  Menggantikan CRUD Semester/Prodi terpisah.
+  Semester aktif & batas KRS diatur di
+  PengaturanSistem (bukan modul CRUD).
+  Tabel prodi hanya referensi data.
+end note
+
+note bottom of UC_S_AmbilNilai
+  Nilai::scopePublished()
+  status = Disetujui AND kunci_nilai = 1
+end note
+
+@enduml

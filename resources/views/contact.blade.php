@@ -1,4 +1,4 @@
-<section class="contact-section">
+<section class="contact-section" id="kontak">
 
     <div class="contact-banner">
         <div class="banner-text">
@@ -6,28 +6,17 @@
             <p>Kami siap membantu Anda dengan informasi terkait sistem <b>KRS & KHS</b>.</p>
             <small>Pilih cara yang paling nyaman untuk menghubungi kami.</small>
         </div>
-
-        <div class="banner-icons">
-            <i class="fas fa-map-marker-alt"></i>
-            <i class="fas fa-phone"></i>
-            <i class="fas fa-envelope"></i>
-        </div>
-
-        <div class="banner-image">
-            <i class="fas fa-university"></i>
-        </div>
+        <i class="fas fa-university banner-icon-large"></i>
     </div>
-
 
     <div class="contact-content">
 
- 
         <div class="contact-info">
 
             <div class="info-card">
                 <i class="fas fa-map-marker-alt"></i>
                 <h4>Alamat</h4>
-                <p> Jl. Ahmad Yani Batam Kota. Kota Batam. kepulauan Riau. Indonesia</p>
+                <p>Jl. Ahmad Yani Batam Kota, Kota Batam, Kepulauan Riau, Indonesia</p>
             </div>
 
             <div class="info-card">
@@ -50,44 +39,59 @@
 
             <div class="info-card">
                 <i class="fas fa-clock"></i>
-                <h4>Jam</h4>
-                <p>08:00 - 16:00</p>
+                <h4>Jam Operasional</h4>
+                <p>08:00 – 16:00 WIB</p>
             </div>
 
         </div>
 
         <div class="faq">
-            <h3>Frequently Asked Questions</h3>
+            <h3><i class="fa-solid fa-circle-question"></i> Frequently Asked Questions</h3>
 
             <div class="faq-item">
-    <button class="faq-question">Bagaimana cara mengisi KRS?</button>
-
-    <div class="faq-answer">
-        <p>Untuk mengisi KRS:</p>
-        <ul>
-            <li>Masuk ke menu KRS</li>
-            <li>Pilih mata kuliah</li>
-            <li>Cek total SKS</li>
-            <li>Klik Ambil KRS</li>
-        </ul>
-    </div>
-</div>
-
-            <div class="faq-item">
-                <button class="faq-question">Kapan KRS dibuka?</button>
-                <div class="faq-answer">Sesuai kalender akademik.</div>
+                <button class="faq-question" type="button">
+                    Bagaimana cara mengisi KRS?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Untuk mengisi KRS:</p>
+                    <ul>
+                        <li>Login sebagai mahasiswa</li>
+                        <li>Masuk ke menu KRS</li>
+                        <li>Pilih mata kuliah yang diinginkan</li>
+                        <li>Cek total SKS, lalu klik Ajukan KRS</li>
+                    </ul>
+                </div>
             </div>
 
             <div class="faq-item">
-                <button class="faq-question">Kenapa KHS belum muncul?</button>
-                <div class="faq-answer">Menunggu input nilai dosen.</div>
+                <button class="faq-question" type="button">
+                    Kapan KRS dibuka?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Pengisian KRS dibuka sesuai kalender akademik yang ditetapkan oleh bagian akademik Polibatam. Pantau halaman pengumuman untuk informasi terbaru.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" type="button">
+                    Kenapa KHS belum muncul?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>KHS akan tampil setelah dosen menyelesaikan input nilai dan admin melakukan validasi nilai untuk semester tersebut.</p>
+                </div>
             </div>
         </div>
 
     </div>
 
     <div class="map">
-        <iframe 
+        <iframe
+            title="Lokasi Politeknik Negeri Batam"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
             src="https://www.google.com/maps?q=Politeknik%20Negeri%20Batam&output=embed">
         </iframe>
     </div>

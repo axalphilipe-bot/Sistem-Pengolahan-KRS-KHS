@@ -53,7 +53,7 @@
         <td>{{ $item->nama_dosen }}</td>
         <td>{{ $item->nama_prodi }}</td>
         <td>{{ ucfirst($item->semester) }}</td>
-        <td>{{ $item->kunci_nilai }}</td>
+        <td>{{ \App\Models\Nilai::isLockedValue($item->kunci_nilai) ? 'Terkunci' : 'Belum Terkunci' }}</td>
     </tr>
 
     @endforeach

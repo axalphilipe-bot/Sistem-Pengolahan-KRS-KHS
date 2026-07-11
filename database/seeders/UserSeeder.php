@@ -27,9 +27,10 @@ class UserSeeder extends Seeder
 
         User::create([
             'name' => 'Dosen 1',
-            'nidn' => '1987654321',
+            'nuptk' => '1987654321',
             'password' => Hash::make('12345678'),
             'role' => 'dosen',
+            'status' => 'aktif',
         ]);
     }
 }

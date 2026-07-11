@@ -1,0 +1,46 @@
+@startuml activity-11-crud-dosen
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram CRUD Dosen\n(AdminDosenController)
+
+|Admin|
+start
+:Buka Menu Dosen\n(GET /admin/dosen);
+
+|Sistem|
+:Tampilkan daftar dosen;
+
+|Admin|
+if (Aksi?) then (Tambah)
+  :Form tambah\n(GET /admin/dosen/create);
+  :Submit\n(POST /admin/dosen/store);
+  |Sistem|
+  :Simpan data dosen;
+elseif (Edit) then
+  :Form edit\n(GET /admin/dosen/{nuptk}/edit);
+  :Submit update;
+  |Sistem|
+  :Update data dosen;
+elseif (Hapus) then
+  :Hapus\n(GET /admin/dosen/{nuptk}/hapus);
+  |Sistem|
+  :Delete dosen;
+else (Import/Export)
+  :Import atau Export Excel;
+  |Sistem|
+  :Proses file Excel;
+endif
+|Admin|
+:Kembali ke daftar dosen;
+stop
+
+@enduml

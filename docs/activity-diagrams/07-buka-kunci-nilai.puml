@@ -1,0 +1,42 @@
+@startuml activity-07-buka-kunci-nilai
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram Buka Kunci Nilai\n(KpsController::kunci / unlock)
+
+|KPS|
+start
+:Buka Menu Kunci Nilai\n(GET /kps/kunci);
+
+|Sistem|
+:Ambil nilai status Disetujui;
+:Tampilkan daftar nilai\n(Terkunci / Belum Terkunci);
+
+|KPS|
+:Pilih baris nilai mahasiswa;
+:Klik "Buka Kunci"\n(/kps/kunci/unlock/{nim}/{kode_mk});
+:Konfirmasi dialog\n(confirm JavaScript);
+
+if (Yakin?) then (Ya)
+  |Sistem|
+  :Update kunci_nilai = 0;
+  :Set tanggal_kunci = NULL;
+  |KPS|
+  :Notifikasi "Nilai berhasil dibuka kuncinya";
+  :Status = Belum Terkunci;
+  stop
+else (Tidak)
+  |KPS|
+  :Batal aksi;
+  stop
+endif
+
+@enduml

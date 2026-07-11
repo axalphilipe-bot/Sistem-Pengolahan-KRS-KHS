@@ -14,8 +14,9 @@ return new class extends Migration
             $table->id();
 
             $table->string('nim', 10);
-
             $table->string('kode_mk', 5);
+
+            $table->unique(['nim', 'kode_mk']);
 
             $table->integer('teamwork');
             $table->integer('keaktifan');

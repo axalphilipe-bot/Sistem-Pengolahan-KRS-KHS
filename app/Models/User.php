@@ -22,7 +22,7 @@ protected $fillable = [
     'email',
     'password',
     'nim',
-    'nidn',
+    'nuptk',
     'role',
     'no_hp',
     'prodi',
@@ -46,8 +46,6 @@ protected $fillable = [
      */
     protected function casts(): array
     {
-        return [
-            'email_verified_at' => 'datetime',
-        ];
+        return [];
     }
 }

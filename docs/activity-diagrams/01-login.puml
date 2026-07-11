@@ -1,0 +1,51 @@
+@startuml activity-01-login
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+skinparam ArrowColor #333333
+
+title Diagram LOGIN\n(AuthController::showLogin / login)
+
+|Sistem|
+start
+:Tampilan Halaman Login\n(view login.blade.php);
+
+|Pengguna|
+:Pilih Role\n(Admin/Mahasiswa/Dosen/KPS);
+:Input kredensial\n(NIM / NUPTK / Email);
+:Input Password;
+:Klik Login\n(POST /login);
+
+|Sistem|
+:Validasi form\n(login, password, role);
+:Cari user di tabel users\nsesuai role;
+:Hash::check password;
+
+if (Akun valid?) then (Ya)
+  :Auth::login(user);
+  :LogAktivitas::catat\n("Login ke sistem");
+  if (Role?) then (Admin)
+    :Redirect /admin;
+  elseif (Dosen) then
+    :Redirect /dosen;
+  elseif (KPS) then
+    :Redirect /kps;
+  else (Mahasiswa)
+    :Redirect /home;
+  endif
+  stop
+else (Tidak)
+  |Pengguna|
+  :Tampilkan pesan\n"Login gagal";
+  :Kembali ke halaman login;
+  stop
+endif
+
+@enduml

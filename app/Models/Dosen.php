@@ -28,4 +28,13 @@ class Dosen extends Model
             'kode_prodi'
         );
     }
+
+    public function mahasiswaWali()
+    {
+        return $this->hasMany(
+            Mahasiswa::class,
+            'nuptk_wali',
+            'nuptk'
+        );
+    }
 }

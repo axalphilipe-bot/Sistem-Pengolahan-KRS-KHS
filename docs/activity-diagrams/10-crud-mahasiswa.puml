@@ -1,0 +1,48 @@
+@startuml activity-10-crud-mahasiswa
+skinparam backgroundColor #F5F5F5
+skinparam activity {
+  BackgroundColor #FFE066
+  BorderColor #333333
+  FontSize 11
+}
+skinparam activityDiamond {
+  BackgroundColor #FFE066
+  BorderColor #333333
+}
+
+title Diagram CRUD Mahasiswa\n(MahasiswaController)
+
+|Admin|
+start
+:Buka Menu Mahasiswa\n(GET /admin/mahasiswa);
+
+|Sistem|
+:Tampilkan daftar mahasiswa\n(pagination + search);
+
+|Admin|
+if (Aksi?) then (Tambah)
+  :Buka form tambah\n(GET /admin/mahasiswa/create);
+  :Isi data mahasiswa;
+  :Submit\n(POST /admin/mahasiswa/store);
+  |Sistem|
+  :Mahasiswa::create;
+elseif (Edit) then
+  :Buka form edit\n(GET /admin/mahasiswa/{nim}/edit);
+  :Ubah data;
+  :Submit\n(POST /admin/mahasiswa/{nim}/update);
+  |Sistem|
+  :Mahasiswa::update;
+elseif (Hapus) then
+  :Klik hapus\n(GET /admin/mahasiswa/{nim}/hapus);
+  |Sistem|
+  :Mahasiswa::delete;
+else (Import/Export)
+  :Import Excel atau\nExport Excel;
+  |Sistem|
+  :Proses file Excel;
+endif
+|Admin|
+:Redirect ke daftar mahasiswa;
+stop
+
+@enduml
